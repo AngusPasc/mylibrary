@@ -1,7 +1,7 @@
 object MyBooks: TMyBooks
-  Left = 191
+  Left = 568
   Height = 382
-  Top = 189
+  Top = 163
   Width = 771
   Caption = 'MyBooks'
   ClientHeight = 382
@@ -40,7 +40,7 @@ object MyBooks: TMyBooks
     Left = 152
     Height = 17
     Top = 288
-    Width = 63
+    Width = 71
     Caption = 'Назывние'
     ParentColor = False
   end
@@ -55,7 +55,7 @@ object MyBooks: TMyBooks
     Left = 256
     Height = 17
     Top = 288
-    Width = 30
+    Width = 33
     Caption = 'ISBN'
     ParentColor = False
   end
@@ -70,7 +70,7 @@ object MyBooks: TMyBooks
     Left = 360
     Height = 17
     Top = 288
-    Width = 97
+    Width = 108
     Caption = 'Ориг. название'
     ParentColor = False
   end
@@ -85,7 +85,7 @@ object MyBooks: TMyBooks
     Left = 480
     Height = 17
     Top = 288
-    Width = 21
+    Width = 24
     Caption = 'Год'
     ParentColor = False
   end
@@ -100,7 +100,7 @@ object MyBooks: TMyBooks
     Left = 576
     Height = 17
     Top = 288
-    Width = 68
+    Width = 78
     Caption = 'Аннотация'
     ParentColor = False
   end
@@ -125,12 +125,19 @@ object MyBooks: TMyBooks
     Height = 245
     Top = 32
     Width = 568
+    AutoFillColumns = True
+    ColCount = 2
+    RowCount = 2
     TabOrder = 9
+    ColWidths = (
+      64
+      502
+    )
   end
   object SQLite3Connection1: TSQLite3Connection
-    Connected = True
+    Connected = False
     LoginPrompt = False
-    DatabaseName = '/home/koma/MyBooks/SQL/sqlite/mybooks'
+    DatabaseName = '/home/manul/code/mylibrary/SQL/sqlite/mybooks'
     KeepConnection = False
     Transaction = SQLTransaction1
     Options = []
