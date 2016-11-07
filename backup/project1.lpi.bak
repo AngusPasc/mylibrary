@@ -38,7 +38,7 @@
         <PackageName Value="LCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="5">
+    <Units Count="3">
       <Unit0>
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -49,23 +49,13 @@
         <ComponentName Value="MyBooks"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="MyLibrary"/>
+        <UnitName Value="Unit1"/>
       </Unit1>
       <Unit2>
         <Filename Value="tmbauthor.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="TMBAuthor"/>
       </Unit2>
-      <Unit3>
-        <Filename Value="tmbcomposition.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="TMBComposition"/>
-      </Unit3>
-      <Unit4>
-        <Filename Value="tmbeditor.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="TMBEditor"/>
-      </Unit4>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
