@@ -1,4 +1,4 @@
-unit TMBComposition;
+unit UMBComposition;
 
 {$mode objfpc}{$H+}
 

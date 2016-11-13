@@ -44,27 +44,25 @@
         <IsPartOfProject Value="True"/>
       </Unit0>
       <Unit1>
-        <Filename Value="unit1.pas"/>
+        <Filename Value="mylibrary.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="MyBooks"/>
         <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
         <UnitName Value="MyLibrary"/>
       </Unit1>
       <Unit2>
-        <Filename Value="tmbauthor.pas"/>
+        <Filename Value="umbauthor.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="TMBAuthor"/>
+        <UnitName Value="UMBAuthor"/>
       </Unit2>
       <Unit3>
-        <Filename Value="tmbcomposition.pas"/>
+        <Filename Value="umbcomposition.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="TMBComposition"/>
+        <UnitName Value="UMBComposition"/>
       </Unit3>
       <Unit4>
-        <Filename Value="tmbeditor.pas"/>
+        <Filename Value="umbeditor.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="TMBEditor"/>
+        <UnitName Value="UMBEditor"/>
       </Unit4>
     </Units>
   </ProjectOptions>

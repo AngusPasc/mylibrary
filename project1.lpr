@@ -7,7 +7,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, MyLibrary, unit2
+  Forms, MyLibrary, UMBEditor
   { you can add units after this };
 
 {$R *.res}
@@ -15,7 +15,6 @@ uses
 begin
   RequireDerivedFormResource:=True;
   Application.Initialize;
-  Application.CreateForm(TMyBooks, MyBooks);
   Application.Run;
 end.
 

@@ -11,7 +11,7 @@ type
     TMBAuthor = Class
       private
              FAuthorName : String;
-             FAuthorSurname : String
+             FAuthorSurname : String;
              FAurhorID : Integer;
              FAuthorOrigID : Integer;
              FNewAuthor : Boolean;
@@ -137,7 +137,7 @@ implementation
                        SQLQuery.Close;
                        SQLQuery.SQL.Text:='inset into authors (name, surname) values (:bAuthorName, :bAuthorSurname )';
                        SQLQuery.Params.ParamByName('bAuthorName').AsString:=FAuthorName;
-                       SQLQuery.Params.ParamByName('bAuthorSurnameID').AsString:=FAuthorSurname;
+                       SQLQuery.Params.ParamByName('bAuthorSurname').AsString:=FAuthorSurname;
                        SQLQuery.ExecSQL;
                        SQLTransaction.Commit;
                        FNewAuthor := False;
@@ -145,7 +145,7 @@ implementation
                        SQLQuery.Close;
                        SQLQuery.SQL.Text:='update authors set name=:bAuthorName surname=:bAuthorSurname where id =:bAuthorID';
                        SQLQuery.Params.ParamByName('bAuthorName').AsString:=FAuthorName;
-                       SQLQuery.Params.ParamByName('bAuthorSurnameID').AsString:=FAuthorSurname;
+                       SQLQuery.Params.ParamByName('bAuthorSurname').AsString:=FAuthorSurname;
                        SQLQuery.Params.ParamByName('bAuthorID').AsString:=FAuthorID;
                        SQLQuery.ExecSQL;
                        SQLTransaction.Commit;

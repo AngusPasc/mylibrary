@@ -98,7 +98,7 @@ end;
 
 procedure TMBComposition.UpdateComposition(const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
 begin
-    if FNewAuthor = True then
+    if FNewComposition = True then
     begin
          SQLQuery.Close;
          SQLQuery.SQL.Text:='inset into compositions (name, annotation) values (:bCompositionName, :bCompositionAnnotation )';
@@ -106,16 +106,16 @@ begin
          SQLQuery.Params.ParamByName('bCompositionAnnotation').AsString:=FCompositionAnnotation;
          SQLQuery.ExecSQL;
          SQLTransaction.Commit;
-         FNewAuthor := False;
-         else
-             SQLQuery.Close;
-             SQLQuery.SQL.Text:='update composition set name=:bCompositionName annotation=:bCompositionAnnotation where id =:bCompositionID';
-             SQLQuery.Params.ParamByName('bCompositionName').AsString:=FCompositionName;
-             SQLQuery.Params.ParamByName('bCompositionAnnotation').AsString:=FCompositionAnnotation;
-             SQLQuery.Params.ParamByName('bComposiionID').AsString:=FCompositionID;
-             SQLQuery.ExecSQL;
-             SQLTransaction.Commit;
-         end;
+         FNewComposition := False;
+    else
+        SQLQuery.Close;
+        SQLQuery.SQL.Text:='update composition set name=:bCompositionName annotation=:bCompositionAnnotation where id =:bCompositionID';
+        SQLQuery.Params.ParamByName('bCompositionName').AsString:=FCompositionName;
+        SQLQuery.Params.ParamByName('bCompositionAnnotation').AsString:=FCompositionAnnotation;
+        SQLQuery.Params.ParamByName('bComposiionID').AsString:=FCompositionID;
+        SQLQuery.ExecSQL;
+        SQLTransaction.Commit;
+    end;
          SQLQuery.Close;
 end;
 
