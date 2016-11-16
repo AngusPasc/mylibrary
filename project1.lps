@@ -3,11 +3,11 @@
   <ProjectSession>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="11">
+    <Units Count="12">
       <Unit0>
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <CursorPos X="25" Y="15"/>
         <UsageCount Value="437"/>
         <Loaded Value="True"/>
@@ -17,39 +17,38 @@
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
         <UnitName Value="MyLibrary"/>
-        <CursorPos X="93" Y="9"/>
-        <UsageCount Value="32"/>
+        <IsVisibleTab Value="True"/>
+        <CursorPos X="12" Y="10"/>
+        <UsageCount Value="41"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="umbauthor.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UMBAuthor"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="21"/>
         <CursorPos X="52" Y="87"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="41"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="umbcomposition.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UMBComposition"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="99"/>
-        <CursorPos X="10" Y="115"/>
-        <UsageCount Value="21"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="73"/>
+        <CursorPos X="48" Y="99"/>
+        <UsageCount Value="30"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="umbeditor.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UMBEditor"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="15"/>
+        <EditorIndex Value="4"/>
         <CursorPos X="6" Y="44"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>
@@ -58,7 +57,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="11"/>
         <CursorPos X="72" Y="15"/>
-        <UsageCount Value="310"/>
+        <UsageCount Value="309"/>
       </Unit5>
       <Unit6>
         <Filename Value="tmbcomposition.pas"/>
@@ -66,7 +65,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="18"/>
         <CursorPos X="73" Y="8"/>
-        <UsageCount Value="310"/>
+        <UsageCount Value="309"/>
       </Unit6>
       <Unit7>
         <Filename Value="unit1.pas"/>
@@ -76,7 +75,7 @@
         <UnitName Value="MyLibrary"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="16"/>
-        <UsageCount Value="436"/>
+        <UsageCount Value="435"/>
       </Unit7>
       <Unit8>
         <Filename Value="tmbauthor.pas"/>
@@ -84,7 +83,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="7"/>
         <CursorPos X="38" Y="14"/>
-        <UsageCount Value="415"/>
+        <UsageCount Value="414"/>
       </Unit8>
       <Unit9>
         <Filename Value="/usr/lib/lazarus/1.6/lcl/grids.pas"/>
@@ -92,15 +91,25 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1282"/>
         <CursorPos X="15" Y="1309"/>
-        <UsageCount Value="34"/>
+        <UsageCount Value="33"/>
       </Unit9>
       <Unit10>
         <Filename Value="/Developer/lazarus/lcl/interfaces/carbon/carbonwinapi.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="408"/>
         <CursorPos X="4" Y="422"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit10>
+      <Unit11>
+        <Filename Value="umbgenre.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UMBGenre"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="47"/>
+        <CursorPos X="45" Y="120"/>
+        <UsageCount Value="29"/>
+        <Loaded Value="True"/>
+      </Unit11>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>

@@ -38,19 +38,32 @@
         <PackageName Value="LCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="2">
+    <Units Count="5">
       <Unit0>
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
       </Unit0>
       <Unit1>
-        <Filename Value="unit1.pas"/>
+        <Filename Value="mylibrary.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="MyBooks"/>
         <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-        <UnitName Value="Unit1"/>
+        <UnitName Value="MyLibrary"/>
       </Unit1>
+      <Unit2>
+        <Filename Value="umbauthor.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UMBAuthor"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="umbcomposition.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UMBComposition"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="umbeditor.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UMBEditor"/>
+      </Unit4>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
