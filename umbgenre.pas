@@ -34,7 +34,7 @@ type
 
 implementation
 
-constructor TMBGenres.Create(Name : String = ''; Desc : String = '');
+constructor TMBGenre.Create(Name : String = ''; Desc : String = '');
 begin
      FGenreName := Name;
      FGenreDescription := Desc;
@@ -42,7 +42,7 @@ begin
      FNewGenre := True;
 end;
 
-constructor TMBGenres.Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
+constructor TMBGenre.Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
 begin
      SQLQuery.Close;
      SQLQuery.SQL.Text:='SELECT name, description FROM genres where id=:bID';
@@ -51,12 +51,12 @@ begin
      //ДК, нужна проверка что запрос вернул не пустой результат
      FGenreName:=SQLQuery.FieldByName('name').AsString;
      FGenreDescription:=SQLQuery.FieldByName('description').AsString;
-     FCGenreID:=ID;
+     FGenreID:=ID;
      SQLQuery.Close;
      FNewGenre := False;
 end;
 
-procedure TMBGenres.UpdateGenre(const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
+procedure TMBGenre.UpdateGenre(const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
 begin
   if FNewGenre = True then
       begin
@@ -71,7 +71,7 @@ begin
       else
       begin
           SQLQuery.Close;
-          SQLQuery.SQL.Text:='update genres set name=:bGenreName description=:bGenreDescription where id =:bGenreID';
+          SQLQuery.SQL.Text:='update genres set name=:bGenreName, description=:bGenreDescription where id =:bGenreID';
           SQLQuery.Params.ParamByName('bGenreName').AsString:=FGenreName;
           SQLQuery.Params.ParamByName('bGenreDescription').AsString:=FGenreDescription;
           SQLQuery.Params.ParamByName('bGenreID').AsString:=IntToStr(FGenreID);
@@ -118,7 +118,7 @@ end;
 function TMBGenre.GetGenresCompositionID( Index : Integer ) : Integer;
 begin
      if Index < Length(FGenresCompositionsID) then
-        Result := FGenresCompositions[Index];
+        Result := FGenresCompositionsID[Index];
 end;
 
 end.

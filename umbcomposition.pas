@@ -114,7 +114,7 @@ begin
     else
     begin
         SQLQuery.Close;
-        SQLQuery.SQL.Text:='update compositions set name=:bCompositionName annotation=:bCompositionAnnotation where id =:bCompositionID';
+        SQLQuery.SQL.Text:='update compositions set name=:bCompositionName, annotation=:bCompositionAnnotation where id =:bCompositionID';
         SQLQuery.Params.ParamByName('bCompositionName').AsString:=FCompositionName;
         SQLQuery.Params.ParamByName('bCompositionAnnotation').AsString:=FCompositionAnnotation;
         SQLQuery.Params.ParamByName('bComposiionID').AsString:=IntToStr(FCompositionID);

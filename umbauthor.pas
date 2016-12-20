@@ -151,7 +151,7 @@ implementation
                    else
                    begin
                        SQLQuery.Close;
-                       SQLQuery.SQL.Text:='update authors set name=:bAuthorName surname=:bAuthorSurname where id =:bAuthorID';
+                       SQLQuery.SQL.Text:='update authors set name=:bAuthorName, surname=:bAuthorSurname where id =:bAuthorID';
                        SQLQuery.Params.ParamByName('bAuthorName').AsString:=FAuthorName;
                        SQLQuery.Params.ParamByName('bAuthorSurname').AsString:=FAuthorSurname;
                        SQLQuery.Params.ParamByName('bAuthorID').AsString:=IntToStr(FAuthorID);

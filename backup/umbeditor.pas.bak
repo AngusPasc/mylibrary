@@ -29,12 +29,32 @@ type
              property EditorID : Integer read FEditorID;
              property EditorBooks[Index : Integer]: Integer read GetEditorBookID;
              procedure UpdateEditor(const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
-
     end;
 
 implementation
 
+constructor TMBEditor.Create(Name : String = ''; Surname : String = '');
+begin
+     //ДК, надо добавить пару проверок Name и Surname не должны быть пустыми
+     FEditorName:=Name;
+     FEditorSurname:=Surname;
+     FEditorID:=0;
+     FNewEditor := True;
+end;
 
+constructor TMBEditor.Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
+begin
+     SQLQuery.Close;
+     SQLQuery.SQL.Text:='SELECT name, surname FROM editors where id=:bID';
+     SQLQuery.Params.ParamByName('bID').AsString:=IntToStr(ID);
+     SQLQuery.Open;
+     //ДК, нужна проверка что запрос вернул не пустой результат
+     FEditorName:=SQLQuery.FieldByName('name').AsString;
+     FEditorSurname:=SQLQuery.FieldByName('surname').AsString;
+     FEditorID:=ID;
+     SQLQuery.Close;
+     FNewEditor := False;
+end;
 
 function TMBEditor.GetEditorBookID(Index : Integer) : Integer;
 begin
@@ -81,7 +101,27 @@ end;
 
 procedure TMBEditor.UpdateEditor(const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
 begin
-
+     if FNewEditor = True then
+     begin
+          SQLQuery.Close;
+          SQLQuery.SQL.Text:='inset into editors (name, surname) values (:bEditorName, :bEditorSurname )';
+          SQLQuery.Params.ParamByName('bEditorName').AsString:=FEditorName;
+          SQLQuery.Params.ParamByName('bEditorSurname').AsString:=FEditorSurname;
+          SQLQuery.ExecSQL;
+          SQLTransaction.Commit;
+          FNewEditor := False;
+     end
+     else
+     begin
+          SQLQuery.Close;
+          SQLQuery.SQL.Text:='update editors set name=:bEditorName, surname=:bEditorSurname where id =:bEditorID';
+          SQLQuery.Params.ParamByName('bEditorName').AsString:=FEditorName;
+          SQLQuery.Params.ParamByName('bEditorSurname').AsString:=FEditorSurname;
+          SQLQuery.Params.ParamByName('bEditorID').AsString:=IntToStr(FEdiorID);
+          SQLQuery.ExecSQL;
+          SQLTransaction.Commit;
+     end;
+     SQLQuery.Close;
 end;
 
 end.

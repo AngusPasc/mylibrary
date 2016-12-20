@@ -23,10 +23,6 @@ type
              procedure SetAuthorName(Name : String = '');
              procedure SetAuthorSurname(Surname : String ='');
              function GetAuthorCompositionID(Index : Integer) : Integer;
-
-             //function AuthorID();
-             //function AuthorOriginID();
-             //function AuthorCompositions();
       published
 
       public
@@ -68,6 +64,8 @@ implementation
                    FNewAuthor := False;
               end;
 
+              //private функция
+              //получает масив ID произведений автора и сохраняет его в поле FAuthorCompositions
               procedure TMBAuthor.GetAuthorCompositions(const SQLQuery :  TSQLQuery);
               var
                 I : Integer;
@@ -92,6 +90,9 @@ implementation
                    end;
               end;
 
+              //private функция
+              //получает массив ID книг в которые вошли произведения автора и
+              //сохраняет массив в поле FAuthorBooks
               procedure TMBAuthor.GetAuthorBooks(const SQLQuery :  TSQLQuery);
               var
                 I : Integer;
@@ -160,6 +161,7 @@ implementation
                        SQLQuery.Close;
               end;
 
+              //возвращает ID книги по индексу
               function TMBAuthor.GetAuthorBookID(Index : Integer) : Integer;
               begin
                    if Index < Length(FAuthorBooks) then

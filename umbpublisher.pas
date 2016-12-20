@@ -1,0 +1,136 @@
+unit UMBPublisher;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, sqlite3conn, sqldb, db;
+
+type
+TMBPublisher = Class
+  private
+         FPublisherName : String;
+         FPublisherCity : String;
+         FPublisherURL : String;
+         FPublisherID : Integer;
+         FNewPublisher : Boolean;
+         FPublisherBooksID : array of Integer;
+         procedure SetPublisherName( Name : String);
+         procedure SetPublisherCity( Name : String );
+         procedure SetPublisherURL( Name : String );
+         procedure GetPublisherBooks( const SQLQuery :  TSQLQuery );
+         function GetPublisherBookID( Index : Integer ) : Integer;
+  public
+         constructor Create( Name : String = ''; City : String = ''; URL : String = '' );
+         constructor Create( ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction );
+         property PublisherName : String read FPublisherName write SetPublisherName;
+         property PublisherCity : String read FPublisherCity write SetPublisherCity;
+         property PublisherURL : String read FPublisherURL write SetPublisherURL;
+         property PublisherID : Integer read FPublisherID;
+         property PublisherBook[Index : Integer]: Integer read GetPublisherBookID;
+         procedure UpdatePublisher(const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
+
+  published
+end;
+
+implementation
+
+constructor TMBPublisher.Create(Name : String = ''; City : String = ''; URL : String = '');
+begin
+     FPublisherName := Name;
+     FPublisherCity := City;
+     FPublisherURL := URL;
+     FPublisherID := 0;
+     FNewPublisher := True;
+end;
+
+constructor TMBPublisher.Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
+begin
+     SQLQuery.Close;
+     SQLQuery.SQL.Text:='SELECT name, city, url FROM publishers where id=:bID';
+     SQLQuery.Params.ParamByName('bID').AsString:=IntToStr(ID);
+     SQLQuery.Open;
+     //ДК, нужна проверка что запрос вернул не пустой результат
+     FPublisherName:=SQLQuery.FieldByName('name').AsString;
+     FPublisherCity:=SQLQuery.FieldByName('city').AsString;
+     FPublisherURL:=SQLQuery.FieldByName('url').AsString;
+     FPublisherID:=ID;
+     SQLQuery.Close;
+     FNewPublisher := False;
+end;
+
+procedure TMBPublisher.UpdatePublisher(const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
+begin
+  if FNewPublisher = True then
+      begin
+           SQLQuery.Close;
+           SQLQuery.SQL.Text:='inset into publishers (name, city, url) values (:bPublisherName, :bPublisherCity, :bPublisherURL )';
+           SQLQuery.Params.ParamByName('bPublisherName').AsString:=FPublisherName;
+           SQLQuery.Params.ParamByName('bPublisherCity').AsString:=FPublisherCity;
+           SQLQuery.Params.ParamByName('bPublisherURL').AsString:=FPublisherURL;
+           SQLQuery.ExecSQL;
+           SQLTransaction.Commit;
+           FNewPublisher := False;
+      end
+      else
+      begin
+          SQLQuery.Close;
+          SQLQuery.SQL.Text:='update publishers set name=:bPublisherName, city=:bPublisherCity, url=:bPublisherURL where id =:bPublisherID';
+          SQLQuery.Params.ParamByName('bPublisherName').AsString:=FPublisherName;
+          SQLQuery.Params.ParamByName('bPublisherCity').AsString:=FPublisherCity;
+          SQLQuery.Params.ParamByName('bPublisherURL').AsString:=FPublisherURL;
+          SQLQuery.Params.ParamByName('bPublisherID').AsString:=IntToStr(FPublisherID);
+          SQLQuery.ExecSQL;
+          SQLTransaction.Commit;
+      end;
+           SQLQuery.Close;
+end;
+
+procedure TMBPublisher.SetPublisherName( Name : String );
+begin
+  FPublisherName := Name;
+end;
+
+procedure TMBPublisher.SetPublisherCity( Name : String );
+begin
+  FPublisherCity := Name;
+end;
+
+procedure TMBPublisher.SetPublisherURL( Name : String );
+begin
+  FPublisherURL := Name;
+end;
+
+procedure TMBPublisher.GetPublisherBooks(const SQLQuery :  TSQLQuery);
+var
+  I : Integer;
+begin
+     SQLQuery.Close;
+     SQLQuery.SQL.Text:='SELECT book_id FROM rel_publisher_books where publisher_id=:bPublisherID';
+     SQLQuery.Params.ParamByName('bPublisherID').AsString:=IntToStr(FPublisherID);
+     SQLQuery.Open;
+     SQLQuery.Last;
+     if SQLQuery.RecordCount > 0 then
+     begin
+          SetLength(FPublisherBooksID, SQLQuery.RecordCount);
+          SQLQuery.First;
+          I:=0;
+          while not SQLQuery.EOF do
+          begin
+               FPublisherBooksID[I]:=SQLQuery.FieldByName('book_id').AsInteger;
+               I:=I+1;
+               SQLQuery.Next;
+          end;
+          SQLQuery.Close;
+     end;
+end;
+
+function TMBPublisher.GetPublisherBookID( Index : Integer ) : Integer;
+begin
+     if Index < Length(FPublisherBooksID) then
+        Result := FPublisherBooksID[Index];
+end;
+
+end.
+

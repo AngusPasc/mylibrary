@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, sqlite3conn, sqldb, db, FileUtil, Forms, Controls,
   Graphics, Dialogs, DBGrids, StdCtrls, DbCtrls, Grids, UMBAuthor, UMBComposition, UMBEditor,
-  UMBGenres;
+  UMBGenre, UMBPublisher, UMBTranslator, UMBBook;
 
 type
 
