@@ -1,7 +1,7 @@
 object MyBooks: TMyBooks
-  Left = 568
+  Left = 2558
   Height = 382
-  Top = 163
+  Top = 175
   Width = 771
   Caption = 'MyBooks'
   ClientHeight = 382
@@ -38,75 +38,75 @@ object MyBooks: TMyBooks
   end
   object Label1: TLabel
     Left = 152
-    Height = 16
+    Height = 17
     Top = 288
-    Width = 63
+    Width = 71
     Caption = 'Назывние'
     ParentColor = False
   end
   object edtBookName: TEdit
     Left = 152
-    Height = 22
+    Height = 27
     Top = 308
     Width = 80
     TabOrder = 7
   end
   object Label2: TLabel
     Left = 256
-    Height = 16
+    Height = 17
     Top = 288
-    Width = 28
+    Width = 33
     Caption = 'ISBN'
     ParentColor = False
   end
   object edtBookISBN: TEdit
     Left = 248
-    Height = 22
+    Height = 27
     Top = 309
     Width = 90
     TabOrder = 3
   end
   object Label3: TLabel
     Left = 360
-    Height = 16
+    Height = 17
     Top = 288
-    Width = 100
+    Width = 108
     Caption = 'Ориг. название'
     ParentColor = False
   end
   object edtOrigName: TEdit
     Left = 360
-    Height = 22
+    Height = 27
     Top = 308
     Width = 97
     TabOrder = 4
   end
   object Label4: TLabel
     Left = 480
-    Height = 16
+    Height = 17
     Top = 288
-    Width = 23
+    Width = 24
     Caption = 'Год'
     ParentColor = False
   end
   object edtBookYear: TEdit
     Left = 480
-    Height = 22
+    Height = 27
     Top = 309
     Width = 80
     TabOrder = 5
   end
   object Label5: TLabel
     Left = 576
-    Height = 16
+    Height = 17
     Top = 288
-    Width = 70
+    Width = 78
     Caption = 'Аннотация'
     ParentColor = False
   end
   object edtBookAnnotation: TEdit
     Left = 576
-    Height = 22
+    Height = 27
     Top = 309
     Width = 80
     TabOrder = 6
@@ -120,24 +120,69 @@ object MyBooks: TMyBooks
     OnClick = dtnAddBookClick
     TabOrder = 8
   end
-  object StringGrid1: TStringGrid
+  object PageControl1: TPageControl
     Left = 152
-    Height = 245
-    Top = 32
-    Width = 568
-    AutoFillColumns = True
-    ColCount = 2
-    RowCount = 2
+    Height = 240
+    Top = 24
+    Width = 576
+    ActivePage = TabSheet1
+    TabIndex = 0
     TabOrder = 9
-    ColWidths = (
-      64
-      504
-    )
+    object TabSheet1: TTabSheet
+      Caption = 'Книги'
+      ClientHeight = 209
+      ClientWidth = 572
+      object StringGrid1: TStringGrid
+        Left = 16
+        Height = 184
+        Top = 8
+        Width = 528
+        AutoFillColumns = True
+        ColCount = 6
+        Columns = <        
+          item
+            Title.Caption = 'Название'
+            Width = 92
+          end        
+          item
+            Title.Caption = 'ISBN'
+            Width = 92
+          end        
+          item
+            Title.Caption = 'Оригинал'
+            Width = 92
+          end        
+          item
+            Title.Caption = 'Год. изд.'
+            Width = 92
+          end        
+          item
+            Title.Caption = 'Аннотация'
+            Width = 94
+          end>
+        RowCount = 1
+        TabOrder = 0
+        ColWidths = (
+          64
+          92
+          92
+          92
+          92
+          94
+        )
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'Авторы'
+    end
+    object TabSheet3: TTabSheet
+      Caption = 'Жанры'
+    end
   end
   object SQLite3Connection1: TSQLite3Connection
-    Connected = False
+    Connected = True
     LoginPrompt = False
-    DatabaseName = '/home/manul/code/mylibrary/SQL/sqlite/mybooks'
+    DatabaseName = '/mnt/data/git/my/mylibrary/SQL/sqlite/mybooks'
     KeepConnection = False
     Transaction = SQLTransaction1
     Options = []
@@ -145,16 +190,45 @@ object MyBooks: TMyBooks
     top = 296
   end
   object SQLQuery1: TSQLQuery
-    FieldDefs = <>
+    IndexName = 'DEFAULT_ORDER'
+    FieldDefs = <    
+      item
+        Name = 'name'
+        DataType = ftMemo
+        Precision = -1
+      end    
+      item
+        Name = 'isbn'
+        DataType = ftMemo
+        Precision = -1
+      end    
+      item
+        Name = 'orig_name'
+        DataType = ftMemo
+        Precision = -1
+      end    
+      item
+        Name = 'year'
+        DataType = ftMemo
+        Precision = -1
+      end    
+      item
+        Name = 'note'
+        DataType = ftMemo
+        Precision = -1
+      end>
     Database = SQLite3Connection1
     Transaction = SQLTransaction1
+    SQL.Strings = (
+      ''
+    )
     Options = []
     Params = <>
     left = 80
     top = 296
   end
   object SQLTransaction1: TSQLTransaction
-    Active = False
+    Active = True
     Database = SQLite3Connection1
     Params.Strings = (
       'codepage=UTF8'

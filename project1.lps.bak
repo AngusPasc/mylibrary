@@ -3,72 +3,113 @@
   <ProjectSession>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="11">
+    <Units Count="16">
       <Unit0>
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
-        <CursorPos X="25" Y="15"/>
+        <EditorIndex Value="8"/>
+        <CursorPos X="43" Y="18"/>
         <UsageCount Value="437"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="mylibrary.pas"/>
         <IsPartOfProject Value="True"/>
+        <ComponentName Value="MyBooks"/>
         <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
         <UnitName Value="MyLibrary"/>
-        <CursorPos X="93" Y="9"/>
-        <UsageCount Value="32"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="76"/>
+        <CursorPos X="6" Y="115"/>
+        <UsageCount Value="350"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="umbauthor.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UMBAuthor"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="21"/>
-        <CursorPos X="52" Y="87"/>
-        <UsageCount Value="32"/>
+        <EditorIndex Value="4"/>
+        <CursorPos X="40" Y="64"/>
+        <UsageCount Value="350"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="umbcomposition.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UMBComposition"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="99"/>
-        <CursorPos X="10" Y="115"/>
-        <UsageCount Value="21"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="70"/>
+        <CursorPos X="76" Y="117"/>
+        <UsageCount Value="339"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="umbeditor.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UMBEditor"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="15"/>
-        <CursorPos X="6" Y="44"/>
-        <UsageCount Value="20"/>
+        <EditorIndex Value="6"/>
+        <CursorPos X="76" Y="120"/>
+        <UsageCount Value="338"/>
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>
+        <Filename Value="umbgenre.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UMBGenre"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="95"/>
+        <CursorPos X="48" Y="121"/>
+        <UsageCount Value="338"/>
+        <Loaded Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="umbpublisher.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UMBPublisher"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="10"/>
+        <CursorPos X="24" Y="102"/>
+        <UsageCount Value="329"/>
+        <Loaded Value="True"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="umbbook.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UMBBook"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="8"/>
+        <CursorPos X="24" Y="210"/>
+        <UsageCount Value="329"/>
+        <Loaded Value="True"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="umbtranslator.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UMBTranslator"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="15"/>
+        <CursorPos X="34" Y="17"/>
+        <UsageCount Value="325"/>
+        <Loaded Value="True"/>
+      </Unit8>
+      <Unit9>
         <Filename Value="tmbeditor.pas"/>
         <UnitName Value="UMBEditor"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="11"/>
         <CursorPos X="72" Y="15"/>
-        <UsageCount Value="310"/>
-      </Unit5>
-      <Unit6>
+        <UsageCount Value="213"/>
+      </Unit9>
+      <Unit10>
         <Filename Value="tmbcomposition.pas"/>
         <UnitName Value="UMBComposition"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="18"/>
         <CursorPos X="73" Y="8"/>
-        <UsageCount Value="310"/>
-      </Unit6>
-      <Unit7>
+        <UsageCount Value="213"/>
+      </Unit10>
+      <Unit11>
         <Filename Value="unit1.pas"/>
         <ComponentName Value="MyBooks"/>
         <HasResources Value="True"/>
@@ -76,152 +117,159 @@
         <UnitName Value="MyLibrary"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="16"/>
-        <UsageCount Value="436"/>
-      </Unit7>
-      <Unit8>
+        <UsageCount Value="339"/>
+      </Unit11>
+      <Unit12>
         <Filename Value="tmbauthor.pas"/>
         <UnitName Value="TMBAuthor"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="7"/>
         <CursorPos X="38" Y="14"/>
-        <UsageCount Value="415"/>
-      </Unit8>
-      <Unit9>
+        <UsageCount Value="318"/>
+      </Unit12>
+      <Unit13>
         <Filename Value="/usr/lib/lazarus/1.6/lcl/grids.pas"/>
         <UnitName Value="Grids"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="1282"/>
-        <CursorPos X="15" Y="1309"/>
-        <UsageCount Value="34"/>
-      </Unit9>
-      <Unit10>
-        <Filename Value="/Developer/lazarus/lcl/interfaces/carbon/carbonwinapi.inc"/>
+        <TopLine Value="2925"/>
+        <CursorPos X="26" Y="2875"/>
+        <UsageCount Value="10"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="/usr/share/fpcsrc/3.0.0/rtl/objpas/classes/classesh.inc"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="408"/>
-        <CursorPos X="4" Y="422"/>
-        <UsageCount Value="9"/>
-      </Unit10>
+        <TopLine Value="224"/>
+        <CursorPos X="15" Y="244"/>
+        <UsageCount Value="10"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="/usr/share/fpcsrc/3.0.0/rtl/objpas/classes/lists.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="138"/>
+        <CursorPos X="3" Y="143"/>
+        <UsageCount Value="10"/>
+      </Unit15>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="umbcomposition.pas"/>
-        <Caret Line="20" Column="72" TopLine="10"/>
+        <Filename Value="umbbook.pas"/>
+        <Caret Line="23" Column="26" TopLine="11"/>
       </Position1>
       <Position2>
-        <Filename Value="umbcomposition.pas"/>
-        <Caret Line="17" Column="39" TopLine="10"/>
+        <Filename Value="umbbook.pas"/>
+        <Caret Line="66" Column="6" TopLine="51"/>
       </Position2>
       <Position3>
-        <Filename Value="umbcomposition.pas"/>
-        <Caret Line="29" Column="46" TopLine="15"/>
+        <Filename Value="umbbook.pas"/>
+        <Caret Line="80" Column="7" TopLine="65"/>
       </Position3>
       <Position4>
-        <Filename Value="umbcomposition.pas"/>
-        <Caret Line="41" Column="6" TopLine="26"/>
+        <Filename Value="umbbook.pas"/>
+        <Caret Line="83" Column="6" TopLine="68"/>
       </Position4>
       <Position5>
-        <Filename Value="umbcomposition.pas"/>
-        <Caret Line="14" Column="30" TopLine="9"/>
+        <Filename Value="umbbook.pas"/>
+        <Caret Line="94" Column="27" TopLine="79"/>
       </Position5>
       <Position6>
-        <Filename Value="umbcomposition.pas"/>
-        <Caret Line="28" Column="75" TopLine="14"/>
+        <Filename Value="umbbook.pas"/>
+        <Caret Line="80" Column="6" TopLine="64"/>
       </Position6>
       <Position7>
-        <Filename Value="umbcomposition.pas"/>
-        <Caret Line="66" Column="72" TopLine="51"/>
+        <Filename Value="umbbook.pas"/>
+        <Caret Line="91" Column="9" TopLine="76"/>
       </Position7>
       <Position8>
-        <Filename Value="umbcomposition.pas"/>
-        <Caret Line="15" Column="33" TopLine="6"/>
+        <Filename Value="umbbook.pas"/>
+        <Caret Line="94" Column="23" TopLine="79"/>
       </Position8>
       <Position9>
-        <Filename Value="umbcomposition.pas"/>
-        <Caret Line="66" Column="72" TopLine="54"/>
+        <Filename Value="umbbook.pas"/>
+        <Caret Line="98" Column="70" TopLine="83"/>
       </Position9>
       <Position10>
-        <Filename Value="umbcomposition.pas"/>
-        <Caret Line="90" Column="36" TopLine="60"/>
+        <Filename Value="umbbook.pas"/>
+        <Caret Line="94" Column="23" TopLine="79"/>
       </Position10>
       <Position11>
-        <Filename Value="umbcomposition.pas"/>
-        <Caret Line="99" Column="38" TopLine="71"/>
+        <Filename Value="umbbook.pas"/>
+        <Caret Line="103" Column="72" TopLine="89"/>
       </Position11>
       <Position12>
-        <Filename Value="umbcomposition.pas"/>
-        <Caret Line="71" Column="21" TopLine="55"/>
+        <Filename Value="umbbook.pas"/>
+        <Caret Line="107" Column="38" TopLine="93"/>
       </Position12>
       <Position13>
-        <Filename Value="umbcomposition.pas"/>
-        <Caret Line="76" Column="28" TopLine="62"/>
+        <Filename Value="umbbook.pas"/>
+        <Caret Line="22" Column="17" TopLine="9"/>
       </Position13>
       <Position14>
-        <Filename Value="umbcomposition.pas"/>
-        <Caret Line="84" Column="26" TopLine="70"/>
+        <Filename Value="umbbook.pas"/>
+        <Caret Line="149" Column="25" TopLine="145"/>
       </Position14>
       <Position15>
-        <Filename Value="umbcomposition.pas"/>
-        <Caret Line="90" Column="26" TopLine="39"/>
+        <Filename Value="umbbook.pas"/>
+        <Caret Line="98" Column="87" TopLine="83"/>
       </Position15>
       <Position16>
-        <Filename Value="umbcomposition.pas"/>
-        <Caret Line="84" Column="26" TopLine="62"/>
+        <Filename Value="umbbook.pas"/>
+        <Caret Line="190" TopLine="162"/>
       </Position16>
       <Position17>
-        <Filename Value="umbcomposition.pas"/>
-        <Caret Line="90" Column="51" TopLine="69"/>
+        <Filename Value="umbbook.pas"/>
+        <Caret Line="27" Column="17" TopLine="14"/>
       </Position17>
       <Position18>
-        <Filename Value="umbcomposition.pas"/>
-        <Caret Line="87" Column="26" TopLine="78"/>
+        <Filename Value="umbbook.pas"/>
+        <Caret Line="32" Column="20" TopLine="23"/>
       </Position18>
       <Position19>
-        <Filename Value="umbcomposition.pas"/>
-        <Caret Line="98" Column="39" TopLine="83"/>
+        <Filename Value="umbbook.pas"/>
+        <Caret Line="33" Column="17" TopLine="19"/>
       </Position19>
       <Position20>
-        <Filename Value="umbcomposition.pas"/>
-        <Caret Line="112" Column="35" TopLine="98"/>
+        <Filename Value="project1.lpr"/>
+        <Caret Line="15" Column="25"/>
       </Position20>
       <Position21>
-        <Filename Value="umbcomposition.pas"/>
-        <Caret Line="119" Column="88" TopLine="99"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="95" Column="34" TopLine="76"/>
       </Position21>
       <Position22>
-        <Filename Value="umbeditor.pas"/>
-        <Caret Line="23" Column="51"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="73" Column="32" TopLine="64"/>
       </Position22>
       <Position23>
-        <Filename Value="umbeditor.pas"/>
-        <Caret Line="11" Column="43"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="96" Column="37" TopLine="79"/>
       </Position23>
       <Position24>
-        <Filename Value="umbeditor.pas"/>
-        <Caret Line="40" Column="38" TopLine="26"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="100" Column="21" TopLine="79"/>
       </Position24>
       <Position25>
-        <Filename Value="umbeditor.pas"/>
-        <Caret Line="75" Column="6" TopLine="47"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="106" Column="78" TopLine="77"/>
       </Position25>
       <Position26>
-        <Filename Value="umbeditor.pas"/>
-        <Caret Line="79" TopLine="49"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="105" Column="78" TopLine="76"/>
       </Position26>
       <Position27>
-        <Filename Value="umbeditor.pas"/>
-        <Caret Line="78" Column="5" TopLine="51"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="106" Column="78" TopLine="77"/>
       </Position27>
       <Position28>
-        <Filename Value="umbeditor.pas"/>
-        <Caret Line="25" Column="26" TopLine="10"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="105" Column="78" TopLine="76"/>
       </Position28>
       <Position29>
-        <Filename Value="umbeditor.pas"/>
-        <Caret Line="84" TopLine="56"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="106" Column="78" TopLine="77"/>
       </Position29>
       <Position30>
-        <Filename Value="umbeditor.pas"/>
-        <Caret Line="37" TopLine="17"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="105" Column="78" TopLine="76"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>

@@ -15,6 +15,7 @@ uses
 begin
   RequireDerivedFormResource:=True;
   Application.Initialize;
+  Application.CreateForm(TMyBooks, MyBooks);
   Application.Run;
 end.
 

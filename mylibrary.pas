@@ -6,8 +6,8 @@ interface
 
 uses
   Classes, SysUtils, sqlite3conn, sqldb, db, FileUtil, Forms, Controls,
-  Graphics, Dialogs, DBGrids, StdCtrls, DbCtrls, Grids, UMBAuthor, UMBComposition, UMBEditor,
-  UMBGenre, UMBPublisher, UMBTranslator, UMBBook;
+  Graphics, Dialogs, DBGrids, StdCtrls, DbCtrls, Grids, ComCtrls, UMBAuthor,
+  UMBComposition, UMBEditor, UMBGenre, UMBPublisher, UMBTranslator, UMBBook;
 
 type
 
@@ -29,10 +29,14 @@ type
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
+    PageControl1: TPageControl;
     SQLite3Connection1: TSQLite3Connection;
     SQLQuery1: TSQLQuery;
     SQLTransaction1: TSQLTransaction;
     StringGrid1: TStringGrid;
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
+    TabSheet3: TTabSheet;
     procedure btnAuthorsClick(Sender: TObject);
     procedure btnGenresClick(Sender: TObject);
     procedure btnBooksClick(Sender: TObject);
@@ -48,6 +52,7 @@ type
 
 var
   MyBooks: TMyBooks;
+  Books : array of TMBBook
 
 implementation
 
@@ -56,8 +61,16 @@ implementation
 { TMyBooks }
 
 procedure TMyBooks.FormCreate(Sender: TObject);
+var
+  BookCount : Integer;
 begin
-  //SQLQuery1.Close;
+  //ДК, получаем количество книг, создаем массив и саписываем туда значения
+  SQLQuery1.Close;
+  SQLQuery1.SQL.Text:='SELECT count(*) AS res FROM books';
+  SQLQuery1.Open;
+  SQLQuery1.First;
+  BookCount := SQLQuery1.FieldValues['res'];
+  SetLength(Books, BookCount);
 end;
 
 //ДК, очищаем таблицу, оставляем только строку с заголовками
@@ -67,9 +80,13 @@ var
 begin
      StringGrid1.Clean([gzNormal]);
 
-
-     for I:=StringGrid1.RowCount downto 1 do;
-         StringGrid1.RowCount:=StringGrid1.RowCount-1;
+     ShowMessage(Concat('RowCount:=', IntToStr(StringGrid1.RowCount)));
+     if StringGrid1.RowCount > 1 then
+     begin
+         for I:=StringGrid1.RowCount downto 1 do;
+              StringGrid1.DeleteRow(I);
+     end;
+     StringGrid1.RowCount:=1;
 
 end;
 
@@ -88,14 +105,6 @@ var
 begin
      DeleteRowsFromStringGrid();
 
-     for I:=StringGrid1.RowCount downto 1 do;
-         StringGrid1.RowCount:=StringGrid1.RowCount-1;
-
-     for I:= 0 to Length(ColumnNames)-1 do
-     begin
-          c := StringGrid1.Columns.Add;
-          c.Title.Caption:=ColumnNames[I];
-     end;
      //ДК, обработка запроса, пытаемся вывести результат
      I:=1;
      SQLQuery1.Close;
@@ -103,14 +112,14 @@ begin
      SQLQuery1.Open;
      while not SQLQuery1.EOF do
      begin
-
-        StringGrid1.RowCount:=StringGrid1.RowCount + 1;
+        ShowMessage(Concat('I:=', IntToStr(I), 'and RowCount:=', IntToStr(StringGrid1.RowCount)));
         StringGrid1.InsertRowWithValues(I, [IntToStr(I), SQLQuery1.FieldByName('name').AsString,
                                         SQLQuery1.FieldByName('isbn').AsString, SQLQuery1.FieldByName('orig_name').AsString,
                                         SQLQuery1.FieldByName('year').AsString, SQLQuery1.FieldByName('note').AsString]);
         I:=I+1;
         SQLQuery1.Next;
      end;
+
      SQLQuery1.Close;
 end;
 
@@ -139,9 +148,6 @@ var
   ColumNNames : array[0..1] of string = ('Фамилия', 'Имя');
 begin
       StringGrid1.Clean([gzNormal]);
-
-     for I:=StringGrid1.RowCount downto 1 do;
-         StringGrid1.RowCount:=StringGrid1.RowCount-1;
 
      for I:= 0 to Length(ColumnNames)-1 do
      begin
