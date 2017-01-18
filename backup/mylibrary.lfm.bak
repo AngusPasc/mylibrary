@@ -1,14 +1,14 @@
 object MyBooks: TMyBooks
-  Left = 568
+  Left = 500
   Height = 382
-  Top = 163
+  Top = 175
   Width = 771
   Caption = 'MyBooks'
   ClientHeight = 382
   ClientWidth = 771
   OnClose = FormClose
   OnCreate = FormCreate
-  LCLVersion = '1.6.0.4'
+  LCLVersion = '1.6.2.0'
   object btnBooks: TButton
     Left = 16
     Height = 33
@@ -120,24 +120,76 @@ object MyBooks: TMyBooks
     OnClick = dtnAddBookClick
     TabOrder = 8
   end
-  object StringGrid1: TStringGrid
+  object PageControl1: TPageControl
     Left = 152
-    Height = 245
-    Top = 32
-    Width = 568
-    AutoFillColumns = True
-    ColCount = 2
-    RowCount = 2
+    Height = 240
+    Top = 24
+    Width = 576
+    ActivePage = TabSheet1
+    TabIndex = 0
     TabOrder = 9
-    ColWidths = (
-      64
-      504
-    )
+    object TabSheet1: TTabSheet
+      Caption = 'Книги'
+      ClientHeight = 201
+      ClientWidth = 570
+      object StringGrid1: TStringGrid
+        Left = 16
+        Height = 184
+        Top = 8
+        Width = 528
+        AutoFillColumns = True
+        ColCount = 7
+        Columns = <        
+          item
+            ReadOnly = True
+            Title.Caption = 'ID'
+            Width = 0
+            Visible = False
+          end        
+          item
+            Title.Caption = 'Название'
+            Width = 92
+          end        
+          item
+            Title.Caption = 'ISBN'
+            Width = 92
+          end        
+          item
+            Title.Caption = 'Оригинал'
+            Width = 92
+          end        
+          item
+            Title.Caption = 'Год. изд.'
+            Width = 92
+          end        
+          item
+            Title.Caption = 'Аннотация'
+            Width = 96
+          end>
+        RowCount = 1
+        TabOrder = 0
+        ColWidths = (
+          64
+          0
+          92
+          92
+          92
+          92
+          96
+        )
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'Авторы'
+    end
+    object TabSheet3: TTabSheet
+      Caption = 'Жанры'
+    end
   end
   object SQLite3Connection1: TSQLite3Connection
     Connected = False
     LoginPrompt = False
-    DatabaseName = '/home/manul/code/mylibrary/SQL/sqlite/mybooks'
+    DatabaseName = './SQL/sqlite/mybooks'
     KeepConnection = False
     Transaction = SQLTransaction1
     Options = []
@@ -145,9 +197,37 @@ object MyBooks: TMyBooks
     top = 296
   end
   object SQLQuery1: TSQLQuery
-    FieldDefs = <>
+    FieldDefs = <    
+      item
+        Name = 'name'
+        DataType = ftMemo
+        Precision = -1
+      end    
+      item
+        Name = 'isbn'
+        DataType = ftMemo
+        Precision = -1
+      end    
+      item
+        Name = 'orig_name'
+        DataType = ftMemo
+        Precision = -1
+      end    
+      item
+        Name = 'year'
+        DataType = ftMemo
+        Precision = -1
+      end    
+      item
+        Name = 'note'
+        DataType = ftMemo
+        Precision = -1
+      end>
     Database = SQLite3Connection1
     Transaction = SQLTransaction1
+    SQL.Strings = (
+      ''
+    )
     Options = []
     Params = <>
     left = 80

@@ -44,7 +44,14 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure DeleteRowsFromStringGrid();
+
     procedure ReadBooksFromDB();
+    procedure ReadAuthorsFromDB();
+    procedure ReadCompositionsFromDB();
+    procedure ReadGenresFromDB();
+    procedure ReadEditorsFromDB();
+    procedure ReadTranslatorsFromDB();
+    procedure ReadPublishersFromDB();
   private
     { private declarations }
   public
@@ -54,6 +61,12 @@ type
 var
   MyBooks: TMyBooks;
   BooksList : TObjectList;
+  AuthorsList : TObjectList;
+  PublishersList : TObjectList;
+  CompositionsList : TObjectList;
+  GenresList : TObjectList;
+  EditorsList : TObjectList;
+  TranslatorsList : TObjectList;
 
 implementation
 
@@ -62,24 +75,58 @@ implementation
 { TMyBooks }
 
 procedure TMyBooks.ReadBooksFromDB();
+var
+  ids : array of Integer;
+  I : Integer;
 begin
 
      SQLQuery1.Close;
      SQLQuery1.SQL.Text:='SELECT id FROM books';
      SQLQuery1.Open;
-     SQLQuery1.DisableControls;
 
-     //ShowMessage(IntToStr(SQLQuery1.RecordCount));
-     //SQLQuery1.First;
-     while (not SQLQuery1.EOF) do
+     if SQLQuery1.RecordCount = 0 then
+        exit;
+     SetLength(ids,SQLQuery1.RecordCount);
+     I:=0;
+     while not SQLQuery1.EOF do
      begin
-        ShowMessage(SQLQuery1.FieldByName('id').AsString);
-        BooksList.Add(TMBBook.Create(SQLQuery1.FieldByName('id').AsInteger, SQLQuery1, SQLTransaction1));
-        SQLQuery1.Next;
+          ids[I]:=SQLQuery1.FieldByName('id').AsInteger;
+          SQLQuery1.Next;
+          I:=I+1;
+     end;
+     SQLQuery1.Close;
+     for I:=0 to Length(ids)-1 do
+     begin
+          BooksList.Add(TMBBook.Create(ids[I], SQLQuery1, SQLTransaction1));
      end;
 
-     SQLQuery1.EnableControls;
+end;
+
+procedure TMyBooks.ReadAuthorsFromDB();
+var
+  ids : array of Integer;
+  I : Integer;
+begin
+
      SQLQuery1.Close;
+     SQLQuery1.SQL.Text:='SELECT id FROM authors';
+     SQLQuery1.Open;
+
+     if SQLQuery1.RecordCount = 0 then
+        exit;
+     SetLength(ids,SQLQuery1.RecordCount);
+     I:=0;
+     while not SQLQuery1.EOF do
+     begin
+          ids[I]:=SQLQuery1.FieldByName('id').AsInteger;
+          SQLQuery1.Next;
+          I:=I+1;
+     end;
+     SQLQuery1.Close;
+     for I:=0 to Length(ids)-1 do
+     begin
+          AuthorsList.Add(TMBAuthor.Create(ids[I], SQLQuery1, SQLTransaction1));
+     end;
 
 end;
 
@@ -91,6 +138,7 @@ begin
   SQLQuery1.Close;
   BooksList:=TObjectList.Create;
   ReadBooksFromDB();
+  ReadAuthorsFromDB();
 end;
 
 //ДК, очищаем таблицу, оставляем только строку с заголовками
@@ -153,16 +201,10 @@ end;
 procedure TMyBooks.btnAuthorsClick(Sender: TObject);
 var
   I : Integer;
-  c: TGridColumn;
-  ColumNNames : array[0..1] of string = ('Фамилия', 'Имя');
 begin
       StringGrid1.Clean([gzNormal]);
 
-     for I:= 0 to Length(ColumnNames)-1 do
-     begin
-          c := StringGrid1.Columns.Add;
-          c.Title.Caption:=ColumnNames[I];
-     end;
+
      //ДК, обработка запроса, пытаемся вывести результат
      I:=1;
      SQLQuery1.Close;
