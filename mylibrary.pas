@@ -62,21 +62,23 @@ implementation
 { TMyBooks }
 
 procedure TMyBooks.ReadBooksFromDB();
-var
-   BookCount, I : Integer;
 begin
 
      SQLQuery1.Close;
      SQLQuery1.SQL.Text:='SELECT id FROM books';
      SQLQuery1.Open;
+     SQLQuery1.DisableControls;
 
-     while not SQLQuery1.EOF do
+     //ShowMessage(IntToStr(SQLQuery1.RecordCount));
+     //SQLQuery1.First;
+     while (not SQLQuery1.EOF) do
      begin
-        BooksList.Add(TMBBook.Create(SQLQuery1.FieldValues['id'], SQLQuery1, SQLTransaction1));
-        I:=I+1;
+        ShowMessage(SQLQuery1.FieldByName('id').AsString);
+        BooksList.Add(TMBBook.Create(SQLQuery1.FieldByName('id').AsInteger, SQLQuery1, SQLTransaction1));
         SQLQuery1.Next;
      end;
 
+     SQLQuery1.EnableControls;
      SQLQuery1.Close;
 
 end;
@@ -98,7 +100,6 @@ var
 begin
      StringGrid1.Clean([gzNormal]);
 
-     ShowMessage(Concat('RowCount:=', IntToStr(StringGrid1.RowCount)));
      if StringGrid1.RowCount > 1 then
      begin
          for I:=StringGrid1.RowCount downto 1 do;
@@ -118,27 +119,17 @@ end;
 procedure TMyBooks.btnBooksClick(Sender: TObject);
 var
   I : Integer;
-  c: TGridColumn;
-  ColumNNames : array[0..4] of string = ('Название', 'ISBN', 'Оригинал', 'Год изд.', 'Аннотация');
+  book : TMBBook;
 begin
      DeleteRowsFromStringGrid();
 
      //ДК, обработка запроса, пытаемся вывести результат
-     I:=1;
-     SQLQuery1.Close;
-     SQLQuery1.SQL.Text:='SELECT name, isbn, orig_name, year, note FROM books';
-     SQLQuery1.Open;
-     while not SQLQuery1.EOF do
-     begin
-        ShowMessage(Concat('I:=', IntToStr(I), 'and RowCount:=', IntToStr(StringGrid1.RowCount)));
-        StringGrid1.InsertRowWithValues(I, [IntToStr(I), SQLQuery1.FieldByName('name').AsString,
-                                        SQLQuery1.FieldByName('isbn').AsString, SQLQuery1.FieldByName('orig_name').AsString,
-                                        SQLQuery1.FieldByName('year').AsString, SQLQuery1.FieldByName('note').AsString]);
-        I:=I+1;
-        SQLQuery1.Next;
-     end;
 
-     SQLQuery1.Close;
+     for I:=0 to BooksList.Count-1 do
+     begin
+          book:=BooksList.Items[I] as TMBBook;
+          StringGrid1.InsertRowWithValues(I+1, [IntToStr(book.BookID), book.BookName, book.BookISBN, book.BookName, book.BookYear, book.BookNote]);
+     end;
 end;
 
 procedure TMyBooks.dtnAddBookClick(Sender: TObject);
