@@ -40,8 +40,10 @@ type
       procedure ReadBookPublisherFromDB(const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
       procedure ReadBookDataFromDB(const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
     public
-      constructor Create(BookName : String; BookISBN : String; BookYear : String; BookNote : String);
-      constructor Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
+      constructor Create(); overload;
+      constructor Create(BookName : String; BookISBN : String; BookYear : String; BookNote : String); overload;
+      constructor Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction); overload;
+      procedure LoadBookByID(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
       property BookID : Integer read FBookID;
       property BookName : String read FBookName write SetBookName;
       property BookISBN : String read FBookISBN write SetBookISBN;
@@ -51,11 +53,22 @@ type
       property BookAuthor[Index : Integer] : Integer read GetBookAuthorID;
 
     published
-
   end;
 
 
 implementation
+uses
+  Dialogs;
+
+constructor TMBBook.Create();
+begin
+     inherited;
+     FBookName := '';
+     FBookISBN := '';
+     FBookYear := '';
+     FBookNote := '';
+     FNewBook := False;
+end;
 
 constructor TMBBook.Create(BookName : String; BookISBN : String; BookYear : String; BookNote : String);
 begin
@@ -72,6 +85,25 @@ begin
      SQLQuery.SQL.Text:='SELECT name, isbn, year, note FROM books where id=:bID';
      SQLQuery.Params.ParamByName('bID').AsString:=IntToStr(ID);
      SQLQuery.Open;
+     //ДК, нужна проверка что запрос вернул не пустой результат
+     FBookName:=SQLQuery.FieldByName('name').AsString;
+     FBookISBN:=SQLQuery.FieldByName('isbn').AsString;
+     FBookYear:=SQLQuery.FieldByName('year').AsString;
+     FBookNote:=SQLQuery.FieldByName('note').AsString;
+     FBookID:=ID;
+     SQLQuery.Close;
+     ReadBookDataFromDB(SQLQuery, SQLTransaction);
+     FNewBook := False;
+
+end;
+
+procedure TMBBook.LoadBookByID(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
+begin
+     SQLQuery.Close;
+     SQLQuery.SQL.Text:='SELECT name, isbn, year, note FROM books where id=:bID';
+     SQLQuery.Params.ParamByName('bID').AsString:=IntToStr(ID);
+     SQLQuery.Open;
+     ShowMessage(SQLQuery.FieldByName('name').AsString);
      //ДК, нужна проверка что запрос вернул не пустой результат
      FBookName:=SQLQuery.FieldByName('name').AsString;
      FBookISBN:=SQLQuery.FieldByName('isbn').AsString;
@@ -158,7 +190,7 @@ var
   I : Integer;
 begin
      SQLQuery.Close;
-     SQLQuery.SQL.Text:='SELECT composition_id FROM rel_book_composition where book_id=:bID';
+     SQLQuery.SQL.Text:='SELECT composition_id FROM rel_book_compositions where book_id=:bID';
      SQLQuery.Params.ParamByName('bID').AsString:=IntToStr(FBookID);
      SQLQuery.Open;
      SQLQuery.Last;

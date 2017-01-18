@@ -138,8 +138,14 @@ object MyBooks: TMyBooks
         Top = 8
         Width = 528
         AutoFillColumns = True
-        ColCount = 6
+        ColCount = 7
         Columns = <        
+          item
+            ReadOnly = True
+            Title.Caption = 'ID'
+            Width = 0
+            Visible = False
+          end        
           item
             Title.Caption = 'Название'
             Width = 92
@@ -164,6 +170,7 @@ object MyBooks: TMyBooks
         TabOrder = 0
         ColWidths = (
           64
+          0
           92
           92
           92

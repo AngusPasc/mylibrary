@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, sqlite3conn, sqldb, db, FileUtil, Forms, Controls,
-  Graphics, Dialogs, DBGrids, StdCtrls, DbCtrls, Grids, ComCtrls, UMBAuthor,
+  Graphics, Dialogs, DBGrids, StdCtrls, DbCtrls, Grids, ComCtrls, Contnrs, UMBAuthor,
   UMBComposition, UMBEditor, UMBGenre, UMBPublisher, UMBTranslator, UMBBook;
 
 type
@@ -44,6 +44,7 @@ type
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure DeleteRowsFromStringGrid();
+    procedure ReadBooksFromDB();
   private
     { private declarations }
   public
@@ -52,7 +53,7 @@ type
 
 var
   MyBooks: TMyBooks;
-  Books : array of TMBBook
+  BooksList : TObjectList;
 
 implementation
 
@@ -60,17 +61,34 @@ implementation
 
 { TMyBooks }
 
+procedure TMyBooks.ReadBooksFromDB();
+var
+   BookCount, I : Integer;
+begin
+
+     SQLQuery1.Close;
+     SQLQuery1.SQL.Text:='SELECT id FROM books';
+     SQLQuery1.Open;
+
+     while not SQLQuery1.EOF do
+     begin
+        BooksList.Add(TMBBook.Create(SQLQuery1.FieldValues['id'], SQLQuery1, SQLTransaction1));
+        I:=I+1;
+        SQLQuery1.Next;
+     end;
+
+     SQLQuery1.Close;
+
+end;
+
 procedure TMyBooks.FormCreate(Sender: TObject);
 var
   BookCount : Integer;
 begin
   //ДК, получаем количество книг, создаем массив и саписываем туда значения
   SQLQuery1.Close;
-  SQLQuery1.SQL.Text:='SELECT count(*) AS res FROM books';
-  SQLQuery1.Open;
-  SQLQuery1.First;
-  BookCount := SQLQuery1.FieldValues['res'];
-  SetLength(Books, BookCount);
+  BooksList:=TObjectList.Create;
+  ReadBooksFromDB();
 end;
 
 //ДК, очищаем таблицу, оставляем только строку с заголовками
