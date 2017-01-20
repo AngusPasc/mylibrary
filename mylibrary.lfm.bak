@@ -1,7 +1,7 @@
 object MyBooks: TMyBooks
-  Left = 2558
+  Left = 368
   Height = 382
-  Top = 175
+  Top = 186
   Width = 771
   Caption = 'MyBooks'
   ClientHeight = 382
@@ -9,15 +9,6 @@ object MyBooks: TMyBooks
   OnClose = FormClose
   OnCreate = FormCreate
   LCLVersion = '1.6.0.4'
-  object btnBooks: TButton
-    Left = 16
-    Height = 33
-    Top = 32
-    Width = 128
-    Caption = ' Книги'
-    OnClick = btnBooksClick
-    TabOrder = 0
-  end
   object btnAuthors: TButton
     Left = 16
     Height = 32
@@ -25,7 +16,7 @@ object MyBooks: TMyBooks
     Width = 128
     Caption = 'Авторы'
     OnClick = btnAuthorsClick
-    TabOrder = 1
+    TabOrder = 0
   end
   object btnGenres: TButton
     Left = 16
@@ -34,7 +25,7 @@ object MyBooks: TMyBooks
     Width = 128
     Caption = 'Жанры'
     OnClick = btnGenresClick
-    TabOrder = 2
+    TabOrder = 1
   end
   object Label1: TLabel
     Left = 152
@@ -49,7 +40,7 @@ object MyBooks: TMyBooks
     Height = 27
     Top = 308
     Width = 80
-    TabOrder = 7
+    TabOrder = 6
   end
   object Label2: TLabel
     Left = 256
@@ -64,7 +55,7 @@ object MyBooks: TMyBooks
     Height = 27
     Top = 309
     Width = 90
-    TabOrder = 3
+    TabOrder = 2
   end
   object Label3: TLabel
     Left = 360
@@ -79,7 +70,7 @@ object MyBooks: TMyBooks
     Height = 27
     Top = 308
     Width = 97
-    TabOrder = 4
+    TabOrder = 3
   end
   object Label4: TLabel
     Left = 480
@@ -94,7 +85,7 @@ object MyBooks: TMyBooks
     Height = 27
     Top = 309
     Width = 80
-    TabOrder = 5
+    TabOrder = 4
   end
   object Label5: TLabel
     Left = 576
@@ -109,7 +100,7 @@ object MyBooks: TMyBooks
     Height = 27
     Top = 309
     Width = 80
-    TabOrder = 6
+    TabOrder = 5
   end
   object dtnAddBook: TButton
     Left = 672
@@ -118,20 +109,21 @@ object MyBooks: TMyBooks
     Width = 48
     Caption = '+'
     OnClick = dtnAddBookClick
-    TabOrder = 8
+    TabOrder = 7
   end
   object PageControl1: TPageControl
     Left = 152
     Height = 240
     Top = 24
     Width = 576
-    ActivePage = TabSheet1
-    TabIndex = 0
-    TabOrder = 9
+    ActivePage = TabSheet2
+    TabIndex = 1
+    TabOrder = 8
     object TabSheet1: TTabSheet
       Caption = 'Книги'
       ClientHeight = 209
       ClientWidth = 572
+      OnShow = TabSheet1Show
       object StringGrid1: TStringGrid
         Left = 16
         Height = 184
@@ -181,15 +173,25 @@ object MyBooks: TMyBooks
     end
     object TabSheet2: TTabSheet
       Caption = 'Авторы'
+      ClientHeight = 209
+      ClientWidth = 572
+      OnShow = TabSheet2Show
+      object StringGrid2: TStringGrid
+        Left = 16
+        Height = 144
+        Top = 8
+        Width = 512
+        TabOrder = 0
+      end
     end
     object TabSheet3: TTabSheet
       Caption = 'Жанры'
     end
   end
   object SQLite3Connection1: TSQLite3Connection
-    Connected = True
+    Connected = False
     LoginPrompt = False
-    DatabaseName = '/mnt/data/git/my/mylibrary/SQL/sqlite/mybooks'
+    DatabaseName = './SQL/sqlite/mybooks'
     KeepConnection = False
     Transaction = SQLTransaction1
     Options = []
@@ -234,7 +236,7 @@ object MyBooks: TMyBooks
     top = 296
   end
   object SQLTransaction1: TSQLTransaction
-    Active = True
+    Active = False
     Database = SQLite3Connection1
     Params.Strings = (
       'codepage=UTF8'

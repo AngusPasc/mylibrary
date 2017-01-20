@@ -1,23 +1,14 @@
 object MyBooks: TMyBooks
-  Left = 500
+  Left = 368
   Height = 382
-  Top = 175
+  Top = 186
   Width = 771
   Caption = 'MyBooks'
   ClientHeight = 382
   ClientWidth = 771
   OnClose = FormClose
   OnCreate = FormCreate
-  LCLVersion = '1.6.2.0'
-  object btnBooks: TButton
-    Left = 16
-    Height = 33
-    Top = 32
-    Width = 128
-    Caption = ' Книги'
-    OnClick = btnBooksClick
-    TabOrder = 0
-  end
+  LCLVersion = '1.6.0.4'
   object btnAuthors: TButton
     Left = 16
     Height = 32
@@ -25,7 +16,7 @@ object MyBooks: TMyBooks
     Width = 128
     Caption = 'Авторы'
     OnClick = btnAuthorsClick
-    TabOrder = 1
+    TabOrder = 0
   end
   object btnGenres: TButton
     Left = 16
@@ -34,82 +25,82 @@ object MyBooks: TMyBooks
     Width = 128
     Caption = 'Жанры'
     OnClick = btnGenresClick
-    TabOrder = 2
+    TabOrder = 1
   end
   object Label1: TLabel
     Left = 152
-    Height = 16
+    Height = 17
     Top = 288
-    Width = 63
+    Width = 71
     Caption = 'Назывние'
     ParentColor = False
   end
   object edtBookName: TEdit
     Left = 152
-    Height = 22
+    Height = 27
     Top = 308
     Width = 80
-    TabOrder = 7
+    TabOrder = 6
   end
   object Label2: TLabel
     Left = 256
-    Height = 16
+    Height = 17
     Top = 288
-    Width = 28
+    Width = 33
     Caption = 'ISBN'
     ParentColor = False
   end
   object edtBookISBN: TEdit
     Left = 248
-    Height = 22
+    Height = 27
     Top = 309
     Width = 90
-    TabOrder = 3
+    TabOrder = 2
   end
   object Label3: TLabel
     Left = 360
-    Height = 16
+    Height = 17
     Top = 288
-    Width = 100
+    Width = 108
     Caption = 'Ориг. название'
     ParentColor = False
   end
   object edtOrigName: TEdit
     Left = 360
-    Height = 22
+    Height = 27
     Top = 308
     Width = 97
-    TabOrder = 4
+    TabOrder = 3
   end
   object Label4: TLabel
     Left = 480
-    Height = 16
+    Height = 17
     Top = 288
-    Width = 23
+    Width = 24
     Caption = 'Год'
     ParentColor = False
   end
   object edtBookYear: TEdit
     Left = 480
-    Height = 22
+    Height = 27
     Top = 309
     Width = 80
-    TabOrder = 5
+    TabOrder = 4
   end
   object Label5: TLabel
     Left = 576
-    Height = 16
+    Height = 17
     Top = 288
-    Width = 70
+    Width = 78
     Caption = 'Аннотация'
     ParentColor = False
   end
   object edtBookAnnotation: TEdit
     Left = 576
-    Height = 22
+    Height = 27
     Top = 309
     Width = 80
-    TabOrder = 6
+    TabOrder = 5
   end
   object dtnAddBook: TButton
     Left = 672
@@ -118,20 +109,21 @@ object MyBooks: TMyBooks
     Width = 48
     Caption = '+'
     OnClick = dtnAddBookClick
-    TabOrder = 8
+    TabOrder = 7
   end
   object PageControl1: TPageControl
     Left = 152
     Height = 240
     Top = 24
     Width = 576
-    ActivePage = TabSheet1
-    TabIndex = 0
-    TabOrder = 9
+    ActivePage = TabSheet2
+    TabIndex = 1
+    TabOrder = 8
     object TabSheet1: TTabSheet
       Caption = 'Книги'
-      ClientHeight = 201
-      ClientWidth = 570
+      ClientHeight = 209
+      ClientWidth = 572
+      OnShow = TabSheet1Show
       object StringGrid1: TStringGrid
         Left = 16
         Height = 184
@@ -164,7 +156,7 @@ object MyBooks: TMyBooks
           end        
           item
             Title.Caption = 'Аннотация'
-            Width = 96
+            Width = 94
           end>
         RowCount = 1
         TabOrder = 0
@@ -175,12 +167,22 @@ object MyBooks: TMyBooks
           92
           92
           92
-          96
+          94
         )
       end
     end
     object TabSheet2: TTabSheet
       Caption = 'Авторы'
+      ClientHeight = 209
+      ClientWidth = 572
+      OnShow = TabSheet2Show
+      object StringGrid2: TStringGrid
+        Left = 16
+        Height = 144
+        Top = 8
+        Width = 512
+        TabOrder = 0
+      end
     end
     object TabSheet3: TTabSheet
       Caption = 'Жанры'
