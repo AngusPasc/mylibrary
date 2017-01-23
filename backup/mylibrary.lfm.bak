@@ -146,6 +146,7 @@ object MyBooks: TMyBooks
           item
             Title.Caption = 'Издатель'
           end>
+        Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goRowSelect, goAlwaysShowEditor, goSmoothScroll]
         TabOrder = 0
       end
     end
