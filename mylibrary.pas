@@ -278,9 +278,17 @@ procedure TMyBooks.btnAddClick(Sender: TObject);
 var
   I, J : Integer;
   str : String;
+  newBooksList : TObjectList;
+  newAuthorsList : TObjectList;
+  newPublishersList : TObjectList;
+  newCompositionsList : TObjectList;
+  newGenresList : TObjectList;
+  newEditorsList : TObjectList;
+  newTranslatorsList : TObjectList;
 begin
      for I:=0 to OperationsStringGrid.RowCount -1 do
      begin
+
           OperationsStringGrid.Columns.Items[I].;
      end;
 

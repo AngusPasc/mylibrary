@@ -151,12 +151,13 @@ object MyBooks: TMyBooks
       end
     end
   end
-  object Button1: TButton
+  object btnAdd: TButton
     Left = 792
     Height = 25
     Top = 205
     Width = 75
-    Caption = 'Button1'
+    Caption = 'Добавить'
+    OnClick = btnAddClick
     TabOrder = 1
   end
   object SQLite3Connection1: TSQLite3Connection

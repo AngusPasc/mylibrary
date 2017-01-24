@@ -17,7 +17,7 @@ type
   { TMyBooks }
 
   TMyBooks = class(TForm)
-    Button1: TButton;
+    btnAdd: TButton;
     DataSource1: TDataSource;
     PageControl1: TPageControl;
     SQLite3Connection1: TSQLite3Connection;
@@ -33,6 +33,7 @@ type
     GenresTab: TTabSheet;
     PublishersTab: TTabSheet;
     OperationsTab: TTabSheet;
+    procedure btnAddClick(Sender: TObject);
     procedure btnAuthorsClick(Sender: TObject);
     procedure btnGenresClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -270,6 +271,18 @@ end;
 
 procedure TMyBooks.btnAuthorsClick(Sender: TObject);
 begin
+
+end;
+
+procedure TMyBooks.btnAddClick(Sender: TObject);
+var
+  I, J : Integer;
+  str : String;
+begin
+     for I:=0 to OperationsStringGrid.RowCount -1 do
+     begin
+          OperationsStringGrid.Columns.Items[I].;
+     end;
 
 end;
 
