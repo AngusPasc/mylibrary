@@ -6,8 +6,9 @@ interface
 
 uses
   Classes, SysUtils, sqlite3conn, sqldb, db, FileUtil, Forms, Controls,
-  Graphics, Dialogs, DBGrids, StdCtrls, DbCtrls, Grids, ComCtrls, Contnrs, UMBAuthor,
-  UMBComposition, UMBEditor, UMBGenre, UMBPublisher, UMBTranslator, UMBBook;
+  Graphics, Dialogs, DBGrids, StdCtrls, DbCtrls, Grids, ComCtrls, ValEdit,
+  Contnrs, UMBAuthor, UMBComposition, UMBEditor, UMBGenre, UMBPublisher,
+  UMBTranslator, UMBBook;
 
 
 type
@@ -16,39 +17,36 @@ type
   { TMyBooks }
 
   TMyBooks = class(TForm)
-    btnAuthors: TButton;
-    btnGenres: TButton;
-    dtnAddBook: TButton;
+    btnAdd: TButton;
     DataSource1: TDataSource;
-    edtBookName: TEdit;
-    edtBookISBN: TEdit;
-    edtOrigName: TEdit;
-    edtBookYear: TEdit;
-    edtBookAnnotation: TEdit;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
     PageControl1: TPageControl;
     SQLite3Connection1: TSQLite3Connection;
     SQLQuery1: TSQLQuery;
     SQLTransaction1: TSQLTransaction;
-    StringGrid1: TStringGrid;
-    StringGrid2: TStringGrid;
-    TabSheet1: TTabSheet;
-    TabSheet2: TTabSheet;
-    TabSheet3: TTabSheet;
+    BooksStringGrid: TStringGrid;
+    AuthorsStringGrid: TStringGrid;
+    GenresStringGrid: TStringGrid;
+    PublishersStringGrid: TStringGrid;
+    OperationsStringGrid: TStringGrid;
+    BooksTab: TTabSheet;
+    AuthorsTab: TTabSheet;
+    GenresTab: TTabSheet;
+    PublishersTab: TTabSheet;
+    OperationsTab: TTabSheet;
+    procedure btnAddClick(Sender: TObject);
     procedure btnAuthorsClick(Sender: TObject);
     procedure btnGenresClick(Sender: TObject);
-    procedure dtnAddBookClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
-    procedure DeleteRowsFromStringGrid();
+    procedure DeleteRowsFromStringGrid(const StringGrid : TStringGrid);
+    procedure GenresTabShow(Sender: TObject);
+    procedure OperationsStringGridSelection(Sender: TObject; aCol, aRow: Integer
+      );
+    procedure PublishersTabShow(Sender: TObject);
 
     procedure ReadDataFromDB(WhatRead : DataType; const ObjectList : TObjectList);
-    procedure TabSheet1Show(Sender: TObject);
-    procedure TabSheet2Show(Sender: TObject);
+    procedure BooksTabShow(Sender: TObject);
+    procedure AuthorsTabShow(Sender: TObject);
 
   private
     { private declarations }
@@ -159,36 +157,36 @@ begin
      end;
 end;
 
-procedure TMyBooks.TabSheet1Show(Sender: TObject);
+procedure TMyBooks.BooksTabShow(Sender: TObject);
 var
   I : Integer;
   book : TMBBook;
 begin
-     DeleteRowsFromStringGrid();
+     DeleteRowsFromStringGrid(BooksStringGrid);
 
      //ДК, обработка запроса, пытаемся вывести результат
 
      for I:=0 to BooksList.Count-1 do
      begin
           book:=BooksList.Items[I] as TMBBook;
-          StringGrid1.InsertRowWithValues(I+1, [IntToStr(book.BookID), book.BookName, book.BookISBN, book.BookName, book.BookYear, book.BookNote]);
+          BooksStringGrid.InsertRowWithValues(I+1, [IntToStr(book.BookID), book.BookName, book.BookISBN, book.BookName, book.BookYear, book.BookNote]);
      end;
 
 end;
 
-procedure TMyBooks.TabSheet2Show(Sender: TObject);
+procedure TMyBooks.AuthorsTabShow(Sender: TObject);
 var
   I : Integer;
   author : TMBAuthor;
 begin
-     DeleteRowsFromStringGrid();
+     DeleteRowsFromStringGrid(AuthorsStringGrid);
 
      //ДК, обработка запроса, пытаемся вывести результат
 
      for I:=0 to AuthorsList.Count-1 do
      begin
           author:=AuthorsList.Items[I] as TMBAuthor;
-          StringGrid2.InsertRowWithValues(I+1, [IntToStr(author.AuthorID), author.AuthorName, author.AuthorSurname]);
+          AuthorsStringGrid.InsertRowWithValues(I+1, [IntToStr(author.AuthorID), author.AuthorName, author.AuthorSurname]);
      end;
 
 end;
@@ -219,19 +217,57 @@ begin
 end;
 
 //ДК, очищаем таблицу, оставляем только строку с заголовками
-procedure TMyBooks.DeleteRowsFromStringGrid();
+procedure TMyBooks.DeleteRowsFromStringGrid(const StringGrid : TStringGrid);
 var
   I : Integer;
 begin
-     StringGrid1.Clean([gzNormal]);
+     StringGrid.Clean([gzNormal]);
 
-     if StringGrid1.RowCount > 1 then
+     if StringGrid.RowCount > 1 then
      begin
-         for I:=StringGrid1.RowCount downto 1 do;
-              StringGrid1.DeleteRow(I);
+         for I:=StringGrid.RowCount downto 1 do;
+              StringGrid.DeleteRow(I);
      end;
-     StringGrid1.RowCount:=1;
+     StringGrid.RowCount:=1;
 
+end;
+
+procedure TMyBooks.GenresTabShow(Sender: TObject);
+var
+  I : Integer;
+  genre : TMBGenre;
+begin
+     DeleteRowsFromStringGrid(GenresStringGrid);
+
+     //ДК, обработка запроса, пытаемся вывести результат
+
+     for I:=0 to GenresList.Count-1 do
+     begin
+          genre:=GenresList.Items[I] as TMBGenre;
+          GenresStringGrid.InsertRowWithValues(I+1, [IntToStr(genre.GenreID), genre.GenreName, genre.GenreDescription]);
+     end;
+end;
+
+procedure TMyBooks.OperationsStringGridSelection(Sender: TObject; aCol,
+  aRow: Integer);
+begin
+    //ShowMessage(Concat('Selected Ccell: col=', IntToStr(aCol), ' row=', IntToStr(aRow), ' call value=', OperationsStringGrid.Cells[aCol, aRow]));
+end;
+
+procedure TMyBooks.PublishersTabShow(Sender: TObject);
+var
+  I : Integer;
+  publisher : TMBPublisher;
+begin
+     DeleteRowsFromStringGrid(PublishersStringGrid);
+
+     //ДК, обработка запроса, пытаемся вывести результат
+
+     for I:=0 to PublishersList.Count-1 do
+     begin
+          publisher:=PublishersList.Items[I] as TMBPublisher;
+          PublishersStringGrid.InsertRowWithValues(I+1, [IntToStr(publisher.PublisherID), publisher.PublisherName, publisher.PublisherURL, publisher.PublisherCity]);
+     end;
 end;
 
 procedure TMyBooks.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -241,17 +277,30 @@ begin
      SQLite3Connection1.Connected:=False;
 end;
 
-procedure TMyBooks.dtnAddBookClick(Sender: TObject);
+procedure TMyBooks.btnAuthorsClick(Sender: TObject);
 begin
-     SQLQuery1.Close;
-     SQLQuery1.SQL.Text:='INSERT INTO books (name, isbn, orig_name, year, note) VALUES (:bNAME, :bISBN, :bORIGNAME, :bYEAR, :bNOTE)';
-     SQLQuery1.Params.ParamByName('bNAME').AsString:=edtBookName.Text;
-     SQLQuery1.Params.ParamByName('bISBN').AsString:=edtBookISBN.Text;
-     SQLQuery1.Params.ParamByName('bORIGNAME').AsString:=edtOrigName.Text;
-     SQLQuery1.Params.ParamByName('bYEAR').AsString:=edtBookYear.Text;
-     SQLQuery1.Params.ParamByName('bNOTE').AsString:=edtBookAnnotation.Text;
-     SQLQuery1.ExecSQL;
-     SQLTransaction1.Commit;
+
+end;
+
+procedure TMyBooks.btnAddClick(Sender: TObject);
+var
+  I, J : Integer;
+  str : String;
+  newBooksList : TObjectList;
+  newAuthorsList : TObjectList;
+  newPublishersList : TObjectList;
+  newCompositionsList : TObjectList;
+  newGenresList : TObjectList;
+  newEditorsList : TObjectList;
+  newTranslatorsList : TObjectList;
+begin
+     //ДК, соберем всех издателей
+     for I:=0 to OperationsStringGrid.RowCount -1 do
+     begin
+
+          ShowMessage(OperationsStringGrid.Cells[9,1]);
+     end;
+
 end;
 
 procedure TMyBooks.btnGenresClick(Sender: TObject);
@@ -259,29 +308,19 @@ begin
 
 end;
 
-procedure TMyBooks.btnAuthorsClick(Sender: TObject);
-var
-  I : Integer;
-begin
-      StringGrid1.Clean([gzNormal]);
+//procedure TMyBooks.dtnAddBookClick(Sender: TObject);
+//begin
+//     SQLQuery1.Close;
+//     SQLQuery1.SQL.Text:='INSERT INTO books (name, isbn, orig_name, year, note) VALUES (:bNAME, :bISBN, :bORIGNAME, :bYEAR, :bNOTE)';
+//     SQLQuery1.Params.ParamByName('bNAME').AsString:=edtBookName.Text;
+//     SQLQuery1.Params.ParamByName('bISBN').AsString:=edtBookISBN.Text;
+//     SQLQuery1.Params.ParamByName('bORIGNAME').AsString:=edtOrigName.Text;
+//     SQLQuery1.Params.ParamByName('bYEAR').AsString:=edtBookYear.Text;
+//     SQLQuery1.Params.ParamByName('bNOTE').AsString:=edtBookAnnotation.Text;
+//     SQLQuery1.ExecSQL;
+//     SQLTransaction1.Commit;
+//end;
 
-
-     //ДК, обработка запроса, пытаемся вывести результат
-     I:=1;
-     SQLQuery1.Close;
-     SQLQuery1.SQL.Text:='SELECT surname, name FROM authors';
-     SQLQuery1.Open;
-     while not SQLQuery1.EOF do
-     begin
-
-        StringGrid1.RowCount:=StringGrid1.RowCount + 1;
-        StringGrid1.InsertRowWithValues(I, [IntToStr(I), SQLQuery1.FieldByName('surname').AsString,
-                                        SQLQuery1.FieldByName('name').AsString]);
-        I:=I+1;
-        SQLQuery1.Next;
-     end;
-     SQLQuery1.Close;
-end;
 
 end.
 
