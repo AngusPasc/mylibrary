@@ -8,7 +8,7 @@ object MyBooks: TMyBooks
   ClientWidth = 993
   OnClose = FormClose
   OnCreate = FormCreate
-  LCLVersion = '1.6.0.4'
+  LCLVersion = '1.6.2.0'
   object PageControl1: TPageControl
     Left = 16
     Height = 168
@@ -38,19 +38,19 @@ object MyBooks: TMyBooks
           end        
           item
             Title.Caption = 'Название'
-            Width = 128
+            Width = 129
           end        
           item
             Title.Caption = 'ISBN'
-            Width = 128
+            Width = 129
           end        
           item
             Title.Caption = 'Оригинал'
-            Width = 128
+            Width = 129
           end        
           item
             Title.Caption = 'Год. изд.'
-            Width = 128
+            Width = 129
           end        
           item
             Title.Caption = 'Аннотация'
@@ -61,10 +61,10 @@ object MyBooks: TMyBooks
         ColWidths = (
           64
           0
-          128
-          128
-          128
-          128
+          129
+          129
+          129
+          129
           132
         )
       end
@@ -110,8 +110,8 @@ object MyBooks: TMyBooks
     end
     object OperationsTab: TTabSheet
       Caption = 'Добавить'
-      ClientHeight = 137
-      ClientWidth = 932
+      ClientHeight = 129
+      ClientWidth = 930
       object OperationsStringGrid: TStringGrid
         Left = 9
         Height = 90

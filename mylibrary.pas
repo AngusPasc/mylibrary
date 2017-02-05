@@ -307,24 +307,26 @@ var
   str : String;
   newBooksList : TObjectList;
   newAuthorsList : TObjectList;
-  newPublishersList : TObjectList;
+  newPublisher : TMBPublisher;
   newCompositionsList : TObjectList;
   newGenresList : TObjectList;
   newEditorsList : TObjectList;
-  newTranslatorsList : TObjectList;
+  newTranslator : TMBTranslator;
 begin
-     //ДК, соберем всех издателей
+     //ДК, обрабатываем строки
      for I:=0 to OperationsStringGrid.RowCount -1 do
      begin
-
+          //ДК, издатель
           if OperationsStringGrid.Cells[9,I] <> '' then
           begin
-               if CheckPublisher(OperationsStringGrid.Cells[9,I]) = 0 then
-               begin
-                    newPublishersList.Add(TMBPublisher.Create(OperationsStringGrid.Cells[9,I], '', ''));
-
-               end;
+               newPublisher.Create(OperationsStringGrid.Cells[9,I], SQLQuery1, SQLTransaction1);
           end;
+          //ДК, переводчик
+          if OperationsStringGrid.Cells[8,I] <> '' then\
+          begin
+              newTranslator.Create
+          end;
+
      end;
 
 end;

@@ -20,8 +20,10 @@ type
         procedure SetTranslatorName( Name : String );
         procedure SetTranslatorSurname( Surname : String );
      public
-        constructor Create(Name : String = ''; Surname : String = '');
-        constructor Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
+        constructor Create(); overload;
+        constructor Create(); overload;
+        constructor Create(Name : String = ''; Surname : String = ''); overload;
+        constructor Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction); overload;
         property TranslatorName : String read FTranslatorName write SetTranslatorName;
         property TranslatorSurname : String read FTranslatorSurname write SetTranslatorSurname;
         property TranslatorID : Integer read FTranslatorID;

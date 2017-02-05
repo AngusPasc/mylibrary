@@ -14,7 +14,7 @@ type
         FTranslatorSurname : String;
         FTranslatorID : Integer;
         FNewTranslator : Boolean;
-        FTranslatorCompositionss : array of Integer;
+        FTranslatorCompositionsID : array of Integer;
         function GetTranslatorCompositionID(Index : Integer) : Integer;
         procedure GetTranslatorCompositions(const SQLQuery :  TSQLQuery);
         procedure SetTranslatorName( Name : String );

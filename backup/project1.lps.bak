@@ -20,8 +20,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MyLibrary"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="274"/>
-        <CursorPos X="68" Y="286"/>
+        <TopLine Value="300"/>
+        <CursorPos X="67" Y="322"/>
         <UsageCount Value="350"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -69,8 +69,8 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="UMBPublisher"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="10"/>
-        <CursorPos X="24" Y="102"/>
+        <TopLine Value="43"/>
+        <CursorPos X="62" Y="74"/>
         <UsageCount Value="329"/>
         <Loaded Value="True"/>
       </Unit6>
@@ -100,14 +100,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="11"/>
         <CursorPos X="72" Y="15"/>
-        <UsageCount Value="211"/>
+        <UsageCount Value="210"/>
       </Unit9>
       <Unit10>
         <Filename Value="tmbcomposition.pas"/>
         <UnitName Value="UMBComposition"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="73" Y="8"/>
-        <UsageCount Value="211"/>
+        <UsageCount Value="210"/>
       </Unit10>
       <Unit11>
         <Filename Value="unit1.pas"/>
@@ -117,7 +117,7 @@
         <UnitName Value="MyLibrary"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="16"/>
-        <UsageCount Value="337"/>
+        <UsageCount Value="336"/>
       </Unit11>
       <Unit12>
         <Filename Value="tmbauthor.pas"/>
@@ -125,151 +125,151 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="7"/>
         <CursorPos X="38" Y="14"/>
-        <UsageCount Value="316"/>
+        <UsageCount Value="315"/>
       </Unit12>
       <Unit13>
         <Filename Value="/usr/lib/lazarus/1.6/lcl/grids.pas"/>
         <UnitName Value="Grids"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="2925"/>
-        <CursorPos X="26" Y="2875"/>
-        <UsageCount Value="8"/>
+        <TopLine Value="9265"/>
+        <CursorPos Y="9287"/>
+        <UsageCount Value="9"/>
       </Unit13>
       <Unit14>
         <Filename Value="/usr/share/fpcsrc/3.0.0/rtl/objpas/classes/classesh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="224"/>
         <CursorPos X="15" Y="244"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="7"/>
       </Unit14>
       <Unit15>
         <Filename Value="/usr/share/fpcsrc/3.0.0/rtl/objpas/classes/lists.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="138"/>
         <CursorPos X="3" Y="143"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="7"/>
       </Unit15>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="174" Column="10" TopLine="174"/>
+        <Caret Line="184" Column="42" TopLine="161"/>
       </Position1>
       <Position2>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="42" Column="47"/>
+        <Caret Line="183" Column="42" TopLine="160"/>
       </Position2>
       <Position3>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="160" Column="33" TopLine="31"/>
+        <Caret Line="184" Column="42" TopLine="161"/>
       </Position3>
       <Position4>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="181" Column="5" TopLine="151"/>
+        <Caret Line="186" Column="42" TopLine="163"/>
       </Position4>
       <Position5>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="190" Column="44" TopLine="163"/>
+        <Caret Line="187" Column="42" TopLine="164"/>
       </Position5>
       <Position6>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="184" Column="42" TopLine="161"/>
+        <Caret Line="188" Column="42" TopLine="165"/>
       </Position6>
       <Position7>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="183" Column="42" TopLine="160"/>
+        <Caret Line="189" Column="42" TopLine="166"/>
       </Position7>
       <Position8>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="184" Column="42" TopLine="161"/>
+        <Caret Line="188" Column="42" TopLine="165"/>
       </Position8>
       <Position9>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="186" Column="42" TopLine="163"/>
+        <Caret Line="187" Column="42" TopLine="164"/>
       </Position9>
       <Position10>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="187" Column="42" TopLine="164"/>
+        <Caret Line="186" Column="42" TopLine="163"/>
       </Position10>
       <Position11>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="188" Column="42" TopLine="165"/>
+        <Caret Line="185" Column="42" TopLine="162"/>
       </Position11>
       <Position12>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="189" Column="42" TopLine="166"/>
+        <Caret Line="184" Column="42" TopLine="161"/>
       </Position12>
       <Position13>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="188" Column="42" TopLine="165"/>
+        <Caret Line="183" Column="42" TopLine="160"/>
       </Position13>
       <Position14>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="187" Column="42" TopLine="164"/>
+        <Caret Line="182" Column="42" TopLine="159"/>
       </Position14>
       <Position15>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="186" Column="42" TopLine="163"/>
+        <Caret Line="181" Column="42" TopLine="158"/>
       </Position15>
       <Position16>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="185" Column="42" TopLine="162"/>
+        <Caret Line="180" Column="42" TopLine="157"/>
       </Position16>
       <Position17>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="184" Column="42" TopLine="161"/>
+        <Caret Line="179" Column="42" TopLine="156"/>
       </Position17>
       <Position18>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="183" Column="42" TopLine="160"/>
+        <Caret Line="178" Column="42" TopLine="155"/>
       </Position18>
       <Position19>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="182" Column="42" TopLine="159"/>
+        <Caret Line="177" Column="42" TopLine="154"/>
       </Position19>
       <Position20>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="181" Column="42" TopLine="158"/>
+        <Caret Line="176" Column="42" TopLine="153"/>
       </Position20>
       <Position21>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="180" Column="42" TopLine="157"/>
+        <Caret Line="175" Column="42" TopLine="152"/>
       </Position21>
       <Position22>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="179" Column="42" TopLine="156"/>
+        <Caret Line="174" Column="42" TopLine="153"/>
       </Position22>
       <Position23>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="178" Column="42" TopLine="155"/>
+        <Caret Line="175" Column="42" TopLine="154"/>
       </Position23>
       <Position24>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="177" Column="42" TopLine="154"/>
+        <Caret Line="293" Column="3" TopLine="267"/>
       </Position24>
       <Position25>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="176" Column="42" TopLine="153"/>
+        <Caret Line="38" Column="47" TopLine="36"/>
       </Position25>
       <Position26>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="175" Column="42" TopLine="152"/>
+        <Caret Line="291" Column="67" TopLine="260"/>
       </Position26>
       <Position27>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="174" Column="42" TopLine="153"/>
+        <Caret Line="293" Column="64" TopLine="271"/>
       </Position27>
       <Position28>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="175" Column="42" TopLine="154"/>
+        <Caret Line="301" Column="44" TopLine="279"/>
       </Position28>
       <Position29>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="293" Column="3" TopLine="267"/>
+        <Caret Line="254" Column="89" TopLine="242"/>
       </Position29>
       <Position30>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="38" Column="47" TopLine="36"/>
+        <Caret Line="301" Column="57" TopLine="278"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>

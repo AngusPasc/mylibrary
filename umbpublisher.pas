@@ -22,8 +22,10 @@ TMBPublisher = Class
          procedure GetPublisherBooks( const SQLQuery :  TSQLQuery );
          function GetPublisherBookID( Index : Integer ) : Integer;
   public
-         constructor Create( Name : String = ''; City : String = ''; URL : String = '' );
-         constructor Create( ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction );
+         constructor Create(); overload;
+         constructor Create(Name : String = ''; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction ); overload;
+         constructor Create( Name : String = ''; City : String = ''; URL : String = '' ); overload;
+         constructor Create( ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction ); overload;
          property PublisherName : String read FPublisherName write SetPublisherName;
          property PublisherCity : String read FPublisherCity write SetPublisherCity;
          property PublisherURL : String read FPublisherURL write SetPublisherURL;
@@ -35,6 +37,50 @@ TMBPublisher = Class
 end;
 
 implementation
+
+constructor Create();
+begin
+     FPublisherName := '';
+     FPublisherCity := '';
+     FPublisherURL := '';
+     FPublisherID := 0;
+     FNewPublisher := True;
+end;
+
+constructor Create(Name : String = ''; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction );
+begin
+     if Name = '' then
+     begin
+          FPublisherName := '';
+          FPublisherCity := '';
+          FPublisherURL := '';
+          FPublisherID := 0;
+          FNewPublisher := True;
+     end;
+     SQLQuery.Close;
+     SQLQuery.SQL.Text:='SELECT id, city, url FROM publishers where name=:bName';
+     SQLQuery.Params.ParamByName('bName').AsString:=Name;
+     SQLQuery.Open;
+     if SQLQuery1.RecordCount > 0 then
+     begin
+          //ДК, нужна проверка что запрос вернул не пустой результат
+          FPublisherName:=Name;
+          FPublisherCity:=SQLQuery.FieldByName('city').AsString;
+          FPublisherURL:=SQLQuery.FieldByName('url').AsString;
+          FPublisherID:=SQLQuery.FieldByName('id').AsInteger;
+          SQLQuery.Close;
+          FNewPublisher := False;
+     end
+     else
+     begin
+          FPublisherName := Name;
+          FPublisherCity := '';
+          FPublisherURL := '';
+          FPublisherID := 0;
+          FNewPublisher := True;
+          UpdatePublisher(SQLQuery, SQLTransaction);
+     end;
+end;
 
 constructor TMBPublisher.Create(Name : String = ''; City : String = ''; URL : String = '');
 begin

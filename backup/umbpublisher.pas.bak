@@ -71,6 +71,11 @@ begin
            SQLQuery.Params.ParamByName('bPublisherURL').AsString:=FPublisherURL;
            SQLQuery.ExecSQL;
            SQLTransaction.Commit;
+           //ДК, получаем ID свежезаписанного в базу издателя
+           SQLQuery.SQL.Text:='select from id publishers where name=:bPublisherName)';
+           SQLQuery.Params.ParamByName('bPublisherName').AsString:=FPublisherName;
+           SQLQuery.Open;
+           FPublisherID:=SQLQuery.FieldByName('id').AsInteger;
            FNewPublisher := False;
       end
       else
@@ -92,14 +97,14 @@ begin
   FPublisherName := Name;
 end;
 
-procedure TMBPublisher.SetPublisherCity( City : String );
+procedure TMBPublisher.SetPublisherCity( Name : String );
 begin
-  FPublisherCity := City;
+  FPublisherCity := Name;
 end;
 
-procedure TMBPublisher.SetPublisherURL( URL : String );
+procedure TMBPublisher.SetPublisherURL( Name : String );
 begin
-  FPublisherURL := URL;
+  FPublisherURL := Name;
 end;
 
 procedure TMBPublisher.GetPublisherBooks(const SQLQuery :  TSQLQuery);

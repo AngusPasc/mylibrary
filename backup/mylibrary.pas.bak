@@ -40,11 +40,15 @@ type
     procedure FormCreate(Sender: TObject);
     procedure DeleteRowsFromStringGrid(const StringGrid : TStringGrid);
     procedure GenresTabShow(Sender: TObject);
+    procedure OperationsStringGridSelection(Sender: TObject; aCol, aRow: Integer
+      );
     procedure PublishersTabShow(Sender: TObject);
 
     procedure ReadDataFromDB(WhatRead : DataType; const ObjectList : TObjectList);
     procedure BooksTabShow(Sender: TObject);
     procedure AuthorsTabShow(Sender: TObject);
+
+    function CheckPublisher(PubName : String) : Integer;
 
   private
     { private declarations }
@@ -67,6 +71,23 @@ implementation
 {$R *.lfm}
 
 { TMyBooks }
+
+function TMyBooks.CheckPublisher(PubName : String) : Integer;
+begin
+     SQLQuery1.Close;
+     SQLQuery1.SQL.Text:='SELECT id FROM publishers';
+     SQLQuery1.Open;
+
+     if SQLQuery1.RecordCount = 0 then
+     begin
+         Result:=-1;
+         exit;
+     end
+     else
+     begin
+          Result := SQLQuery1.RecordCount;
+     end;
+end;
 
 procedure TMyBooks.ReadDataFromDB(WhatRead : DataType; const ObjectList : TObjectList);
 var
@@ -246,6 +267,12 @@ begin
      end;
 end;
 
+procedure TMyBooks.OperationsStringGridSelection(Sender: TObject; aCol,
+  aRow: Integer);
+begin
+    //ShowMessage(Concat('Selected Ccell: col=', IntToStr(aCol), ' row=', IntToStr(aRow), ' call value=', OperationsStringGrid.Cells[aCol, aRow]));
+end;
+
 procedure TMyBooks.PublishersTabShow(Sender: TObject);
 var
   I : Integer;
@@ -278,10 +305,26 @@ procedure TMyBooks.btnAddClick(Sender: TObject);
 var
   I, J : Integer;
   str : String;
+  newBooksList : TObjectList;
+  newAuthorsList : TObjectList;
+  newPublishersList : TObjectList;
+  newCompositionsList : TObjectList;
+  newGenresList : TObjectList;
+  newEditorsList : TObjectList;
+  newTranslatorsList : TObjectList;
 begin
+     //ДК, соберем всех издателей
      for I:=0 to OperationsStringGrid.RowCount -1 do
      begin
-          OperationsStringGrid.Columns.Items[I].;
+
+          if OperationsStringGrid.Cells[9,I] <> '' then
+          begin
+               if CheckPublisher(OperationsStringGrid.Cells[9,I]) = 0 then
+               begin
+                    newPublishersList.Add(TMBPublisher.Create(OperationsStringGrid.Cells[9,I], '', ''));
+
+               end;
+          end;
      end;
 
 end;

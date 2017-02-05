@@ -8,7 +8,7 @@ object MyBooks: TMyBooks
   ClientWidth = 993
   OnClose = FormClose
   OnCreate = FormCreate
-  LCLVersion = '1.6.2.0'
+  LCLVersion = '1.6.0.4'
   object PageControl1: TPageControl
     Left = 16
     Height = 168
@@ -19,8 +19,8 @@ object MyBooks: TMyBooks
     TabOrder = 0
     object BooksTab: TTabSheet
       Caption = 'Книги'
-      ClientHeight = 233
-      ClientWidth = 738
+      ClientHeight = 137
+      ClientWidth = 932
       OnShow = BooksTabShow
       object BooksStringGrid: TStringGrid
         Left = 16
@@ -38,19 +38,19 @@ object MyBooks: TMyBooks
           end        
           item
             Title.Caption = 'Название'
-            Width = 129
+            Width = 128
           end        
           item
             Title.Caption = 'ISBN'
-            Width = 129
+            Width = 128
           end        
           item
             Title.Caption = 'Оригинал'
-            Width = 129
+            Width = 128
           end        
           item
             Title.Caption = 'Год. изд.'
-            Width = 129
+            Width = 128
           end        
           item
             Title.Caption = 'Аннотация'
@@ -61,18 +61,18 @@ object MyBooks: TMyBooks
         ColWidths = (
           64
           0
-          129
-          129
-          129
-          129
+          128
+          128
+          128
+          128
           132
         )
       end
     end
     object AuthorsTab: TTabSheet
       Caption = 'Авторы'
-      ClientHeight = 233
-      ClientWidth = 738
+      ClientHeight = 137
+      ClientWidth = 932
       OnShow = AuthorsTabShow
       object AuthorsStringGrid: TStringGrid
         Left = 8
@@ -84,8 +84,8 @@ object MyBooks: TMyBooks
     end
     object GenresTab: TTabSheet
       Caption = 'Жанры'
-      ClientHeight = 233
-      ClientWidth = 738
+      ClientHeight = 137
+      ClientWidth = 932
       OnShow = GenresTabShow
       object GenresStringGrid: TStringGrid
         Left = 16
@@ -97,8 +97,8 @@ object MyBooks: TMyBooks
     end
     object PublishersTab: TTabSheet
       Caption = 'Издательства'
-      ClientHeight = 233
-      ClientWidth = 738
+      ClientHeight = 137
+      ClientWidth = 932
       OnShow = PublishersTabShow
       object PublishersStringGrid: TStringGrid
         Left = 8
@@ -110,8 +110,8 @@ object MyBooks: TMyBooks
     end
     object OperationsTab: TTabSheet
       Caption = 'Добавить'
-      ClientHeight = 129
-      ClientWidth = 930
+      ClientHeight = 137
+      ClientWidth = 932
       object OperationsStringGrid: TStringGrid
         Left = 9
         Height = 90
@@ -148,6 +148,7 @@ object MyBooks: TMyBooks
           end>
         Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goRowSelect, goAlwaysShowEditor, goSmoothScroll]
         TabOrder = 0
+        OnSelection = OperationsStringGridSelection
       end
     end
   end
