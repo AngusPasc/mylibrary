@@ -21,7 +21,7 @@ type
         procedure SetTranslatorSurname( Surname : String );
      public
         constructor Create(); overload;
-        constructor Create(); overload;
+        constructor Create(Name : String; Surname : String; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction); overload;
         constructor Create(Name : String = ''; Surname : String = ''); overload;
         constructor Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction); overload;
         property TranslatorName : String read FTranslatorName write SetTranslatorName;
@@ -34,6 +34,14 @@ type
   end;
 
 implementation
+
+constructor TMBTranslator.Create();
+begin
+     FTranslatorName:='';
+     FTranslatorSurname:='';
+     FTranslatorID:=0;
+     FNewTranslator := True;
+end;
 
 constructor TMBTranslator.Create(Name : String = ''; Surname : String = '');
 begin

@@ -42,11 +42,15 @@ type
     procedure GenresTabShow(Sender: TObject);
     procedure OperationsStringGridSelection(Sender: TObject; aCol, aRow: Integer
       );
+    procedure OperationsTabShow(Sender: TObject);
+    procedure PageControl1Change(Sender: TObject);
     procedure PublishersTabShow(Sender: TObject);
 
     procedure ReadDataFromDB(WhatRead : DataType; const ObjectList : TObjectList);
     procedure BooksTabShow(Sender: TObject);
     procedure AuthorsTabShow(Sender: TObject);
+
+    function CheckPublisher(PubName : String) : Integer;
 
   private
     { private declarations }
@@ -69,6 +73,23 @@ implementation
 {$R *.lfm}
 
 { TMyBooks }
+
+function TMyBooks.CheckPublisher(PubName : String) : Integer;
+begin
+     SQLQuery1.Close;
+     SQLQuery1.SQL.Text:='SELECT id FROM publishers';
+     SQLQuery1.Open;
+
+     if SQLQuery1.RecordCount = 0 then
+     begin
+         Result:=-1;
+         exit;
+     end
+     else
+     begin
+          Result := SQLQuery1.RecordCount;
+     end;
+end;
 
 procedure TMyBooks.ReadDataFromDB(WhatRead : DataType; const ObjectList : TObjectList);
 var
@@ -254,6 +275,72 @@ begin
     //ShowMessage(Concat('Selected Ccell: col=', IntToStr(aCol), ' row=', IntToStr(aRow), ' call value=', OperationsStringGrid.Cells[aCol, aRow]));
 end;
 
+procedure TMyBooks.OperationsTabShow(Sender: TObject);
+var
+  I, J : Integer;
+  publisher : TMBPublisher;
+  genre : TMBGenre;
+  author : TMBAuthor;
+  editor : TMBEditor;
+  translator : TMBTranslator;
+begin
+     //ДК, заполняем PickList для издателей
+     if PublishersList.Count > 0 then
+     begin
+         for I:=0 to PublishersList.Count do
+         begin
+              publisher:=PublishersList.Items[I] as TMBPublisher;
+              OperationsStringGrid.Columns[8].PickList.Add(publisher.PublisherName);
+         end;
+     end;
+
+     //ДК, заполняем PickList для жанров
+     if GenresList.Count > 0 then
+     begin
+          for I:=0 to GenresList.Count do
+          begin
+               genre:=GenresList.Items[I] as TMBGenre;
+               OperationsStringGrid.Columns[5].PickList.Add(genre.GenreName);
+          end;
+     end;
+
+     //ДК, заполняем PickList для Авторов
+     if AuthorsList.Count > 0 then
+     begin
+          for I:=0 to AuthorsList.Count do
+          begin
+               author:=AuthorsList.Items[I] as TMBAuthor;
+               OperationsStringGrid.Columns[3].PickList.Add(Concat(author.AuthorSurname, ' ', author.AuthorName));
+          end;
+     end;
+
+     //ДК, заподняем PickList для переводчиков
+     if TranslatorsList.Count > 0 then
+     begin
+          for I:=0 to TranslatorsList.Count do
+          begin
+               translator:=TranslatorsList.Items[I] as TMBTranslator;
+               OperationsStringGrid.Columns[7].PickList.Add(Concat(translator.TranslatorSurname, ' ', translator.TranslatorName));
+          end;
+     end;
+
+     //ДК, заполняем PickList для редакторов
+     if EditorsList.Count > 0 then
+     begin
+          for I:=0 to EditorsList.Count do
+          begin
+               editor:=EditorsList.Items[I] as TMBEditor;
+               OperationsStringGrid.Columns[6].PickList.Add(Concat(editor.EditorSurname, ' ', editor.EditorName));
+          end;
+     end;
+
+end;
+
+procedure TMyBooks.PageControl1Change(Sender: TObject);
+begin
+
+end;
+
 procedure TMyBooks.PublishersTabShow(Sender: TObject);
 var
   I : Integer;
@@ -262,12 +349,15 @@ begin
      DeleteRowsFromStringGrid(PublishersStringGrid);
 
      //ДК, обработка запроса, пытаемся вывести результат
-
-     for I:=0 to PublishersList.Count-1 do
+     if PublishersList.Count > 0 then
      begin
-          publisher:=PublishersList.Items[I] as TMBPublisher;
-          PublishersStringGrid.InsertRowWithValues(I+1, [IntToStr(publisher.PublisherID), publisher.PublisherName, publisher.PublisherURL, publisher.PublisherCity]);
+          for I:=0 to PublishersList.Count-1 do
+          begin
+               publisher:=PublishersList.Items[I] as TMBPublisher;
+               PublishersStringGrid.InsertRowWithValues(I+1, [IntToStr(publisher.PublisherID), publisher.PublisherName, publisher.PublisherURL, publisher.PublisherCity]);
+          end;
      end;
+
 end;
 
 procedure TMyBooks.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -288,17 +378,26 @@ var
   str : String;
   newBooksList : TObjectList;
   newAuthorsList : TObjectList;
-  newPublishersList : TObjectList;
+  newPublisher : TMBPublisher;
   newCompositionsList : TObjectList;
   newGenresList : TObjectList;
   newEditorsList : TObjectList;
-  newTranslatorsList : TObjectList;
+  newTranslator : TMBTranslator;
 begin
-     //ДК, соберем всех издателей
+     //ДК, обрабатываем строки
      for I:=0 to OperationsStringGrid.RowCount -1 do
      begin
+          //ДК, издатель
+          if OperationsStringGrid.Cells[9,I] <> '' then
+          begin
+               newPublisher.Create(OperationsStringGrid.Cells[9,I], SQLQuery1, SQLTransaction1);
+          end;
+          //ДК, переводчик
+          if OperationsStringGrid.Cells[8,I] <> '' then
+          begin
+              //newTranslator.Create
+          end;
 
-          ShowMessage(OperationsStringGrid.Cells[9,1]);
      end;
 
 end;

@@ -8,7 +8,7 @@ object MyBooks: TMyBooks
   ClientWidth = 993
   OnClose = FormClose
   OnCreate = FormCreate
-  LCLVersion = '1.6.2.0'
+  LCLVersion = '1.6.0.4'
   object PageControl1: TPageControl
     Left = 16
     Height = 168
@@ -17,6 +17,7 @@ object MyBooks: TMyBooks
     ActivePage = OperationsTab
     TabIndex = 4
     TabOrder = 0
+    OnChange = PageControl1Change
     object BooksTab: TTabSheet
       Caption = 'Книги'
       ClientHeight = 137
@@ -54,7 +55,7 @@ object MyBooks: TMyBooks
           end        
           item
             Title.Caption = 'Аннотация'
-            Width = 132
+            Width = 130
           end>
         RowCount = 1
         TabOrder = 0
@@ -65,7 +66,7 @@ object MyBooks: TMyBooks
           129
           129
           129
-          132
+          130
         )
       end
     end
@@ -110,8 +111,9 @@ object MyBooks: TMyBooks
     end
     object OperationsTab: TTabSheet
       Caption = 'Добавить'
-      ClientHeight = 129
-      ClientWidth = 930
+      ClientHeight = 137
+      ClientWidth = 932
+      OnShow = OperationsTabShow
       object OperationsStringGrid: TStringGrid
         Left = 9
         Height = 90
@@ -129,21 +131,26 @@ object MyBooks: TMyBooks
             Title.Caption = 'Год. изд.'
           end        
           item
+            ButtonStyle = cbsPickList
             Title.Caption = 'Автор'
           end        
           item
             Title.Caption = 'Произведение'
           end        
           item
+            ButtonStyle = cbsPickList
             Title.Caption = 'Жанр'
           end        
           item
+            ButtonStyle = cbsPickList
             Title.Caption = 'Редактор'
           end        
           item
+            ButtonStyle = cbsPickList
             Title.Caption = 'Переводчик'
           end        
           item
+            ButtonStyle = cbsPickList
             Title.Caption = 'Издатель'
           end>
         Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goRowSelect, goAlwaysShowEditor, goSmoothScroll]

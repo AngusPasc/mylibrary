@@ -23,9 +23,9 @@ TMBPublisher = Class
          function GetPublisherBookID( Index : Integer ) : Integer;
   public
          constructor Create(); overload;
-         constructor Create(Name : String = ''; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction ); overload;
-         constructor Create( Name : String = ''; City : String = ''; URL : String = '' ); overload;
-         constructor Create( ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction ); overload;
+         constructor Create(Name : String; const SQLQuery : TSQLQuery; const SQLTransaction : TSQLTransaction );
+         constructor Create( Name : String = ''; City : String = ''; URL : String = '' );
+         constructor Create( ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction );
          property PublisherName : String read FPublisherName write SetPublisherName;
          property PublisherCity : String read FPublisherCity write SetPublisherCity;
          property PublisherURL : String read FPublisherURL write SetPublisherURL;
@@ -38,7 +38,7 @@ end;
 
 implementation
 
-constructor Create();
+constructor TMBPublisher.Create();
 begin
      FPublisherName := '';
      FPublisherCity := '';
@@ -47,7 +47,7 @@ begin
      FNewPublisher := True;
 end;
 
-constructor Create(Name : String = ''; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction );
+constructor TMBPublisher.Create(Name : String; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction );
 begin
      if Name = '' then
      begin
@@ -61,7 +61,7 @@ begin
      SQLQuery.SQL.Text:='SELECT id, city, url FROM publishers where name=:bName';
      SQLQuery.Params.ParamByName('bName').AsString:=Name;
      SQLQuery.Open;
-     if SQLQuery1.RecordCount > 0 then
+     if SQLQuery.RecordCount > 0 then
      begin
           //ДК, нужна проверка что запрос вернул не пустой результат
           FPublisherName:=Name;
