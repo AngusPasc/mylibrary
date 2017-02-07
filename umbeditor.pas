@@ -22,7 +22,7 @@ type
       published
 
       public
-             constructor Create(Name : String = ''; Surname : String = '');
+             constructor Create(Name : String; Surname : String; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
              constructor Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
              property EditorName : String read FEditorName write SetEditorName;
              property EditorSurname : String read FEditorSurname write SetEditorSurname;
@@ -33,13 +33,26 @@ type
 
 implementation
 
-constructor TMBEditor.Create(Name : String = ''; Surname : String = '');
+constructor TMBEditor.Create(Name : String; Surname : String; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
 begin
-     //ДК, надо добавить пару проверок Name и Surname не должны быть пустыми
-     FEditorName:=Name;
-     FEditorSurname:=Surname;
-     FEditorID:=0;
-     FNewEditor := True;
+     //ДК, проверяем если добавлен новый редактор
+     SQLQuery.Close;
+     SQLQuery.SQL.Text:='SELECT id FROM editorss where surname=:bSurname';
+     SQLQuery.Params.ParamByName('bSurname').AsString:=Surname;
+     SQLQuery.Open;
+     if SQLQuery.RecordCount > 0 then
+     begin
+
+     end
+     else
+     begin
+          //ДК, надо добавить пару проверок Name и Surname не должны быть пустыми
+          FEditorName:=Name;
+          FEditorSurname:=Surname;
+          FEditorID:=0;
+          FNewEditor := True;
+     end;
+
 end;
 
 constructor TMBEditor.Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);

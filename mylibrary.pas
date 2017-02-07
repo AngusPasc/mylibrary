@@ -410,7 +410,23 @@ begin
                Split(' ', OperationsStringGrid.Cells[8,I], FIO);
                if FIO.Count = 1 then
                begin
-                    newTranslator.Create(FIO.Strings[0], FIO.Strings[1], SQLQuery1, SQLTransaction1);
+                    newTranslator.Create('', FIO.Strings[0], SQLQuery1, SQLTransaction1);
+               end
+               else
+                   newTranslator.Create(FIO.Strings[1], FIO.Strings[0], SQLQuery1, SQLTransaction1);
+               end;
+          end;
+
+          //ДК, редактор
+          if OperationsStringGrid.Cells[6,I] <> '' then
+          begin
+               Split(' ', OperationsStringGrid.Cells[6,I], FIO);
+               if FIO.Count = 1 then
+               begin
+                    newEditor.Create('', FIO.Strings[0], SQLQuery1, SQLTransaction1);
+               end
+               else
+                   newEditor.Create(FIO.Strings[1], FIO.Strings[0], SQLQuery1, SQLTransaction1);
                end;
           end;
 

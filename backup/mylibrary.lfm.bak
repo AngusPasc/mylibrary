@@ -17,6 +17,7 @@ object MyBooks: TMyBooks
     ActivePage = OperationsTab
     TabIndex = 4
     TabOrder = 0
+    OnChange = PageControl1Change
     object BooksTab: TTabSheet
       Caption = 'Книги'
       ClientHeight = 137
@@ -38,34 +39,34 @@ object MyBooks: TMyBooks
           end        
           item
             Title.Caption = 'Название'
-            Width = 128
+            Width = 129
           end        
           item
             Title.Caption = 'ISBN'
-            Width = 128
+            Width = 129
           end        
           item
             Title.Caption = 'Оригинал'
-            Width = 128
+            Width = 129
           end        
           item
             Title.Caption = 'Год. изд.'
-            Width = 128
+            Width = 129
           end        
           item
             Title.Caption = 'Аннотация'
-            Width = 132
+            Width = 130
           end>
         RowCount = 1
         TabOrder = 0
         ColWidths = (
           64
           0
-          128
-          128
-          128
-          128
-          132
+          129
+          129
+          129
+          129
+          130
         )
       end
     end
@@ -112,6 +113,7 @@ object MyBooks: TMyBooks
       Caption = 'Добавить'
       ClientHeight = 137
       ClientWidth = 932
+      OnShow = OperationsTabShow
       object OperationsStringGrid: TStringGrid
         Left = 9
         Height = 90
@@ -129,21 +131,26 @@ object MyBooks: TMyBooks
             Title.Caption = 'Год. изд.'
           end        
           item
+            ButtonStyle = cbsPickList
             Title.Caption = 'Автор'
           end        
           item
             Title.Caption = 'Произведение'
           end        
           item
+            ButtonStyle = cbsPickList
             Title.Caption = 'Жанр'
           end        
           item
+            ButtonStyle = cbsPickList
             Title.Caption = 'Редактор'
           end        
           item
+            ButtonStyle = cbsPickList
             Title.Caption = 'Переводчик'
           end        
           item
+            ButtonStyle = cbsPickList
             Title.Caption = 'Издатель'
           end>
         Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goRowSelect, goAlwaysShowEditor, goSmoothScroll]

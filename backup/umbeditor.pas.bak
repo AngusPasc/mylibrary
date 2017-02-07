@@ -117,7 +117,7 @@ begin
           SQLQuery.SQL.Text:='update editors set name=:bEditorName, surname=:bEditorSurname where id =:bEditorID';
           SQLQuery.Params.ParamByName('bEditorName').AsString:=FEditorName;
           SQLQuery.Params.ParamByName('bEditorSurname').AsString:=FEditorSurname;
-          SQLQuery.Params.ParamByName('bEditorID').AsString:=IntToStr(FEdiorID);
+          SQLQuery.Params.ParamByName('bEditorID').AsString:=IntToStr(FEditorID);
           SQLQuery.ExecSQL;
           SQLTransaction.Commit;
      end;
