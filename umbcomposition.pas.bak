@@ -25,7 +25,7 @@ type
              constructor Create(Name : String = ''; Annotation : String = '');
              constructor Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
              property CompositionName : String read FCompositionName write SetCompositionName;
-             property CompositionAnnatation : String read FCompositionAnnotation write SetCompositionAnnotation;
+             property CompositionAnnotation : String read FCompositionAnnotation write SetCompositionAnnotation;
              property CompositionID : Integer read FCompositionID;
              property CompositionsAuthor[Index : Integer]: Integer read GetCompositionAuthorID;
              procedure UpdateComposition(const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
@@ -114,7 +114,7 @@ begin
     else
     begin
         SQLQuery.Close;
-        SQLQuery.SQL.Text:='update composition set name=:bCompositionName annotation=:bCompositionAnnotation where id =:bCompositionID';
+        SQLQuery.SQL.Text:='update compositions set name=:bCompositionName, annotation=:bCompositionAnnotation where id =:bCompositionID';
         SQLQuery.Params.ParamByName('bCompositionName').AsString:=FCompositionName;
         SQLQuery.Params.ParamByName('bCompositionAnnotation').AsString:=FCompositionAnnotation;
         SQLQuery.Params.ParamByName('bComposiionID').AsString:=IntToStr(FCompositionID);

@@ -41,7 +41,7 @@ type
       procedure ReadBookDataFromDB(const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
     public
       constructor Create(); overload;
-      constructor Create(BookName : String; BookISBN : String; BookYear : String; BookNote : String); overload;
+      constructor Create(BookName : String; BookISBN : String; BookYear : String; BookNote : String; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction); overload;
       constructor Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction); overload;
       property BookID : Integer read FBookID;
       property BookName : String read FBookName write SetBookName;
@@ -69,13 +69,30 @@ begin
      FNewBook := False;
 end;
 
-constructor TMBBook.Create(BookName : String; BookISBN : String; BookYear : String; BookNote : String);
+constructor TMBBook.Create(BookName : String; BookISBN : String; BookYear : String; BookNote : String; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
 begin
-     FBookName := BookName;
-     FBookISBN := BookISBN;
-     FBookYear := BookYear;
-     FBookNote := BookNote;
-     FNewBook := True;
+     SQLQuery.Close;
+     SQLQuery.SQL.Text:='SELECT id, isbn, year, note FROM books where name=:bName';
+     SQLQuery.Params.ParamByName('bName').AsString:=BookName;
+     SQLQuery.Open;
+     if SQLQuery.RecordCount > 0 then
+     begin
+          FBookName:=BookName;
+          FBookISBN:=BookISBN;
+          FBookYear:=BookYear;
+          FBookNote:=BookNote;
+          FBookID:=SQLQuery.FieldByName('id').AsString;
+          FNewBook := False;
+     end
+     else
+     begin
+          FBookName := BookName;
+          FBookISBN := BookISBN;
+          FBookYear := BookYear;
+          FBookNote := BookNote;
+          FNewBook := True;
+     end;
+
 end;
 
 constructor TMBBook.Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
@@ -156,7 +173,7 @@ end;
 procedure TMBBook.ReadBookGenresFromDB(const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
 begin
      SQLQuery.Close;
-     SQLQuery.SQL.Text:='SELECT genre_id FROM rel_books_genres where book_id=:bID';
+     SQLQuery.SQL.Text:='SELECT genre_id FROM rel_book_genres where book_id=:bID';
      SQLQuery.Params.ParamByName('bID').AsString:=IntToStr(FBookID);
      SQLQuery.Open;
      if SQLQuery.RecordCount > 0 then

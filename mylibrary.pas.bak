@@ -52,6 +52,8 @@ type
 
     function CheckPublisher(PubName : String) : Integer;
 
+    procedure Split (const Delimiter: Char; Input: string; const Strings: TStrings);
+
   private
     { private declarations }
   public
@@ -73,6 +75,15 @@ implementation
 {$R *.lfm}
 
 { TMyBooks }
+
+procedure TMyBooks.Split (const Delimiter: Char; Input: string; const Strings: TStrings);
+begin
+   Assert(Assigned(Strings)) ;
+   Strings.Clear;
+   Strings.StrictDelimiter := true;
+   Strings.Delimiter := Delimiter;
+   Strings.DelimitedText := Input;
+end;
 
 function TMyBooks.CheckPublisher(PubName : String) : Integer;
 begin
@@ -376,6 +387,7 @@ procedure TMyBooks.btnAddClick(Sender: TObject);
 var
   I, J : Integer;
   str : String;
+  FIO : TStrings;
   newBooksList : TObjectList;
   newAuthorsList : TObjectList;
   newPublisher : TMBPublisher;
@@ -395,7 +407,27 @@ begin
           //ДК, переводчик
           if OperationsStringGrid.Cells[8,I] <> '' then
           begin
-              //newTranslator.Create
+               Split(' ', OperationsStringGrid.Cells[8,I], FIO);
+               if FIO.Count = 1 then
+               begin
+                    newTranslator.Create('', FIO.Strings[0], SQLQuery1, SQLTransaction1);
+               end
+               else
+                   newTranslator.Create(FIO.Strings[1], FIO.Strings[0], SQLQuery1, SQLTransaction1);
+               end;
+          end;
+
+          //ДК, редактор
+          if OperationsStringGrid.Cells[6,I] <> '' then
+          begin
+               Split(' ', OperationsStringGrid.Cells[6,I], FIO);
+               if FIO.Count = 1 then
+               begin
+                    newEditor.Create('', FIO.Strings[0], SQLQuery1, SQLTransaction1);
+               end
+               else
+                   newEditor.Create(FIO.Strings[1], FIO.Strings[0], SQLQuery1, SQLTransaction1);
+               end;
           end;
 
      end;

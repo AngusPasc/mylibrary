@@ -388,12 +388,12 @@ var
   I, J : Integer;
   str : String;
   FIO : TStrings;
-  newBooksList : TObjectList;
-  newAuthorsList : TObjectList;
+  newBook : TMBBook;
+  newAuthor : TMBAuthor;
   newPublisher : TMBPublisher;
-  newCompositionsList : TObjectList;
-  newGenresList : TObjectList;
-  newEditorsList : TObjectList;
+  newComposition : TMBComposition;
+  newGenre : TMBGenre;
+  newEditor : TMBEditor;
   newTranslator : TMBTranslator;
 begin
      //ДК, обрабатываем строки
@@ -413,6 +413,7 @@ begin
                     newTranslator.Create('', FIO.Strings[0], SQLQuery1, SQLTransaction1);
                end
                else
+               begin
                    newTranslator.Create(FIO.Strings[1], FIO.Strings[0], SQLQuery1, SQLTransaction1);
                end;
           end;
@@ -426,9 +427,29 @@ begin
                     newEditor.Create('', FIO.Strings[0], SQLQuery1, SQLTransaction1);
                end
                else
+               begin
                    newEditor.Create(FIO.Strings[1], FIO.Strings[0], SQLQuery1, SQLTransaction1);
                end;
           end;
+
+          if OperationsStringGrid.Cells[5,I] <> '' then
+          begin
+               newGenre.Create(OperationsStringGrid.Cells[9,I], '', SQLQuery1, SQLTransaction1);
+          end;
+
+          if OperationsStringGrid.Cells[3,I] <> '' then
+          begin
+               Split(' ', OperationsStringGrid.Cells[6,I], FIO);
+               //ДК, здесь наверняка нудна какая-нибудь проверка
+               newAuthor.Create(FIO.Strings[1], FIO.Strings[0], SQLQuery1, SQLTransaction1);
+          end;
+
+          if OperationsStringGrid.Cells[4,I] <> '' then
+          begin
+               newComposition.Create(OperationsStringGrid.Cells[4,I], '', SQLQuery1, SQLTransaction1);
+          end;
+
+          newBook.Create(OperationsStringGrid.Cells[0,I], OperationsStringGrid.Cells[1,I], OperationsStringGrid.Cells[2,I], '', );
 
      end;
 

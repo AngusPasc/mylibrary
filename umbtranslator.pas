@@ -62,6 +62,7 @@ begin
           FTranslatorSurname:=Surname;
           FTranslatorID:=0;
           FNewTranslator := True;
+          UpdateTranslator(SQLQuery, SQLTransaction);
      end;
 end;
 

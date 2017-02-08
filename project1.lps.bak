@@ -20,8 +20,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MyLibrary"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="301"/>
-        <CursorPos X="49" Y="322"/>
+        <TopLine Value="420"/>
+        <CursorPos X="11" Y="453"/>
         <UsageCount Value="350"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -31,8 +31,8 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="UMBAuthor"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="20"/>
-        <CursorPos X="40" Y="64"/>
+        <TopLine Value="42"/>
+        <CursorPos X="11" Y="78"/>
         <UsageCount Value="350"/>
         <Loaded Value="True"/>
       </Unit2>
@@ -41,7 +41,8 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="UMBComposition"/>
         <EditorIndex Value="3"/>
-        <CursorPos X="35" Y="60"/>
+        <TopLine Value="42"/>
+        <CursorPos X="34" Y="66"/>
         <UsageCount Value="339"/>
         <Loaded Value="True"/>
       </Unit3>
@@ -50,7 +51,8 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="UMBEditor"/>
         <EditorIndex Value="6"/>
-        <CursorPos X="76" Y="120"/>
+        <TopLine Value="35"/>
+        <CursorPos X="11" Y="66"/>
         <UsageCount Value="338"/>
         <Loaded Value="True"/>
       </Unit4>
@@ -59,8 +61,8 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="UMBGenre"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="95"/>
-        <CursorPos X="48" Y="121"/>
+        <TopLine Value="39"/>
+        <CursorPos X="10" Y="68"/>
         <UsageCount Value="338"/>
         <Loaded Value="True"/>
       </Unit5>
@@ -69,8 +71,8 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="UMBPublisher"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="43"/>
-        <CursorPos X="17" Y="64"/>
+        <TopLine Value="54"/>
+        <CursorPos X="16" Y="69"/>
         <UsageCount Value="329"/>
         <Loaded Value="True"/>
       </Unit6>
@@ -79,8 +81,8 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="UMBBook"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="53"/>
-        <CursorPos X="10" Y="70"/>
+        <TopLine Value="47"/>
+        <CursorPos X="28" Y="93"/>
         <UsageCount Value="329"/>
         <Loaded Value="True"/>
       </Unit7>
@@ -89,8 +91,8 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="UMBTranslator"/>
         <EditorIndex Value="7"/>
-        <TopLine Value="2"/>
-        <CursorPos X="11" Y="23"/>
+        <TopLine Value="45"/>
+        <CursorPos X="27" Y="65"/>
         <UsageCount Value="325"/>
         <Loaded Value="True"/>
       </Unit8>
@@ -150,7 +152,7 @@
         <UsageCount Value="5"/>
       </Unit15>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="mylibrary.pas"/>
         <Caret Line="179" Column="42" TopLine="156"/>
@@ -249,28 +251,24 @@
       </Position24>
       <Position25>
         <Filename Value="umbtranslator.pas"/>
-        <Caret Line="23" Column="40" TopLine="79"/>
+        <Caret Line="24" Column="11" TopLine="3"/>
       </Position25>
       <Position26>
-        <Filename Value="umbtranslator.pas"/>
-        <Caret Line="24" Column="11" TopLine="3"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="343" Column="6" TopLine="301"/>
       </Position26>
       <Position27>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="343" Column="6" TopLine="301"/>
+        <Caret Line="333" Column="46" TopLine="304"/>
       </Position27>
       <Position28>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="333" Column="46" TopLine="304"/>
+        <Caret Line="53" Column="29" TopLine="32"/>
       </Position28>
       <Position29>
         <Filename Value="mylibrary.pas"/>
-        <Caret Line="53" Column="29" TopLine="32"/>
-      </Position29>
-      <Position30>
-        <Filename Value="mylibrary.pas"/>
         <Caret Line="313" Column="67" TopLine="292"/>
-      </Position30>
+      </Position29>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>
