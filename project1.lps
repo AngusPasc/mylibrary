@@ -19,7 +19,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MyLibrary"/>
-        <TopLine Value="402"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="428"/>
         <CursorPos X="52" Y="453"/>
         <UsageCount Value="350"/>
         <Loaded Value="True"/>
@@ -79,10 +80,9 @@
         <Filename Value="umbbook.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UMBBook"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="4"/>
-        <CursorPos X="34" Y="12"/>
+        <CursorPos X="32" Y="22"/>
         <UsageCount Value="329"/>
         <Loaded Value="True"/>
       </Unit7>
