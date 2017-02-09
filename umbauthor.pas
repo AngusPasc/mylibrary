@@ -36,7 +36,7 @@ type
              constructor Create(Name : String; Surname : String; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction); overload;
              constructor Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction); overload;
              procedure UpdateAuthor(const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
-
+             procedure AddComposition(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
     end;
 
 implementation
@@ -79,46 +79,47 @@ begin
 
 end;
 
-              constructor TMBAuthor.Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
-              begin
-                   SQLQuery.Close;
-                   SQLQuery.SQL.Text:='SELECT name, surname, originid FROM authors where id=:bID';
-                   SQLQuery.Params.ParamByName('bID').AsString:=IntToStr(ID);
-                   SQLQuery.Open;
-                   //ДК, нужна проверка что запрос вернул не пустой результат
-                   FAuthorName:=SQLQuery.FieldByName('name').AsString;
-                   FAuthorSurname:=SQLQuery.FieldByName('surname').AsString;
-                   FAuthorID:=ID;
-                   FAuthorOriginID:=StrToInt(SQLQuery.FieldByName('originid').AsString);
-                   SQLQuery.Close;
-                   FNewAuthor := False;
-              end;
+constructor TMBAuthor.Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
+begin
+     SQLQuery.Close;
+     SQLQuery.SQL.Text:='SELECT name, surname, originid FROM authors where id=:bID';
+     SQLQuery.Params.ParamByName('bID').AsString:=IntToStr(ID);
+     SQLQuery.Open;
+     //ДК, нужна проверка что запрос вернул не пустой результат
+     FAuthorName:=SQLQuery.FieldByName('name').AsString;
+     FAuthorSurname:=SQLQuery.FieldByName('surname').AsString;
+     FAuthorID:=ID;
+     FAuthorOriginID:=StrToInt(SQLQuery.FieldByName('originid').AsString);
+     SQLQuery.Close;
+     FNewAuthor := False;
+end;
 
-              //private функция
-              //получает масив ID произведений автора и сохраняет его в поле FAuthorCompositions
-              procedure TMBAuthor.GetAuthorCompositions(const SQLQuery :  TSQLQuery);
-              var
-                I : Integer;
-              begin
-                   SQLQuery.Close;
-                   SQLQuery.SQL.Text:='SELECT composition_id FROM rel_composition_authors where author_id=:bID';
-                   SQLQuery.Params.ParamByName('bID').AsString:=IntToStr(FAuthorID);
-                   SQLQuery.Open;
-                   SQLQuery.Last;
-                   if SQLQuery.RecordCount > 0 then
-                   begin
-                       SetLength(FAuthorCompositions, SQLQuery.RecordCount);
-                       SQLQuery.First;
-                       I:=0;
-                       while not SQLQuery.EOF do
-                       begin
-                            FAuthorCompositions[I]:=SQLQuery.FieldByName('composition_id').AsInteger;
-                            I:=I+1;
-                            SQLQuery.Next;
-                       end;
-                            SQLQuery.Close;
-                   end;
-              end;
+//private функция
+//получает масив ID произведений автора и сохраняет его в поле FAuthorCompositions
+procedure TMBAuthor.GetAuthorCompositions(const SQLQuery :  TSQLQuery);
+var
+   I : Integer;
+begin
+     SQLQuery.Close;
+     SQLQuery.SQL.Text:='SELECT composition_id FROM rel_composition_authors where author_id=:bID';
+     SQLQuery.Params.ParamByName('bID').AsString:=IntToStr(FAuthorID);
+     SQLQuery.Open;
+     SQLQuery.Last;
+
+     if SQLQuery.RecordCount > 0 then
+     begin
+          SetLength(FAuthorCompositions, SQLQuery.RecordCount);
+          SQLQuery.First;
+          I:=0;
+          while not SQLQuery.EOF do
+          begin
+               FAuthorCompositions[I]:=SQLQuery.FieldByName('composition_id').AsInteger;
+               I:=I+1;
+               SQLQuery.Next;
+          end;
+          SQLQuery.Close;
+     end;
+end;
 
               //private функция
               //получает массив ID книг в которые вошли произведения автора и
@@ -207,6 +208,30 @@ end;
                    else
                        Result := -1;
               end;
+
+procedure TMBAuthor.AddComposition(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
+var
+  I : Integer;
+  RecordFound : Boolean = false;
+begin
+     //ДК, проверяем что такой записи еще нет
+     for I:=0 to Length(FAuthorCompositions) do
+     begin
+        if ID=FAuthorCompositions[I] then
+           RecordFound:=True;
+     end;
+
+     if RecordFound = False then
+     begin
+          SQLQuery.Close;
+          SQLQuery.SQL.Text:='inset into rel_composition_authors (composition_id, author_id) values (:bAuthorID, :bCompositionID )';
+          SQLQuery.Params.ParamByName('bAuthorID').AsInteger:=FAuthorID;
+          SQLQuery.Params.ParamByName('bCompositionID').AsInteger:=ID;
+          SQLQuery.ExecSQL;
+          SQLTransaction.Commit;
+          GetAuthorCompositions(SQLQuery);
+     end;
+end;
 
 end.
 

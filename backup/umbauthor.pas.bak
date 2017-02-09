@@ -32,22 +32,52 @@ type
              property AuthorOrigID : Integer read FAuthorOriginID;
              property AuthorCompositions[Index : Integer]: Integer read GetAuthorCompositionID;
              property AuthorBooks[Index : Integer]: Integer read GetAuthorBookID;
-             constructor Create(Name : String = ''; Surname : String = '');
-             constructor Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
+             constructor Create(); overload;
+             constructor Create(Name : String; Surname : String; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction); overload;
+             constructor Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction); overload;
              procedure UpdateAuthor(const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
 
     end;
 
 implementation
-              constructor TMBAuthor.Create(Name : String = ''; Surname : String = '');
-              begin
-                   //ДК, надо добавить пару проверок Name и Surname не должны быть пустыми
-                   FAuthorName:=Name;
-                   FAuthorSurname:=Surname;
-                   FAuthorID:=0;
-                   FAuthorOriginID:=0;
-                   FNewAuthor := True;
-              end;
+
+constructor TMBAutho.Create();
+begin
+     FAuthorName:=Name;
+     FAuthorSurname:=Surname;
+     FAuthorID:=0;
+     FAuthorOriginID:=0;
+     FNewAuthor := True;
+end;
+
+constructor TMBAuthor.Create(Name : String; Surname : String; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
+begin
+     //ДК, проверяем если добавлен новый автор
+     SQLQuery.Close;
+     SQLQuery.SQL.Text:='SELECT id  FROM authors where name=:bName and surname=:bSurname'; //ДК, может LIMIT 1 воткнуть?
+     SQLQuery.Params.ParamByName('bName').AsString:=Name;
+     SQLQuery.Params.ParamByName('bSurname').AsString:=Surname;
+     SQLQuery.Open;
+
+     if SQLQuery.RecordCount > 0 then
+     begin
+          FAuthorName:=Name;
+          FAuthorSurname:=Surname;
+          FAuthorID:=SQLQuery.FieldByName('id').AsString;
+          FNewAuthor := False;
+     end
+     else
+     begin
+         //ДК, надо добавить пару проверок Name и Surname не должны быть пустыми
+         FAuthorName:=Name;
+         FAuthorSurname:=Surname;
+         FAuthorID:=0;
+         FAuthorOriginID:=0;
+         FNewAuthor := True;
+         UpdateGenre(SQLQuery, SQLTransaction);
+     end;
+
+end;
 
               constructor TMBAuthor.Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
               begin
@@ -151,7 +181,7 @@ implementation
                    else
                    begin
                        SQLQuery.Close;
-                       SQLQuery.SQL.Text:='update authors set name=:bAuthorName surname=:bAuthorSurname where id =:bAuthorID';
+                       SQLQuery.SQL.Text:='update authors set name=:bAuthorName, surname=:bAuthorSurname where id =:bAuthorID';
                        SQLQuery.Params.ParamByName('bAuthorName').AsString:=FAuthorName;
                        SQLQuery.Params.ParamByName('bAuthorSurname').AsString:=FAuthorSurname;
                        SQLQuery.Params.ParamByName('bAuthorID').AsString:=IntToStr(FAuthorID);

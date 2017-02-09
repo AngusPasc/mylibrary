@@ -388,15 +388,25 @@ var
   I, J : Integer;
   str : String;
   FIO : TStrings;
-  newBooksList : TObjectList;
-  newAuthorsList : TObjectList;
+  newBook : TMBBook;
+  newAuthor : TMBAuthor;
   newPublisher : TMBPublisher;
-  newCompositionsList : TObjectList;
-  newGenresList : TObjectList;
-  newEditorsList : TObjectList;
+  newComposition : TMBComposition;
+  newGenre : TMBGenre;
+  newEditor : TMBEditor;
   newTranslator : TMBTranslator;
 begin
-     //ДК, обрабатываем строки
+     //ДК, обрабатываем строки, алгоритм будет следующий:
+     //1 - обрабатываем колонки по отдельности, каждой колонке
+     //по одновому объекту, для объекта создается запись в БД,
+     //если ее не было, либо данные загружаются из БД в объект
+     //2 - связываем автора и произведение
+     //3 - свзываем книгу и жанр
+     //4 - связываем книгу и издателя
+     //5 - связываем книгу и редактора
+     //6 - связываем книгу и переводчика
+     //7 - связываем книгу и автора
+     //8 - связываем книгу и произведение
      for I:=0 to OperationsStringGrid.RowCount -1 do
      begin
           //ДК, издатель
@@ -410,9 +420,46 @@ begin
                Split(' ', OperationsStringGrid.Cells[8,I], FIO);
                if FIO.Count = 1 then
                begin
-                    newTranslator.Create(FIO.Strings[0], FIO.Strings[1], SQLQuery1, SQLTransaction1);
+                    newTranslator.Create('', FIO.Strings[0], SQLQuery1, SQLTransaction1);
+               end
+               else
+               begin
+                   newTranslator.Create(FIO.Strings[1], FIO.Strings[0], SQLQuery1, SQLTransaction1);
                end;
           end;
+
+          //ДК, редактор
+          if OperationsStringGrid.Cells[6,I] <> '' then
+          begin
+               Split(' ', OperationsStringGrid.Cells[6,I], FIO);
+               if FIO.Count = 1 then
+               begin
+                    newEditor.Create('', FIO.Strings[0], SQLQuery1, SQLTransaction1);
+               end
+               else
+               begin
+                   newEditor.Create(FIO.Strings[1], FIO.Strings[0], SQLQuery1, SQLTransaction1);
+               end;
+          end;
+
+          if OperationsStringGrid.Cells[5,I] <> '' then
+          begin
+               newGenre.Create(OperationsStringGrid.Cells[9,I], '', SQLQuery1, SQLTransaction1);
+          end;
+
+          if OperationsStringGrid.Cells[3,I] <> '' then
+          begin
+               Split(' ', OperationsStringGrid.Cells[6,I], FIO);
+               //ДК, здесь наверняка нудна какая-нибудь проверка
+               newAuthor.Create(FIO.Strings[1], FIO.Strings[0], SQLQuery1, SQLTransaction1);
+          end;
+
+          if OperationsStringGrid.Cells[4,I] <> '' then
+          begin
+               newComposition.Create(OperationsStringGrid.Cells[4,I], '', SQLQuery1, SQLTransaction1);
+          end;
+
+          newBook.Create(OperationsStringGrid.Cells[0,I], OperationsStringGrid.Cells[1,I], OperationsStringGrid.Cells[2,I], '', );
 
      end;
 

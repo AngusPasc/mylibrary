@@ -3,7 +3,7 @@
   <ProjectSession>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="16">
+    <Units Count="14">
       <Unit0>
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -20,8 +20,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MyLibrary"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="428"/>
-        <CursorPos X="52" Y="453"/>
+        <TopLine Value="380"/>
+        <CursorPos X="27" Y="409"/>
         <UsageCount Value="350"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -31,8 +31,8 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="UMBAuthor"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="42"/>
-        <CursorPos X="11" Y="78"/>
+        <TopLine Value="207"/>
+        <CursorPos X="33" Y="216"/>
         <UsageCount Value="350"/>
         <Loaded Value="True"/>
       </Unit2>
@@ -41,7 +41,6 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="UMBComposition"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="4"/>
         <CursorPos X="34" Y="66"/>
         <UsageCount Value="339"/>
         <Loaded Value="True"/>
@@ -70,7 +69,7 @@
         <Filename Value="umbpublisher.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UMBPublisher"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="32"/>
         <CursorPos X="16" Y="69"/>
         <UsageCount Value="329"/>
@@ -80,9 +79,9 @@
         <Filename Value="umbbook.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UMBBook"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="4"/>
-        <CursorPos X="32" Y="22"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="269"/>
+        <CursorPos X="22" Y="295"/>
         <UsageCount Value="329"/>
         <Loaded Value="True"/>
       </Unit7>
@@ -102,14 +101,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="11"/>
         <CursorPos X="72" Y="15"/>
-        <UsageCount Value="207"/>
+        <UsageCount Value="202"/>
       </Unit9>
       <Unit10>
         <Filename Value="tmbcomposition.pas"/>
         <UnitName Value="UMBComposition"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="73" Y="8"/>
-        <UsageCount Value="207"/>
+        <UsageCount Value="202"/>
       </Unit10>
       <Unit11>
         <Filename Value="unit1.pas"/>
@@ -119,7 +118,7 @@
         <UnitName Value="MyLibrary"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="16"/>
-        <UsageCount Value="333"/>
+        <UsageCount Value="328"/>
       </Unit11>
       <Unit12>
         <Filename Value="tmbauthor.pas"/>
@@ -127,7 +126,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="7"/>
         <CursorPos X="38" Y="14"/>
-        <UsageCount Value="312"/>
+        <UsageCount Value="307"/>
       </Unit12>
       <Unit13>
         <Filename Value="/usr/lib/lazarus/1.6/lcl/grids.pas"/>
@@ -135,22 +134,8 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="9265"/>
         <CursorPos Y="9287"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="1"/>
       </Unit13>
-      <Unit14>
-        <Filename Value="/usr/share/fpcsrc/3.0.0/rtl/objpas/classes/classesh.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="224"/>
-        <CursorPos X="15" Y="244"/>
-        <UsageCount Value="4"/>
-      </Unit14>
-      <Unit15>
-        <Filename Value="/usr/share/fpcsrc/3.0.0/rtl/objpas/classes/lists.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="138"/>
-        <CursorPos X="3" Y="143"/>
-        <UsageCount Value="4"/>
-      </Unit15>
     </Units>
     <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
