@@ -405,7 +405,6 @@ begin
      //4 - связываем книгу и издателя
      //5 - связываем книгу и редактора
      //6 - связываем книгу и переводчика
-     //7 - связываем произведение и автора
      //8 - связываем книгу и произведение
      for I:=0 to OperationsStringGrid.RowCount -1 do
      begin
@@ -459,8 +458,13 @@ begin
                newComposition.Create(OperationsStringGrid.Cells[4,I], '', SQLQuery1, SQLTransaction1);
           end;
 
-          newBook.Create(OperationsStringGrid.Cells[0,I], OperationsStringGrid.Cells[1,I], OperationsStringGrid.Cells[2,I], '', );
+          newBook.Create(OperationsStringGrid.Cells[0,I], OperationsStringGrid.Cells[1,I], OperationsStringGrid.Cells[2,I], '', SQLQuery1, SQLTransaction1);
 
+          newAuthor.AddComposition(newComposition.CompositionID,SQLQuery1, SQLTransaction1);
+          newBook.AddGenre(newGenre.GenreID,SQLQuery1, SQLTransaction1);
+          newBook.AddPublisher(newPublisher.PublisherID,SQLQuery1, SQLTransaction1);
+          newBook.AddEditor(newEditor.EditorID,SQLQuery1, SQLTransaction1);
+          newBook.AddComposition(newComposition.CompositionID,SQLQuery1, SQLTransaction1);
      end;
 
 end;

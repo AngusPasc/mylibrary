@@ -55,7 +55,7 @@ begin
      begin
           FGenreName:=Name;
           FGenreDescription:=SQLQuery.FieldByName('desc').AsString;
-          FGenreID:=SQLQuery.FieldByName('id').AsString;
+          FGenreID:=SQLQuery.FieldByName('id').AsInteger;
           FNewGenre := False;
      end
      else

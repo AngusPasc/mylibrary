@@ -53,10 +53,10 @@ begin
      if SQLQuery.RecordCount > 0 then
      begin
           FCompositionName:=Name;
-          FAuthorSurname:=Surname;
-          FAuthorID:=SQLQuery.FieldByName('id').AsString;
-          FCompositionAnnotation:=SQLQuery.FieldByName('annotation').AsString
-          FNewAuthor := False;
+          FCompositionAnnotation:=Annotation;
+          FCompositionID:=SQLQuery.FieldByName('id').AsInteger;
+          FCompositionAnnotation:=SQLQuery.FieldByName('annotation').AsString;
+          FNewComposition := False;
      end
      else
      begin

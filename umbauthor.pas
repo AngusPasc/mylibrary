@@ -41,10 +41,10 @@ type
 
 implementation
 
-constructor TMBAutho.Create();
+constructor TMBAuthor.Create();
 begin
-     FAuthorName:=Name;
-     FAuthorSurname:=Surname;
+     FAuthorName:='';
+     FAuthorSurname:='';
      FAuthorID:=0;
      FAuthorOriginID:=0;
      FNewAuthor := True;
@@ -63,7 +63,7 @@ begin
      begin
           FAuthorName:=Name;
           FAuthorSurname:=Surname;
-          FAuthorID:=SQLQuery.FieldByName('id').AsString;
+          FAuthorID:=SQLQuery.FieldByName('id').AsInteger;
           FNewAuthor := False;
      end
      else
@@ -74,7 +74,7 @@ begin
          FAuthorID:=0;
          FAuthorOriginID:=0;
          FNewAuthor := True;
-         UpdateGenre(SQLQuery, SQLTransaction);
+         UpdateAuthor(SQLQuery, SQLTransaction);
      end;
 
 end;

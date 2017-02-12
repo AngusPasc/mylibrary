@@ -86,8 +86,9 @@ begin
           FBookISBN:=BookISBN;
           FBookYear:=BookYear;
           FBookNote:=BookNote;
-          FBookID:=SQLQuery.FieldByName('id').AsString;
+          FBookID:=SQLQuery.FieldByName('id').AsInteger;
           FNewBook := False;
+          ReadBookDataFromDB(SQLQuery, SQLTransaction);
      end
      else
      begin
@@ -292,7 +293,7 @@ begin
      SQLQuery.Params.ParamByName('bCompositionID').AsInteger:=ID;
      SQLQuery.ExecSQL;
      SQLTransaction.Commit;
-     FBookCompositionID:=ID;
+
 end;
 
 end.

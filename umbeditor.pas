@@ -36,8 +36,8 @@ implementation
 
 constructor TMBEditor.Create();
 begin
-     FEditorName:=Name;
-     FEditorSurname:=Surname;
+     FEditorName:='';
+     FEditorSurname:='';
      FEditorID:=0;
      FNewEditor := True;
 end;
@@ -53,7 +53,7 @@ begin
      begin
           FEditorName:=Name;
           FEditorSurname:=Surname;
-          FEditorID:=SQLQuery.FieldByName('id').AsString;
+          FEditorID:=SQLQuery.FieldByName('id').AsInteger;
           FNewEditor := False;
      end
      else

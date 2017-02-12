@@ -53,10 +53,11 @@ begin
      begin
           FTranslatorName:=Name;
           FTranslatorSurname:=Surname;
-          FTranslatorID:=SQLQuery.FieldByName('id').AsString;
+          FTranslatorID:=SQLQuery.FieldByName('id').AsInteger;
           FNewTranslator := False;
      end
      else
+     begin
           //ДК, надо добавить пару проверок Name и Surname не должны быть пустыми
           FTranslatorName:=Name;
           FTranslatorSurname:=Surname;
