@@ -424,11 +424,20 @@ begin
                ShowMessage(IntToStr(FIO.Count));
                if FIO.Count = 1 then
                begin
+                    newTranslator.Create();
+                    ShowMessage(FIO[0]);
+                    newTranslator.TranslatorSurname:=FIO[0];
                     newTranslator.Create('', FIO[0], SQLQuery1, SQLTransaction1);
                end
                else
                begin
-                   newTranslator.Create(FIO[1], FIO[0], SQLQuery1, SQLTransaction1);
+                    newTranslator.Create();
+                    ShowMessage(FIO[0]);
+                    ShowMessage(FIO[1]);
+                    newTranslator.TranslatorName:=FIO[1];
+                    newTranslator.TranslatorSurname:=FIO[0];
+                    newTranslator.UpdateTranslator(SQLQuery1, SQLTransaction1);
+                   //newTranslator.Create(FIO[1], FIO[0], SQLQuery1, SQLTransaction1);
                end;
                FIO.Clear;
           end;
@@ -444,7 +453,11 @@ begin
                end
                else
                begin
-                   newEditor.Create(FIO[1], FIO[0], SQLQuery1, SQLTransaction1);
+                   newEditor.Create();
+                   newEditor.EditorName:=FIO[1];
+                   newEditor.EditorSurname:=FIO[0];
+                   newEditor.UpdateEditor(SQLQuery1, SQLTransaction1);
+                   //newEditor.Create(FIO[1], FIO[0], SQLQuery1, SQLTransaction1);
                end;
                FIO.Clear;
           end;

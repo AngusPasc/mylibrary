@@ -52,7 +52,7 @@ type
 
     function CheckPublisher(PubName : String) : Integer;
 
-    procedure Split (const Delimiter: Char; Input: string; const Strings: TStrings);
+    function Split (const Delimiter: Char; Input: String) : TStrings;
 
   private
     { private declarations }
@@ -76,13 +76,12 @@ implementation
 
 { TMyBooks }
 
-procedure TMyBooks.Split (const Delimiter: Char; Input: string; const Strings: TStrings);
+function TMyBooks.Split (const Delimiter: Char; Input: String) : TStrings;
 begin
-   Assert(Assigned(Strings)) ;
-   Strings.Clear;
-   Strings.StrictDelimiter := true;
-   Strings.Delimiter := Delimiter;
-   Strings.DelimitedText := Input;
+     Result:=TStrings.Create;
+     Result.StrictDelimiter := true;
+     Result.Delimiter := Delimiter;
+     Result.Add(Input);
 end;
 
 function TMyBooks.CheckPublisher(PubName : String) : Integer;
@@ -298,7 +297,7 @@ begin
      //ДК, заполняем PickList для издателей
      if PublishersList.Count > 0 then
      begin
-         for I:=0 to PublishersList.Count do
+         for I:=0 to PublishersList.Count -1 do
          begin
               publisher:=PublishersList.Items[I] as TMBPublisher;
               OperationsStringGrid.Columns[8].PickList.Add(publisher.PublisherName);
@@ -387,7 +386,7 @@ procedure TMyBooks.btnAddClick(Sender: TObject);
 var
   I, J : Integer;
   str : String;
-  FIO : TStrings;
+  FIO : TStringList;
   newBook : TMBBook;
   newAuthor : TMBAuthor;
   newPublisher : TMBPublisher;
@@ -406,7 +405,11 @@ begin
      //5 - связываем книгу и редактора
      //6 - связываем книгу и переводчика
      //8 - связываем книгу и произведение
-     for I:=0 to OperationsStringGrid.RowCount -1 do
+     FIO:=TStringList.Create;
+     FIO.StrictDelimiter := true;
+     FIO.Delimiter := ' ';
+
+     for I:=1 to OperationsStringGrid.RowCount -1 do
      begin
           //ДК, издатель
           if OperationsStringGrid.Cells[9,I] <> '' then
@@ -416,29 +419,44 @@ begin
           //ДК, переводчик
           if OperationsStringGrid.Cells[8,I] <> '' then
           begin
-               Split(' ', OperationsStringGrid.Cells[8,I], FIO);
+               FIO.DelimitedText:=OperationsStringGrid.Cells[8,I];
+               //FIO:=Split(' ', OperationsStringGrid.Cells[8,I]);
+               ShowMessage(IntToStr(FIO.Count));
                if FIO.Count = 1 then
                begin
-                    newTranslator.Create('', FIO.Strings[0], SQLQuery1, SQLTransaction1);
+                    newTranslator.Create('', FIO[0], SQLQuery1, SQLTransaction1);
                end
                else
                begin
-                   newTranslator.Create(FIO.Strings[1], FIO.Strings[0], SQLQuery1, SQLTransaction1);
+                    newTranslator.Create();
+                    ShowMessage(FIO[0]);
+                    ShowMessage(FIO[1]);
+                    newTranslator.TranslatorName:=FIO[1];
+                    newTranslator.TranslatorSurname:=FIO[0];
+                    newTranslator.UpdateTranslator(SQLQuery1, SQLTransaction1);
+                   //newTranslator.Create(FIO[1], FIO[0], SQLQuery1, SQLTransaction1);
                end;
+               FIO.Clear;
           end;
 
           //ДК, редактор
           if OperationsStringGrid.Cells[6,I] <> '' then
           begin
-               Split(' ', OperationsStringGrid.Cells[6,I], FIO);
+               FIO.DelimitedText:=OperationsStringGrid.Cells[6,I];
+               //FIO:=Split(' ', OperationsStringGrid.Cells[6,I]);
                if FIO.Count = 1 then
                begin
-                    newEditor.Create('', FIO.Strings[0], SQLQuery1, SQLTransaction1);
+                    newEditor.Create('', FIO[0], SQLQuery1, SQLTransaction1);
                end
                else
                begin
-                   newEditor.Create(FIO.Strings[1], FIO.Strings[0], SQLQuery1, SQLTransaction1);
+                   newEditor.Create();
+                   newEditor.EditorName:=FIO[1];
+                   newEditor.EditorSurname:=FIO[0];
+                   newEditor.UpdateEditor(SQLQuery1, SQLTransaction1);
+                   //newEditor.Create(FIO[1], FIO[0], SQLQuery1, SQLTransaction1);
                end;
+               FIO.Clear;
           end;
 
           if OperationsStringGrid.Cells[5,I] <> '' then
@@ -448,9 +466,11 @@ begin
 
           if OperationsStringGrid.Cells[3,I] <> '' then
           begin
-               Split(' ', OperationsStringGrid.Cells[6,I], FIO);
+               FIO.DelimitedText:=OperationsStringGrid.Cells[6,I];
+               //FIO:=Split(' ', OperationsStringGrid.Cells[6,I]);
                //ДК, здесь наверняка нудна какая-нибудь проверка
-               newAuthor.Create(FIO.Strings[1], FIO.Strings[0], SQLQuery1, SQLTransaction1);
+               newAuthor.Create(FIO[1], FIO[0], SQLQuery1, SQLTransaction1);
+               FIO.Clear;
           end;
 
           if OperationsStringGrid.Cells[4,I] <> '' then
