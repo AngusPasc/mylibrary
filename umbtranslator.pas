@@ -21,8 +21,8 @@ type
         procedure SetTranslatorSurname( Surname : String );
      public
         constructor Create(); overload;
-        constructor Create(Name : String; Surname : String; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction); overload;
-        constructor Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction); overload;
+        constructor Create(Name : String; Surname : String; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
+        constructor Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
         property TranslatorName : String read FTranslatorName write SetTranslatorName;
         property TranslatorSurname : String read FTranslatorSurname write SetTranslatorSurname;
         property TranslatorID : Integer read FTranslatorID;

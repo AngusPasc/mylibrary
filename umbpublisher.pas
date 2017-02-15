@@ -56,6 +56,7 @@ begin
           FPublisherURL := '';
           FPublisherID := 0;
           FNewPublisher := True;
+          Exit;
      end;
      SQLQuery.Close;
      SQLQuery.SQL.Text:='SELECT id, city, url FROM publishers where name=:bName';
@@ -111,14 +112,14 @@ begin
   if FNewPublisher = True then
       begin
            SQLQuery.Close;
-           SQLQuery.SQL.Text:='inset into publishers (name, city, url) values (:bPublisherName, :bPublisherCity, :bPublisherURL )';
+           SQLQuery.SQL.Text:='insert into publishers (name, city, url) values (:bPublisherName, :bPublisherCity, :bPublisherURL )';
            SQLQuery.Params.ParamByName('bPublisherName').AsString:=FPublisherName;
            SQLQuery.Params.ParamByName('bPublisherCity').AsString:=FPublisherCity;
            SQLQuery.Params.ParamByName('bPublisherURL').AsString:=FPublisherURL;
            SQLQuery.ExecSQL;
            SQLTransaction.Commit;
            //ДК, получаем ID свежезаписанного в базу издателя
-           SQLQuery.SQL.Text:='select from id publishers where name=:bPublisherName)';
+           SQLQuery.SQL.Text:='select id from publishers where name=:bPublisherName)';
            SQLQuery.Params.ParamByName('bPublisherName').AsString:=FPublisherName;
            SQLQuery.Open;
            FPublisherID:=SQLQuery.FieldByName('id').AsInteger;

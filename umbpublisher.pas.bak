@@ -56,12 +56,13 @@ begin
           FPublisherURL := '';
           FPublisherID := 0;
           FNewPublisher := True;
+          Exit;
      end;
      SQLQuery.Close;
      SQLQuery.SQL.Text:='SELECT id, city, url FROM publishers where name=:bName';
      SQLQuery.Params.ParamByName('bName').AsString:=Name;
      SQLQuery.Open;
-     if SQLQuery1.RecordCount > 0 then
+     if SQLQuery.RecordCount > 0 then
      begin
           //ДК, нужна проверка что запрос вернул не пустой результат
           FPublisherName:=Name;
@@ -111,7 +112,7 @@ begin
   if FNewPublisher = True then
       begin
            SQLQuery.Close;
-           SQLQuery.SQL.Text:='inset into publishers (name, city, url) values (:bPublisherName, :bPublisherCity, :bPublisherURL )';
+           SQLQuery.SQL.Text:='insert into publishers (name, city, url) values (:bPublisherName, :bPublisherCity, :bPublisherURL )';
            SQLQuery.Params.ParamByName('bPublisherName').AsString:=FPublisherName;
            SQLQuery.Params.ParamByName('bPublisherCity').AsString:=FPublisherCity;
            SQLQuery.Params.ParamByName('bPublisherURL').AsString:=FPublisherURL;
