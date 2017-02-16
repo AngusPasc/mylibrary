@@ -23,8 +23,9 @@ type
     published
 
     public
-           constructor Create(Name : String = ''; Desc : String = '');
-           constructor Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
+           constructor Create(); overload;
+           constructor Create(Name : String; Desc : String; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction); overload;
+           constructor Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction); overload;
            property GenreName : String read FGenreName write SetGenreName;
            property GenreDescription : String read FGenreDescription write SetGenreDescription;
            property GenreID : Integer read FGenreID;
@@ -34,12 +35,38 @@ type
 
 implementation
 
-constructor TMBGenre.Create(Name : String = ''; Desc : String = '');
+constructor TMBGenre.Create();
 begin
-     FGenreName := Name;
-     FGenreDescription := Desc;
+     FGenreName := '';
+     FGenreDescription := '';
      FGenreID := 0;
      FNewGenre := True;
+end;
+
+constructor TMBGenre.Create(Name : String; Desc : String; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
+begin
+     //ДК, проверяем если добавлен новый редактор
+     SQLQuery.Close;
+     SQLQuery.SQL.Text:='SELECT id, description FROM genres where name=:bName'; //ДК, может LIMIT 1 воткнуть?
+     SQLQuery.Params.ParamByName('bName').AsString:=Name;
+     SQLQuery.Open;
+
+     if SQLQuery.RecordCount > 0 then
+     begin
+          FGenreName:=Name;
+          FGenreDescription:=SQLQuery.FieldByName('desc').AsString;
+          FGenreID:=SQLQuery.FieldByName('id').AsInteger;
+          FNewGenre := False;
+     end
+     else
+     begin
+          FGenreName := Name;
+          FGenreDescription := Desc;
+          FGenreID := 0;
+          FNewGenre := True;
+          UpdateGenre(SQLQuery, SQLTransaction);
+     end;
+
 end;
 
 constructor TMBGenre.Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);

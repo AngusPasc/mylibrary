@@ -416,24 +416,8 @@ begin
           begin
                newPublisher.Create(OperationsStringGrid.Cells[9,I], SQLQuery1, SQLTransaction1);
           end;
-          //ДК, переводчик
-          if OperationsStringGrid.Cells[8,I] <> '' then
-          begin
-               FIO.DelimitedText:=OperationsStringGrid.Cells[8,I];
-               //FIO:=Split(' ', OperationsStringGrid.Cells[8,I]);
-               ShowMessage(IntToStr(FIO.Count))
-               if FIO.Count = 1 then
-               begin
-                    newTranslator.Create('', FIO[0], SQLQuery1, SQLTransaction1);
-               end
-               else
-               begin
-                   newTranslator.Create(FIO[1], FIO[0], SQLQuery1, SQLTransaction1);
-               end;
-               FIO.Clear;
-          end;
 
-          //ДК, редактор
+                    //ДК, редактор
           if OperationsStringGrid.Cells[6,I] <> '' then
           begin
                FIO.DelimitedText:=OperationsStringGrid.Cells[6,I];
@@ -444,7 +428,33 @@ begin
                end
                else
                begin
-                   newEditor.Create(FIO[1], FIO[0], SQLQuery1, SQLTransaction1);
+                   newEditor.Create();
+                   newEditor.EditorName:=FIO[1];
+                   newEditor.EditorSurname:=FIO[0];
+                   newEditor.UpdateEditor(SQLQuery1, SQLTransaction1);
+                   //newEditor.Create(FIO[1], FIO[0], SQLQuery1, SQLTransaction1);
+               end;
+               FIO.Clear;
+          end;
+
+          //ДК, переводчик
+          if OperationsStringGrid.Cells[8,I] <> '' then
+          begin
+               FIO.DelimitedText:=OperationsStringGrid.Cells[8,I];
+               //FIO:=Split(' ', OperationsStringGrid.Cells[8,I]);
+               if FIO.Count = 1 then
+               begin
+                    newTranslator.Create();
+                    newTranslator.TranslatorSurname:=FIO[0];
+                    newTranslator.Create('', FIO[0], SQLQuery1, SQLTransaction1);
+               end
+               else
+               begin
+                    newTranslator.Create();
+                    newTranslator.TranslatorName:=FIO[1];
+                    newTranslator.TranslatorSurname:=FIO[0];
+                    newTranslator.UpdateTranslator(SQLQuery1, SQLTransaction1);
+                   //newTranslator.Create(FIO[1], FIO[0], SQLQuery1, SQLTransaction1);
                end;
                FIO.Clear;
           end;

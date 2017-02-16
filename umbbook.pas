@@ -255,7 +255,7 @@ end;
 procedure TMBBook.AddGenre(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
 begin
      SQLQuery.Close;
-     SQLQuery.SQL.Text:='inset into rel_book_genres (book_id, genre_id) values (:bBookID, :bGenreID )';
+     SQLQuery.SQL.Text:='insert into rel_book_genres (book_id, genre_id) values (:bBookID, :bGenreID )';
      SQLQuery.Params.ParamByName('bBookID').AsInteger:=FBookID;
      SQLQuery.Params.ParamByName('bGenreID').AsInteger:=ID;
      SQLQuery.ExecSQL;
@@ -266,7 +266,7 @@ end;
 procedure TMBBook.AddPublisher(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
 begin
      SQLQuery.Close;
-     SQLQuery.SQL.Text:='inset into rel_publisher_books (publisher_id, book_id) values (:bPublisherID, :bBookID )';
+     SQLQuery.SQL.Text:='insert into rel_publisher_books (publisher_id, book_id) values (:bPublisherID, :bBookID )';
      SQLQuery.Params.ParamByName('bBookID').AsInteger:=FBookID;
      SQLQuery.Params.ParamByName('bPublisherID').AsInteger:=ID;
      SQLQuery.ExecSQL;
@@ -277,7 +277,7 @@ end;
 procedure TMBBook.AddEditor(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
 begin
      SQLQuery.Close;
-     SQLQuery.SQL.Text:='inset into rel_book_editors (book_id, genre_id) values (:bBookID, :bEditorID )';
+     SQLQuery.SQL.Text:='insert into rel_book_editors (book_id, genre_id) values (:bBookID, :bEditorID )';
      SQLQuery.Params.ParamByName('bBookID').AsInteger:=FBookID;
      SQLQuery.Params.ParamByName('bEditorID').AsInteger:=ID;
      SQLQuery.ExecSQL;
@@ -288,7 +288,7 @@ end;
 procedure TMBBook.AddComposition(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
 begin
      SQLQuery.Close;
-     SQLQuery.SQL.Text:='inset into rel_book_compositions (composition_id, book_id) values (:bBookID, :bCompositionID )';
+     SQLQuery.SQL.Text:='insert into rel_book_compositions (composition_id, book_id) values (:bBookID, :bCompositionID )';
      SQLQuery.Params.ParamByName('bBookID').AsInteger:=FBookID;
      SQLQuery.Params.ParamByName('bCompositionID').AsInteger:=ID;
      SQLQuery.ExecSQL;

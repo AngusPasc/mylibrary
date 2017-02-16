@@ -47,7 +47,7 @@ constructor TMBGenre.Create(Name : String; Desc : String; const SQLQuery :  TSQL
 begin
      //ДК, проверяем если добавлен новый редактор
      SQLQuery.Close;
-     SQLQuery.SQL.Text:='SELECT id, desc FROM genres where name=:bName'; //ДК, может LIMIT 1 воткнуть?
+     SQLQuery.SQL.Text:='SELECT id, description FROM genres where name=:bName'; //ДК, может LIMIT 1 воткнуть?
      SQLQuery.Params.ParamByName('bName').AsString:=Name;
      SQLQuery.Open;
 
@@ -88,7 +88,7 @@ begin
   if FNewGenre = True then
       begin
            SQLQuery.Close;
-           SQLQuery.SQL.Text:='inset into genres (name, description) values (:bGenreName, :bGenreDescription )';
+           SQLQuery.SQL.Text:='insert into genres (name, description) values (:bGenreName, :bGenreDescription )';
            SQLQuery.Params.ParamByName('bGenreName').AsString:=FGenreName;
            SQLQuery.Params.ParamByName('bGenreDescription').AsString:=FGenreDescription;
            SQLQuery.ExecSQL;

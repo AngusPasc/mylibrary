@@ -22,7 +22,8 @@ type
       published
 
       public
-             constructor Create(Name : String = ''; Annotation : String = '');
+             constructor Create(); overload;
+             constructor Create(Name : String; Annotation : String; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
              constructor Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
              property CompositionName : String read FCompositionName write SetCompositionName;
              property CompositionAnnotation : String read FCompositionAnnotation write SetCompositionAnnotation;
@@ -34,13 +35,37 @@ type
 
 implementation
 
-constructor TMBComposition.Create(Name : String = ''; Annotation : String = '');
+constructor TMBComposition.Create();
 begin
-     //ДК, надо добавить проверку поле Name не должно быть пустым
-     FCompositionName:=Name;
-     FCompositionAnnotation:=Annotation;
+     FCompositionName:='';
+     FCompositionAnnotation:='';
      FCompositionID:=0;
      FNewComposition := True;
+end;
+
+constructor TMBComposition.Create(Name : String; Annotation : String; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
+begin
+     SQLQuery.Close;
+     SQLQuery.SQL.Text:='SELECT id, anotation FROM compositions where name=:bName'; //ДК, может LIMIT 1 воткнуть?
+     SQLQuery.Params.ParamByName('bName').AsString:=Name;
+     SQLQuery.Open;
+
+     if SQLQuery.RecordCount > 0 then
+     begin
+          FCompositionName:=Name;
+          FCompositionAnnotation:=Annotation;
+          FCompositionID:=SQLQuery.FieldByName('id').AsInteger;
+          FCompositionAnnotation:=SQLQuery.FieldByName('annotation').AsString;
+          FNewComposition := False;
+     end
+     else
+     begin
+          //ДК, надо добавить проверку поле Name не должно быть пустым
+          FCompositionName:=Name;
+          FCompositionAnnotation:=Annotation;
+          FNewComposition := True;
+          UpdateComposition(SQLQuery, SQLTransaction);
+     end;
 end;
 
 constructor TMBComposition.Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);

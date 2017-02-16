@@ -172,7 +172,7 @@ end;
                    if FNewAuthor = True then
                    begin
                        SQLQuery.Close;
-                       SQLQuery.SQL.Text:='inset into authors (name, surname) values (:bAuthorName, :bAuthorSurname )';
+                       SQLQuery.SQL.Text:='insert into authors (name, surname) values (:bAuthorName, :bAuthorSurname )';
                        SQLQuery.Params.ParamByName('bAuthorName').AsString:=FAuthorName;
                        SQLQuery.Params.ParamByName('bAuthorSurname').AsString:=FAuthorSurname;
                        SQLQuery.ExecSQL;
@@ -224,7 +224,7 @@ begin
      if RecordFound = False then
      begin
           SQLQuery.Close;
-          SQLQuery.SQL.Text:='inset into rel_composition_authors (composition_id, author_id) values (:bAuthorID, :bCompositionID )';
+          SQLQuery.SQL.Text:='insert into rel_composition_authors (composition_id, author_id) values (:bAuthorID, :bCompositionID )';
           SQLQuery.Params.ParamByName('bAuthorID').AsInteger:=FAuthorID;
           SQLQuery.Params.ParamByName('bCompositionID').AsInteger:=ID;
           SQLQuery.ExecSQL;

@@ -307,7 +307,7 @@ begin
      //ДК, заполняем PickList для жанров
      if GenresList.Count > 0 then
      begin
-          for I:=0 to GenresList.Count do
+          for I:=0 to GenresList.Count - 1 do
           begin
                genre:=GenresList.Items[I] as TMBGenre;
                OperationsStringGrid.Columns[5].PickList.Add(genre.GenreName);
@@ -317,7 +317,7 @@ begin
      //ДК, заполняем PickList для Авторов
      if AuthorsList.Count > 0 then
      begin
-          for I:=0 to AuthorsList.Count do
+          for I:=0 to AuthorsList.Count - 1 do
           begin
                author:=AuthorsList.Items[I] as TMBAuthor;
                OperationsStringGrid.Columns[3].PickList.Add(Concat(author.AuthorSurname, ' ', author.AuthorName));
@@ -327,7 +327,7 @@ begin
      //ДК, заподняем PickList для переводчиков
      if TranslatorsList.Count > 0 then
      begin
-          for I:=0 to TranslatorsList.Count do
+          for I:=0 to TranslatorsList.Count - 1 do
           begin
                translator:=TranslatorsList.Items[I] as TMBTranslator;
                OperationsStringGrid.Columns[7].PickList.Add(Concat(translator.TranslatorSurname, ' ', translator.TranslatorName));
@@ -337,7 +337,7 @@ begin
      //ДК, заполняем PickList для редакторов
      if EditorsList.Count > 0 then
      begin
-          for I:=0 to EditorsList.Count do
+          for I:=0 to EditorsList.Count - 1 do
           begin
                editor:=EditorsList.Items[I] as TMBEditor;
                OperationsStringGrid.Columns[6].PickList.Add(Concat(editor.EditorSurname, ' ', editor.EditorName));
@@ -416,72 +416,58 @@ begin
           begin
                newPublisher.Create(OperationsStringGrid.Cells[9,I], SQLQuery1, SQLTransaction1);
           end;
-          //ДК, переводчик
-          if OperationsStringGrid.Cells[8,I] <> '' then
-          begin
-               FIO.DelimitedText:=OperationsStringGrid.Cells[8,I];
-               //FIO:=Split(' ', OperationsStringGrid.Cells[8,I]);
-               ShowMessage(IntToStr(FIO.Count));
-               if FIO.Count = 1 then
-               begin
-                    newTranslator.Create();
-                    ShowMessage(FIO[0]);
-                    newTranslator.TranslatorSurname:=FIO[0];
-                    newTranslator.Create('', FIO[0], SQLQuery1, SQLTransaction1);
-               end
-               else
-               begin
-                    newTranslator.Create();
-                    ShowMessage(FIO[0]);
-                    ShowMessage(FIO[1]);
-                    newTranslator.TranslatorName:=FIO[1];
-                    newTranslator.TranslatorSurname:=FIO[0];
-                    newTranslator.UpdateTranslator(SQLQuery1, SQLTransaction1);
-                   //newTranslator.Create(FIO[1], FIO[0], SQLQuery1, SQLTransaction1);
-               end;
-               FIO.Clear;
-          end;
 
           //ДК, редактор
-          if OperationsStringGrid.Cells[6,I] <> '' then
+          if OperationsStringGrid.Cells[7,I] <> '' then
           begin
-               FIO.DelimitedText:=OperationsStringGrid.Cells[6,I];
-               //FIO:=Split(' ', OperationsStringGrid.Cells[6,I]);
+               FIO.DelimitedText:=OperationsStringGrid.Cells[7,I];
                if FIO.Count = 1 then
                begin
                     newEditor.Create('', FIO[0], SQLQuery1, SQLTransaction1);
                end
                else
                begin
-                   newEditor.Create();
-                   newEditor.EditorName:=FIO[1];
-                   newEditor.EditorSurname:=FIO[0];
-                   newEditor.UpdateEditor(SQLQuery1, SQLTransaction1);
-                   //newEditor.Create(FIO[1], FIO[0], SQLQuery1, SQLTransaction1);
+                   newEditor.Create(FIO[1], FIO[0], SQLQuery1, SQLTransaction1);
                end;
                FIO.Clear;
           end;
 
-          if OperationsStringGrid.Cells[5,I] <> '' then
+          if OperationsStringGrid.Cells[6,I] <> '' then
           begin
-               newGenre.Create(OperationsStringGrid.Cells[9,I], '', SQLQuery1, SQLTransaction1);
+               newGenre.Create(OperationsStringGrid.Cells[6,I], '', SQLQuery1, SQLTransaction1);
           end;
 
-          if OperationsStringGrid.Cells[3,I] <> '' then
+          //ДК, переводчик
+          if OperationsStringGrid.Cells[8,I] <> '' then
           begin
-               FIO.DelimitedText:=OperationsStringGrid.Cells[6,I];
-               //FIO:=Split(' ', OperationsStringGrid.Cells[6,I]);
+               FIO.DelimitedText:=OperationsStringGrid.Cells[8,I];
+               if FIO.Count = 1 then
+               begin
+                    newTranslator.Create('', FIO[0], SQLQuery1, SQLTransaction1);
+               end
+               else
+               begin
+                   newTranslator.Create(FIO[1], FIO[0], SQLQuery1, SQLTransaction1);
+               end;
+               FIO.Clear;
+          end;
+
+
+
+          if OperationsStringGrid.Cells[4,I] <> '' then
+          begin
+               FIO.DelimitedText:=OperationsStringGrid.Cells[4,I];
                //ДК, здесь наверняка нудна какая-нибудь проверка
                newAuthor.Create(FIO[1], FIO[0], SQLQuery1, SQLTransaction1);
                FIO.Clear;
           end;
 
-          if OperationsStringGrid.Cells[4,I] <> '' then
+          if OperationsStringGrid.Cells[5,I] <> '' then
           begin
-               newComposition.Create(OperationsStringGrid.Cells[4,I], '', SQLQuery1, SQLTransaction1);
+               newComposition.Create(OperationsStringGrid.Cells[5,I], '', SQLQuery1, SQLTransaction1);
           end;
 
-          newBook.Create(OperationsStringGrid.Cells[0,I], OperationsStringGrid.Cells[1,I], OperationsStringGrid.Cells[2,I], '', SQLQuery1, SQLTransaction1);
+          newBook.Create(OperationsStringGrid.Cells[1,I], OperationsStringGrid.Cells[2,I], OperationsStringGrid.Cells[3,I], '', SQLQuery1, SQLTransaction1);
 
           newAuthor.AddComposition(newComposition.CompositionID,SQLQuery1, SQLTransaction1);
           newBook.AddGenre(newGenre.GenreID,SQLQuery1, SQLTransaction1);
