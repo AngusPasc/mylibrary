@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectSession>
-    <Version Value="9"/>
+    <Version Value="10"/>
     <BuildModes Active="Default"/>
-    <Units Count="20">
+    <Units Count="24">
       <Unit0>
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="8"/>
-        <CursorPos X="43" Y="18"/>
+        <EditorIndex Value="9"/>
+        <CursorPos Y="20"/>
         <UsageCount Value="437"/>
         <Loaded Value="True"/>
       </Unit0>
@@ -19,9 +19,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MyLibrary"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="184"/>
-        <CursorPos X="12" Y="418"/>
+        <TopLine Value="442"/>
+        <CursorPos X="30" Y="465"/>
         <UsageCount Value="350"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -30,9 +29,10 @@
         <Filename Value="umbauthor.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UMBAuthor"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="10"/>
-        <CursorPos X="49" Y="175"/>
+        <TopLine Value="196"/>
+        <CursorPos X="61" Y="92"/>
         <UsageCount Value="350"/>
         <Loaded Value="True"/>
       </Unit2>
@@ -41,7 +41,8 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="UMBComposition"/>
         <EditorIndex Value="3"/>
-        <CursorPos X="35" Y="132"/>
+        <TopLine Value="64"/>
+        <CursorPos X="43" Y="25"/>
         <UsageCount Value="339"/>
         <Loaded Value="True"/>
       </Unit3>
@@ -49,8 +50,9 @@
         <Filename Value="umbeditor.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UMBEditor"/>
-        <EditorIndex Value="6"/>
-        <CursorPos Y="69"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="114"/>
+        <CursorPos X="33" Y="68"/>
         <UsageCount Value="338"/>
         <Loaded Value="True"/>
       </Unit4>
@@ -58,9 +60,9 @@
         <Filename Value="umbgenre.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UMBGenre"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="4"/>
-        <CursorPos Y="70"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="71"/>
+        <CursorPos X="21" Y="67"/>
         <UsageCount Value="338"/>
         <Loaded Value="True"/>
       </Unit5>
@@ -68,9 +70,9 @@
         <Filename Value="umbpublisher.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UMBPublisher"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="7"/>
-        <CursorPos Y="84"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="59"/>
+        <CursorPos X="38" Y="84"/>
         <UsageCount Value="329"/>
         <Loaded Value="True"/>
       </Unit6>
@@ -78,9 +80,9 @@
         <Filename Value="umbbook.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UMBBook"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="15"/>
-        <CursorPos X="60" Y="26"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="7"/>
+        <CursorPos X="48" Y="28"/>
         <UsageCount Value="329"/>
         <Loaded Value="True"/>
       </Unit7>
@@ -88,8 +90,9 @@
         <Filename Value="umbtranslator.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UMBTranslator"/>
-        <EditorIndex Value="7"/>
-        <CursorPos Y="40"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="112"/>
+        <CursorPos X="36" Y="132"/>
         <UsageCount Value="325"/>
         <Loaded Value="True"/>
       </Unit8>
@@ -140,7 +143,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="10255"/>
         <CursorPos Y="10277"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="11"/>
       </Unit14>
       <Unit15>
         <Filename Value="/usr/lib/lazarus/1.6/lcl/include/custompage.inc"/>
@@ -168,8 +171,8 @@
         <UnitName Value="DynamicArray"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="29"/>
-        <CursorPos X="43" Y="35"/>
-        <UsageCount Value="8"/>
+        <CursorPos Y="63"/>
+        <UsageCount Value="11"/>
       </Unit18>
       <Unit19>
         <Filename Value="/usr/lib/lazarus/1.6/lcl/lclmessageglue.pas"/>
@@ -179,108 +182,159 @@
         <CursorPos Y="119"/>
         <UsageCount Value="6"/>
       </Unit19>
+      <Unit20>
+        <Filename Value="/usr/share/fpcsrc/3.0.0/rtl/inc/objpas.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="535"/>
+        <CursorPos Y="556"/>
+        <UsageCount Value="11"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="/usr/lib/lazarus/1.6/lcl/include/control.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2715"/>
+        <CursorPos Y="2736"/>
+        <UsageCount Value="11"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="/usr/share/lazarus/1.6.4/lcl/interfaces/fpgui/fpguiwsdialogs.pp"/>
+        <UnitName Value="FpGuiWSDialogs"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="12"/>
+        <CursorPos X="3" Y="33"/>
+        <UsageCount Value="10"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="/usr/share/lazarus/1.6.4/lcl/grids.pas"/>
+        <UnitName Value="Grids"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="10186"/>
+        <CursorPos Y="10277"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit23>
     </Units>
-    <JumpHistory Count="25" HistoryIndex="24">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="umbgenre.pas"/>
-        <Caret Line="47" TopLine="26"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="457" TopLine="424"/>
       </Position1>
       <Position2>
-        <Filename Value="umbgenre.pas"/>
-        <Caret Line="70" TopLine="50"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="459" TopLine="426"/>
       </Position2>
       <Position3>
-        <Filename Value="umbgenre.pas"/>
-        <Caret Line="47" TopLine="26"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="471" Column="21" TopLine="458"/>
       </Position3>
       <Position4>
-        <Filename Value="umbgenre.pas"/>
-        <Caret Line="49" TopLine="26"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="394" Column="18" TopLine="376"/>
       </Position4>
       <Position5>
-        <Filename Value="umbgenre.pas"/>
-        <Caret Line="50" TopLine="26"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="408" TopLine="376"/>
       </Position5>
       <Position6>
-        <Filename Value="umbgenre.pas"/>
-        <Caret Line="51" TopLine="26"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="409" TopLine="376"/>
       </Position6>
       <Position7>
-        <Filename Value="umbgenre.pas"/>
-        <Caret Line="52" TopLine="26"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="410" TopLine="376"/>
       </Position7>
       <Position8>
-        <Filename Value="umbgenre.pas"/>
-        <Caret Line="54" TopLine="26"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="412" TopLine="378"/>
       </Position8>
       <Position9>
-        <Filename Value="umbgenre.pas"/>
-        <Caret Line="63" TopLine="29"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="415" TopLine="381"/>
       </Position9>
       <Position10>
-        <Filename Value="umbgenre.pas"/>
-        <Caret Line="64" TopLine="30"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="417" TopLine="383"/>
       </Position10>
       <Position11>
-        <Filename Value="umbgenre.pas"/>
-        <Caret Line="65" TopLine="31"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="421" TopLine="388"/>
       </Position11>
       <Position12>
-        <Filename Value="umbgenre.pas"/>
-        <Caret Line="66" TopLine="32"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="423" TopLine="390"/>
       </Position12>
       <Position13>
-        <Filename Value="umbgenre.pas"/>
-        <Caret Line="67" TopLine="33"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="424" TopLine="391"/>
       </Position13>
       <Position14>
-        <Filename Value="umbgenre.pas"/>
-        <Caret Line="87" TopLine="66"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="430" TopLine="397"/>
       </Position14>
       <Position15>
-        <Filename Value="umbgenre.pas"/>
-        <Caret Line="88" TopLine="66"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="432" TopLine="399"/>
       </Position15>
       <Position16>
-        <Filename Value="umbgenre.pas"/>
-        <Caret Line="90" TopLine="66"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="435" TopLine="402"/>
       </Position16>
       <Position17>
-        <Filename Value="umbgenre.pas"/>
-        <Caret Line="91" TopLine="66"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="437" TopLine="404"/>
       </Position17>
       <Position18>
-        <Filename Value="umbgenre.pas"/>
-        <Caret Line="92" TopLine="66"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="441" TopLine="408"/>
       </Position18>
       <Position19>
-        <Filename Value="umbgenre.pas"/>
-        <Caret Line="93" TopLine="66"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="443" TopLine="410"/>
       </Position19>
       <Position20>
-        <Filename Value="umbgenre.pas"/>
-        <Caret Line="94" TopLine="66"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="444" TopLine="411"/>
       </Position20>
       <Position21>
-        <Filename Value="umbgenre.pas"/>
-        <Caret Line="95" TopLine="66"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="450" TopLine="417"/>
       </Position21>
       <Position22>
-        <Filename Value="umbgenre.pas"/>
-        <Caret Line="96" TopLine="66"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="452" TopLine="419"/>
       </Position22>
       <Position23>
-        <Filename Value="umbgenre.pas"/>
-        <Caret Line="108" TopLine="88"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="457" TopLine="424"/>
       </Position23>
       <Position24>
-        <Filename Value="umbgenre.pas"/>
-        <Caret Line="109" TopLine="88"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="459" TopLine="426"/>
       </Position24>
       <Position25>
-        <Filename Value="umbgenre.pas"/>
-        <Caret Line="70" Column="3" TopLine="43"/>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="460" TopLine="427"/>
       </Position25>
+      <Position26>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="467" TopLine="434"/>
+      </Position26>
+      <Position27>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="470" TopLine="437"/>
+      </Position27>
+      <Position28>
+        <Filename Value="mylibrary.pas"/>
+        <Caret Line="473" TopLine="440"/>
+      </Position28>
+      <Position29>
+        <Filename Value="umbbook.pas"/>
+        <Caret Line="26" Column="60" TopLine="259"/>
+      </Position29>
+      <Position30>
+        <Filename Value="umbauthor.pas"/>
+        <Caret Line="175" Column="49" TopLine="55"/>
+      </Position30>
     </JumpHistory>
   </ProjectSession>
   <Debugging>
@@ -290,7 +344,7 @@
         <WatchScope Value="wpsLocal"/>
         <WatchKind Value="wpkWrite"/>
         <Source Value="mylibrary.pas"/>
-        <Line Value="413"/>
+        <Line Value="385"/>
       </Item1>
     </BreakPoints>
   </Debugging>

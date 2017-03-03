@@ -65,6 +65,7 @@ begin
           FNewEditor := True;
           UpdateEditor(SQLQuery, SQLTransaction);
      end;
+     SetLength(FEditorBooks, 0);
 
 end;
 

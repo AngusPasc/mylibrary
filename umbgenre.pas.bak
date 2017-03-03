@@ -19,18 +19,16 @@ type
            procedure SetGenreDescription( Descr : String );
            procedure GetGenresCompositions(const SQLQuery :  TSQLQuery);
            function GetGenresCompositionID( Index : Integer ) : Integer;
-
-    published
-
     public
            constructor Create(); overload;
-           constructor Create(Name : String; Desc : String; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction); overload;
-           constructor Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction); overload;
+           constructor Create(Name : String; Desc : String; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
+           constructor Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
            property GenreName : String read FGenreName write SetGenreName;
            property GenreDescription : String read FGenreDescription write SetGenreDescription;
            property GenreID : Integer read FGenreID;
            property GenresComposition[Index : Integer]: Integer read GetGenresCompositionID;
            procedure UpdateGenre(const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
+      published
   end;
 
 implementation
@@ -54,18 +52,21 @@ begin
      if SQLQuery.RecordCount > 0 then
      begin
           FGenreName:=Name;
-          FGenreDescription:=SQLQuery.FieldByName('desc').AsString;
+          FGenreDescription:=SQLQuery.FieldByName('description').AsString;
           FGenreID:=SQLQuery.FieldByName('id').AsInteger;
           FNewGenre := False;
+          SQLQuery.Close;
      end
      else
      begin
+          SQLQuery.Close;
           FGenreName := Name;
           FGenreDescription := Desc;
           FGenreID := 0;
           FNewGenre := True;
           UpdateGenre(SQLQuery, SQLTransaction);
      end;
+     SetLength(FGenresCompositionsID, 0);
 
 end;
 
@@ -88,7 +89,7 @@ begin
   if FNewGenre = True then
       begin
            SQLQuery.Close;
-           SQLQuery.SQL.Text:='inset into genres (name, description) values (:bGenreName, :bGenreDescription )';
+           SQLQuery.SQL.Text:='insert into genres (name, description) values (:bGenreName, :bGenreDescription )';
            SQLQuery.Params.ParamByName('bGenreName').AsString:=FGenreName;
            SQLQuery.Params.ParamByName('bGenreDescription').AsString:=FGenreDescription;
            SQLQuery.ExecSQL;

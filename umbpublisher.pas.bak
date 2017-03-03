@@ -119,7 +119,7 @@ begin
            SQLQuery.ExecSQL;
            SQLTransaction.Commit;
            //ДК, получаем ID свежезаписанного в базу издателя
-           SQLQuery.SQL.Text:='select from id publishers where name=:bPublisherName)';
+           SQLQuery.SQL.Text:='select id from publishers where name=:bPublisherName)';
            SQLQuery.Params.ParamByName('bPublisherName').AsString:=FPublisherName;
            SQLQuery.Open;
            FPublisherID:=SQLQuery.FieldByName('id').AsInteger;

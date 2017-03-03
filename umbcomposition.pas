@@ -46,7 +46,7 @@ end;
 constructor TMBComposition.Create(Name : String; Annotation : String; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
 begin
      SQLQuery.Close;
-     SQLQuery.SQL.Text:='SELECT id, anotation FROM compositions where name=:bName'; //ДК, может LIMIT 1 воткнуть?
+     SQLQuery.SQL.Text:='SELECT id, annotation FROM compositions where name=:bName'; //ДК, может LIMIT 1 воткнуть?
      SQLQuery.Params.ParamByName('bName').AsString:=Name;
      SQLQuery.Open;
 

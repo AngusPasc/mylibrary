@@ -5,7 +5,7 @@ unit MyLibrary;
 interface
 
 uses
-  Classes, SysUtils, sqlite3conn, sqldb, db, FileUtil, Forms, Controls,
+  heaptrc, Classes, SysUtils, sqlite3conn, sqldb, db, FileUtil, Forms, Controls,
   Graphics, Dialogs, DBGrids, StdCtrls, DbCtrls, Grids, ComCtrls, ValEdit,
   Contnrs, UMBAuthor, UMBComposition, UMBEditor, UMBGenre, UMBPublisher,
   UMBTranslator, UMBBook;
@@ -414,7 +414,7 @@ begin
           //ДК, издатель
           if OperationsStringGrid.Cells[9,I] <> '' then
           begin
-               newPublisher.Create(OperationsStringGrid.Cells[9,I], SQLQuery1, SQLTransaction1);
+               newPublisher:=TMBPublisher.Create(OperationsStringGrid.Cells[9,I], SQLQuery1, SQLTransaction1);
           end;
 
           //ДК, редактор
@@ -423,18 +423,18 @@ begin
                FIO.DelimitedText:=OperationsStringGrid.Cells[7,I];
                if FIO.Count = 1 then
                begin
-                    newEditor.Create('', FIO[0], SQLQuery1, SQLTransaction1);
+                    newEditor:=TMBEditor.Create('', FIO[0], SQLQuery1, SQLTransaction1);
                end
                else
                begin
-                   newEditor.Create(FIO[1], FIO[0], SQLQuery1, SQLTransaction1);
+                   newEditor:=TMBEditor.Create(FIO[1], FIO[0], SQLQuery1, SQLTransaction1);
                end;
                FIO.Clear;
           end;
 
           if OperationsStringGrid.Cells[6,I] <> '' then
           begin
-               newGenre.Create(OperationsStringGrid.Cells[6,I], '', SQLQuery1, SQLTransaction1);
+               newGenre:=TMBGenre.Create(OperationsStringGrid.Cells[6,I], 'N/D', SQLQuery1, SQLTransaction1);
           end;
 
           //ДК, переводчик
@@ -443,11 +443,11 @@ begin
                FIO.DelimitedText:=OperationsStringGrid.Cells[8,I];
                if FIO.Count = 1 then
                begin
-                    newTranslator.Create('', FIO[0], SQLQuery1, SQLTransaction1);
+                    newTranslator:=TMBTranslator.Create('', FIO[0], SQLQuery1, SQLTransaction1);
                end
                else
                begin
-                   newTranslator.Create(FIO[1], FIO[0], SQLQuery1, SQLTransaction1);
+                   newTranslator:=TMBTranslator.Create(FIO[1], FIO[0], SQLQuery1, SQLTransaction1);
                end;
                FIO.Clear;
           end;
@@ -457,17 +457,25 @@ begin
           if OperationsStringGrid.Cells[4,I] <> '' then
           begin
                FIO.DelimitedText:=OperationsStringGrid.Cells[4,I];
-               //ДК, здесь наверняка нудна какая-нибудь проверка
-               newAuthor.Create(FIO[1], FIO[0], SQLQuery1, SQLTransaction1);
+               if FIO.Count = 1 then
+               begin
+                    newAuthor:=TMBAuthor.Create('', FIO[0], SQLQuery1, SQLTransaction1);
+               end
+               else
+               begin
+                    //ДК, здесь наверняка нудна какая-нибудь проверка
+                     newAuthor:=TMBAuthor.Create(FIO[1], FIO[0], SQLQuery1, SQLTransaction1);
+               end;
+
                FIO.Clear;
           end;
 
           if OperationsStringGrid.Cells[5,I] <> '' then
           begin
-               newComposition.Create(OperationsStringGrid.Cells[5,I], '', SQLQuery1, SQLTransaction1);
+               newComposition:=TMBComposition.Create(OperationsStringGrid.Cells[5,I], '', SQLQuery1, SQLTransaction1);
           end;
 
-          newBook.Create(OperationsStringGrid.Cells[1,I], OperationsStringGrid.Cells[2,I], OperationsStringGrid.Cells[3,I], '', SQLQuery1, SQLTransaction1);
+          newBook:=TMBBook.Create(OperationsStringGrid.Cells[1,I], OperationsStringGrid.Cells[2,I], OperationsStringGrid.Cells[3,I], '', SQLQuery1, SQLTransaction1);
 
           newAuthor.AddComposition(newComposition.CompositionID,SQLQuery1, SQLTransaction1);
           newBook.AddGenre(newGenre.GenreID,SQLQuery1, SQLTransaction1);

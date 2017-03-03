@@ -60,7 +60,7 @@ begin
      begin
           //ДК, надо добавить пару проверок Name и Surname не должны быть пустыми
           FTranslatorName:=Name;
-          FTranslatorSurname:='me';
+          FTranslatorSurname:=Surname;
           FTranslatorID:=0;
           FNewTranslator := True;
           UpdateTranslator(SQLQuery, SQLTransaction);
@@ -129,7 +129,7 @@ begin
      if FNewTranslator = True then
      begin
           SQLQuery.Close;
-          SQLQuery.SQL.Text:='inset into translator (name, surname) values (:bTranslatorName, :bTranslatorSurname )';
+          SQLQuery.SQL.Text:='inset into translators (name, surname) values (:bTranslatorName, :bTranslatorSurname)';
           SQLQuery.Params.ParamByName('bTranslatorName').AsString:=FTranslatorName;
           SQLQuery.Params.ParamByName('bTranslatorSurname').AsString:=FTranslatorSurname;
           SQLQuery.ExecSQL;
@@ -139,7 +139,7 @@ begin
      else
      begin
           SQLQuery.Close;
-          SQLQuery.SQL.Text:='update translator set name=:bTranslatorName, surname=:bTranslatorSurname where id =:bTranslatorID';
+          SQLQuery.SQL.Text:='update translators set name=:bTranslatorName, surname=:bTranslatorSurname where id =:bTranslatorID';
           SQLQuery.Params.ParamByName('bTranslatorName').AsString:=FTranslatorName;
           SQLQuery.Params.ParamByName('bTranslatorSurname').AsString:=FTranslatorSurname;
           SQLQuery.Params.ParamByName('bTranslatorID').AsString:=IntToStr(FTranslatorID);

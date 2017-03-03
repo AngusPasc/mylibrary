@@ -129,7 +129,7 @@ begin
     if FNewComposition = True then
     begin
          SQLQuery.Close;
-         SQLQuery.SQL.Text:='inset into compositions (name, annotation) values (:bCompositionName, :bCompositionAnnotation )';
+         SQLQuery.SQL.Text:='insert into compositions (name, annotation) values (:bCompositionName, :bCompositionAnnotation )';
          SQLQuery.Params.ParamByName('bCompositionName').AsString:=FCompositionName;
          SQLQuery.Params.ParamByName('bCompositionAnnotation').AsString:=FCompositionAnnotation;
          SQLQuery.ExecSQL;

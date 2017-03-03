@@ -8,7 +8,7 @@ object MyBooks: TMyBooks
   ClientWidth = 993
   OnClose = FormClose
   OnCreate = FormCreate
-  LCLVersion = '1.6.0.4'
+  LCLVersion = '1.6.4.0'
   object PageControl1: TPageControl
     Left = 16
     Height = 168

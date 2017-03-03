@@ -81,6 +81,7 @@ begin
           FNewPublisher := True;
           UpdatePublisher(SQLQuery, SQLTransaction);
      end;
+     SetLength(FPublisherBooksID, 0);
 end;
 
 constructor TMBPublisher.Create(Name : String = ''; City : String = ''; URL : String = '');

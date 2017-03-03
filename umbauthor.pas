@@ -82,14 +82,14 @@ end;
 constructor TMBAuthor.Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
 begin
      SQLQuery.Close;
-     SQLQuery.SQL.Text:='SELECT name, surname, originid FROM authors where id=:bID';
+     SQLQuery.SQL.Text:='SELECT name, surname, origin_id FROM authors where id=:bID';
      SQLQuery.Params.ParamByName('bID').AsString:=IntToStr(ID);
      SQLQuery.Open;
      //ДК, нужна проверка что запрос вернул не пустой результат
      FAuthorName:=SQLQuery.FieldByName('name').AsString;
      FAuthorSurname:=SQLQuery.FieldByName('surname').AsString;
      FAuthorID:=ID;
-     FAuthorOriginID:=StrToInt(SQLQuery.FieldByName('originid').AsString);
+     FAuthorOriginID:=StrToInt(SQLQuery.FieldByName('origin_id').AsString);
      SQLQuery.Close;
      FNewAuthor := False;
 end;
@@ -129,6 +129,7 @@ end;
                 I : Integer;
                 CompositionList : String;
               begin
+                   CompositionList:='';
                    if length(FAuthorCompositions) > 0 then
                    begin
                         for I:=0 to length(FAuthorCompositions)-1 do

@@ -130,7 +130,7 @@ begin
      if FNewEditor = True then
      begin
           SQLQuery.Close;
-          SQLQuery.SQL.Text:='inset into editors (name, surname) values (:bEditorName, :bEditorSurname )';
+          SQLQuery.SQL.Text:='insert into editors (name, surname) values (:bEditorName, :bEditorSurname )';
           SQLQuery.Params.ParamByName('bEditorName').AsString:=FEditorName;
           SQLQuery.Params.ParamByName('bEditorSurname').AsString:=FEditorSurname;
           SQLQuery.ExecSQL;

@@ -19,18 +19,16 @@ type
            procedure SetGenreDescription( Descr : String );
            procedure GetGenresCompositions(const SQLQuery :  TSQLQuery);
            function GetGenresCompositionID( Index : Integer ) : Integer;
-
-    published
-
     public
            constructor Create(); overload;
-           constructor Create(Name : String; Desc : String; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction); overload;
-           constructor Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction); overload;
+           constructor Create(Name : String; Desc : String; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
+           constructor Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
            property GenreName : String read FGenreName write SetGenreName;
            property GenreDescription : String read FGenreDescription write SetGenreDescription;
            property GenreID : Integer read FGenreID;
            property GenresComposition[Index : Integer]: Integer read GetGenresCompositionID;
            procedure UpdateGenre(const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
+      published
   end;
 
 implementation
@@ -44,6 +42,8 @@ begin
 end;
 
 constructor TMBGenre.Create(Name : String; Desc : String; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);
+var
+  I : Integer;
 begin
      //ДК, проверяем если добавлен новый редактор
      SQLQuery.Close;
@@ -54,19 +54,23 @@ begin
      if SQLQuery.RecordCount > 0 then
      begin
           FGenreName:=Name;
-          FGenreDescription:=SQLQuery.FieldByName('desc').AsString;
+          FGenreDescription:=SQLQuery.FieldByName('description').AsString;
           FGenreID:=SQLQuery.FieldByName('id').AsInteger;
           FNewGenre := False;
+          SQLQuery.Close;
      end
      else
      begin
+          SQLQuery.Close;
           FGenreName := Name;
           FGenreDescription := Desc;
           FGenreID := 0;
           FNewGenre := True;
           UpdateGenre(SQLQuery, SQLTransaction);
      end;
+     SetLength(FGenresCompositionsID, 0);
 
+     I:=0;
 end;
 
 constructor TMBGenre.Create(ID : Integer; const SQLQuery :  TSQLQuery; const SQLTransaction : TSQLTransaction);

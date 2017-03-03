@@ -129,7 +129,7 @@ begin
      if FNewTranslator = True then
      begin
           SQLQuery.Close;
-          SQLQuery.SQL.Text:='inset into translator (name, surname) values (:bTranslatorName, :bTranslatorSurname )';
+          SQLQuery.SQL.Text:='insert into translators (name, surname) values (:bTranslatorName, :bTranslatorSurname)';
           SQLQuery.Params.ParamByName('bTranslatorName').AsString:=FTranslatorName;
           SQLQuery.Params.ParamByName('bTranslatorSurname').AsString:=FTranslatorSurname;
           SQLQuery.ExecSQL;
@@ -139,7 +139,7 @@ begin
      else
      begin
           SQLQuery.Close;
-          SQLQuery.SQL.Text:='update translator set name=:bTranslatorName, surname=:bTranslatorSurname where id =:bTranslatorID';
+          SQLQuery.SQL.Text:='update translators set name=:bTranslatorName, surname=:bTranslatorSurname where id =:bTranslatorID';
           SQLQuery.Params.ParamByName('bTranslatorName').AsString:=FTranslatorName;
           SQLQuery.Params.ParamByName('bTranslatorSurname').AsString:=FTranslatorSurname;
           SQLQuery.Params.ParamByName('bTranslatorID').AsString:=IntToStr(FTranslatorID);
